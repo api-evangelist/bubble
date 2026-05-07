@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://myapp.bubbleapps.io/api/1.1/wf/register_user",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "kinlane@example.com",
+      "password": "correct horse battery staple",
+      "plan": "starter"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "success",
+      "response": {
+        "user_id": "1503408875694x944431186090727600",
+        "auth_token": "abc123..."
+      }
+    }
+  }
+}

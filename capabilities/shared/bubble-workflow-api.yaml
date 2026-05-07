@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Workflow API (Shared)
+  description: Shared per-API capability definition for the Bubble Workflow API. Triggers backend workflows defined in the Bubble editor.
+  tags:
+    - Bubble
+    - Workflow API
+    - No-Code
+    - Automation
+  created: '2026-05-06'
+  modified: '2026-05-06'
+binds:
+  - namespace: env
+    keys:
+      BUBBLE_API_TOKEN: BUBBLE_API_TOKEN
+      BUBBLE_APP_NAME: BUBBLE_APP_NAME
+capability:
+  consumes:
+    - type: http
+      namespace: bubble-workflow
+      baseUri: https://{{BUBBLE_APP_NAME}}.bubbleapps.io/api/1.1
+      description: Bubble Workflow API for triggering server-side automations.
+      authentication:
+        type: bearer
+        token: '{{BUBBLE_API_TOKEN}}'
+      resources:
+        - name: workflow-initialize
+          path: /wf/{workflow_name}/initialize
+          description: One-time parameter contract detection for a workflow
+          operations:
+            - name: initialize-workflow
+              method: POST
+              description: Detect parameter contract during build
+              inputParameters:
+                - name: workflow_name
+                  in: path
+                  type: string
+                  required: true
+                  description: Name of the API workflow
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: workflow
+          path: /wf/{workflow_name}
+          description: Trigger a workflow by name
+          operations:
+            - name: trigger-workflow
+              method: POST
+              description: Invoke a backend workflow with JSON parameters
+              inputParameters:
+                - name: workflow_name
+                  in: path
+                  type: string
+                  required: true
+                  description: Name of the API workflow
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: trigger-workflow-get
+              method: GET
+              description: Invoke a workflow with query-string parameters
+              inputParameters:
+                - name: workflow_name
+                  in: path
+                  type: string
+                  required: true
+                  description: Name of the API workflow
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bubble/main/json-schema/bubble-error-schema.json",
+  "title": "Bubble API Error",
+  "description": "Error envelope returned by the Data API and Workflow API on validation, authorization, or throttling failures.",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "integer",
+      "description": "HTTP status code (400, 401, 404, 429, 503)."
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Error status keyword (e.g. `bad_request`, `unauthorized`, `rate_limited`)."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message."
+        }
+      },
+      "required": ["status", "message"]
+    }
+  },
+  "required": ["statusCode", "body"]
+}

@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://myapp.bubbleapps.io/api/1.1/obj/property?constraints=%5B%7B%22key%22%3A%22city%22%2C%22constraint_type%22%3A%22equals%22%2C%22value%22%3A%22Brooklyn%22%7D%5D&limit=2&cursor=0&sort_field=price&descending=false",
+    "headers": {
+      "Authorization": "Bearer 1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "response": {
+        "cursor": 0,
+        "results": [
+          {
+            "_id": "1503408875694x944431186090727200",
+            "Created Date": "2026-04-01T18:22:31.001Z",
+            "Modified Date": "2026-04-12T09:10:02.314Z",
+            "Created By": "1502920201312x117234012812734001",
+            "address": "126 Court St, Brooklyn, NY",
+            "city": "Brooklyn",
+            "price": 2400,
+            "bedrooms": 1
+          },
+          {
+            "_id": "1503408875694x944431186090727201",
+            "Created Date": "2026-04-02T11:42:01.523Z",
+            "Modified Date": "2026-04-12T09:11:14.812Z",
+            "Created By": "1502920201312x117234012812734001",
+            "address": "200 5th Ave, Brooklyn, NY",
+            "city": "Brooklyn",
+            "price": 3200,
+            "bedrooms": 2
+          }
+        ],
+        "count": 2,
+        "remaining": 18
+      }
+    }
+  }
+}

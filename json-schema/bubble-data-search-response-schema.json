@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bubble/main/json-schema/bubble-data-search-response-schema.json",
+  "title": "Bubble Data Search Response",
+  "description": "Paginated response returned by GET /api/1.1/obj/{typename}.",
+  "type": "object",
+  "properties": {
+    "response": {
+      "type": "object",
+      "properties": {
+        "cursor": {
+          "type": "integer",
+          "description": "Position of the first returned item.",
+          "minimum": 0
+        },
+        "results": {
+          "type": "array",
+          "description": "The page of records.",
+          "items": {
+            "$ref": "bubble-data-thing-schema.json"
+          }
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of records on this page.",
+          "minimum": 0
+        },
+        "remaining": {
+          "type": "integer",
+          "description": "Records remaining beyond the returned page.",
+          "minimum": 0
+        }
+      },
+      "required": ["cursor", "results", "count"]
+    }
+  },
+  "required": ["response"]
+}

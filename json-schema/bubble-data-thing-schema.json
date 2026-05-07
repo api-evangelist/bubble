@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bubble/main/json-schema/bubble-data-thing-schema.json",
+  "title": "Bubble Data Thing",
+  "description": "A single record of a user-defined Bubble data type, returned by the Data API.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier assigned by Bubble (e.g. 1503408875694x944431186090727200)."
+    },
+    "Created Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the record was created."
+    },
+    "Modified Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the record was last modified."
+    },
+    "Created By": {
+      "type": "string",
+      "description": "Unique id of the User who created the record."
+    },
+    "Slug": {
+      "type": "string",
+      "description": "Optional URL-friendly slug if the data type has Slugs enabled."
+    }
+  },
+  "additionalProperties": true,
+  "required": ["_id"]
+}

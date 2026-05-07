@@ -1,0 +1,356 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bubble
+providerId: bubble
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: true
+tags:
+  - No-Code
+  - Application Platform
+  - Workload Units
+  - Subscription
+  - Tiered
+description: |
+  Bubble uses a tiered subscription model with a free Starter trial, three
+  paid plans (Starter, Growth, Team), and a custom Enterprise plan. Each plan
+  bundles a monthly allotment of Workload Units (WU) — the metering currency
+  for server-side activity (database reads/writes, API calls, scheduled
+  workflows, plugin execution). Plans differ on bandwidth, app slots,
+  collaborators, custom domain, and premium plugins. Mobile add-ons and
+  combined Web + Mobile bundles are available. Extra workload, file storage,
+  and add-ons are billed on top of the base plan.
+sources:
+  - https://bubble.io/pricing
+  - https://manual.bubble.io/account-and-marketplace/account-and-billing/pricing-plans.md
+  - https://manual.bubble.io/help-guides/workload/understanding-workload.md
+plans:
+  - id: bubble-free
+    name: Free
+    type: freemium
+    description: |
+      Free tier for learning and prototyping. Build and test apps on a Bubble
+      subdomain with limited workload and no live deployment. A 14-day Starter
+      trial is also available with $1 pre-authorization hold.
+    entries:
+      - label: Apps
+        name: apps
+        type: quota
+        metric: app
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Custom Domain
+        name: custom_domain
+        type: flat
+        metric: domain
+        limit: 0
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: not included
+        userMultiplied: false
+    elements:
+      - name: Build and test on Bubble subdomain
+      - name: Visual editor and database
+      - name: Bubble-branded apps
+      - name: Community support
+  - id: bubble-starter
+    name: Starter
+    type: subscription
+    description: |
+      Entry plan for launching a single live app. Includes custom domain,
+      basic workload, premium plugin support, and 100 GB monthly bandwidth.
+      $29/month annual (Web), $32/month monthly billing.
+    entries:
+      - label: Monthly subscription (annual billing, Web)
+        name: starter_web_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.00'
+        userMultiplied: false
+      - label: Monthly subscription (monthly billing, Web)
+        name: starter_web_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '32.00'
+        userMultiplied: false
+      - label: Bandwidth included
+        name: bandwidth
+        type: quota
+        metric: gb
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: API requests/minute (Data + Workflow)
+        name: api_rpm
+        type: quota
+        metric: request
+        limit: 15000
+        timeFrame: minute
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: 1 app slot
+      - name: Custom domain
+      - name: Premium plugins
+      - name: 1 app editor
+      - name: Bubble-hosted infrastructure
+  - id: bubble-growth
+    name: Growth
+    type: subscription
+    description: |
+      Mid-tier plan for production apps with multiple editors and version
+      control. Includes 500 GB bandwidth/month and elevated API rate limits.
+      $119/month annual (Web), $134/month monthly billing.
+    entries:
+      - label: Monthly subscription (annual billing, Web)
+        name: growth_web_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '119.00'
+        userMultiplied: false
+      - label: Monthly subscription (monthly billing, Web)
+        name: growth_web_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '134.00'
+        userMultiplied: false
+      - label: Bandwidth included
+        name: bandwidth
+        type: quota
+        metric: gb
+        limit: 500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: API requests/minute (Data + Workflow)
+        name: api_rpm
+        type: quota
+        metric: request
+        limit: 25000
+        timeFrame: minute
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: 2 app slots
+      - name: Multiple editors
+      - name: Version control
+      - name: Premium plugins
+      - name: 2-factor authentication
+      - name: Sub-apps and white-label
+  - id: bubble-team
+    name: Team
+    type: subscription
+    description: |
+      Plan for teams running multiple production apps. Includes 1 TB
+      bandwidth/month, advanced version control, multi-app editors, and the
+      highest published API rate limit. $349/month annual (Web), $399/month
+      monthly billing.
+    entries:
+      - label: Monthly subscription (annual billing, Web)
+        name: team_web_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '349.00'
+        userMultiplied: false
+      - label: Monthly subscription (monthly billing, Web)
+        name: team_web_monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '399.00'
+        userMultiplied: false
+      - label: Bandwidth included
+        name: bandwidth
+        type: quota
+        metric: gb
+        limit: 1000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: API requests/minute (Data + Workflow)
+        name: api_rpm
+        type: quota
+        metric: request
+        limit: 35000
+        timeFrame: minute
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: 5 app slots
+      - name: 5 app editors
+      - name: Advanced version control
+      - name: Premium plugins
+      - name: Multi-app dashboard
+      - name: Priority email support
+  - id: bubble-enterprise
+    name: Enterprise / Custom
+    type: enterprise
+    description: |
+      Custom-priced plan for high-volume customers. Adds dedicated
+      infrastructure, advanced security, SSO, custom rate limits, and SLA.
+      Sorted search results raised to 10,000,000 items per request.
+    entries:
+      - label: Custom contract
+        name: enterprise_custom
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Dedicated infrastructure
+      - name: Custom workload allocation
+      - name: SSO and advanced security
+      - name: Higher hard limits (10M sorted search results)
+      - name: SLA and dedicated support
+      - name: Custom rate limits negotiated with sales
+  - id: bubble-mobile-bundle
+    name: Mobile Add-On / Web + Mobile Bundle
+    type: subscription
+    description: |
+      Mobile-only and combined Web + Mobile bundles available across
+      Starter, Growth, and Team. Mobile-only Starter is $42/mo annual ($49/mo
+      monthly); Web + Mobile Starter is $59/mo annual ($69/mo monthly).
+      Pricing scales similarly through Growth and Team.
+    entries:
+      - label: Starter Mobile (annual)
+        name: starter_mobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '42.00'
+        userMultiplied: false
+      - label: Starter Web + Mobile (annual)
+        name: starter_webmobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '59.00'
+        userMultiplied: false
+      - label: Growth Mobile (annual)
+        name: growth_mobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '169.00'
+        userMultiplied: false
+      - label: Growth Web + Mobile (annual)
+        name: growth_webmobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '209.00'
+        userMultiplied: false
+      - label: Team Mobile (annual)
+        name: team_mobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '449.00'
+        userMultiplied: false
+      - label: Team Web + Mobile (annual)
+        name: team_webmobile_annual
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '549.00'
+        userMultiplied: false
+    elements:
+      - name: Native mobile build pipeline
+      - name: iOS and Android packaging
+      - name: Same WU and rate limit allotment as Web tier
+  - id: bubble-addons
+    name: Add-Ons
+    type: usage-based
+    description: |
+      Pay-as-you-go add-ons stack on top of any paid plan. Extra workload
+      units use volume-discounted tiers; extra file storage is billed per
+      100 GB block per month.
+    entries:
+      - label: Extra file storage
+        name: extra_storage
+        type: metered
+        metric: gb
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 100
+        price: '3.00'
+        userMultiplied: false
+      - label: Additional workload units
+        name: extra_wu
+        type: metered
+        metric: wu
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: see vendor pricing calculator
+        userMultiplied: false
+    elements:
+      - name: Volume-discounted WU pricing
+      - name: File storage billed per 100 GB block
+      - name: No commitment required

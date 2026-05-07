@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bubble/main/json-schema/bubble-workflow-response-schema.json",
+  "title": "Bubble Workflow Response",
+  "description": "Default JSON response returned by a triggered Bubble Workflow API endpoint.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Outcome status. `success` on normal completion."
+    },
+    "response": {
+      "type": "object",
+      "description": "Workflow-specific return values defined via the `Return data from API` action.",
+      "additionalProperties": true
+    }
+  },
+  "required": ["status"]
+}

@@ -1,0 +1,310 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Headless Backend
+  description: Use a Bubble app as a headless backend for an external mobile or web client. Combines the Data API for CRUD plus the Workflow API for business logic into a single capability that exposes a unified REST surface and an MCP tool surface.
+  tags:
+    - Bubble
+    - Headless
+    - No-Code
+    - Backend
+    - Integration
+  created: '2026-05-06'
+  modified: '2026-05-06'
+binds:
+  - namespace: env
+    keys:
+      BUBBLE_API_TOKEN: BUBBLE_API_TOKEN
+      BUBBLE_APP_NAME: BUBBLE_APP_NAME
+capability:
+  consumes:
+    - type: http
+      namespace: bubble-data
+      baseUri: https://{{BUBBLE_APP_NAME}}.bubbleapps.io/api/1.1
+      description: Bubble Data API for CRUD against the app database
+      authentication:
+        type: bearer
+        token: '{{BUBBLE_API_TOKEN}}'
+      resources:
+        - name: things
+          path: /obj/{typename}
+          description: Records of a data type
+          operations:
+            - name: search-things
+              method: GET
+              description: Search records of a data type
+              inputParameters:
+                - name: typename
+                  in: path
+                  type: string
+                  required: true
+                  description: Lowercase data type name
+                - name: constraints
+                  in: query
+                  type: string
+                  required: false
+                  description: JSON-encoded constraints
+                - name: cursor
+                  in: query
+                  type: integer
+                  required: false
+                  description: Pagination cursor
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Page size
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: create-thing
+              method: POST
+              description: Create a record
+              inputParameters:
+                - name: typename
+                  in: path
+                  type: string
+                  required: true
+                  description: Lowercase data type name
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: thing
+          path: /obj/{typename}/{uid}
+          description: Single record operations
+          operations:
+            - name: get-thing
+              method: GET
+              description: Get a record by id
+              inputParameters:
+                - name: typename
+                  in: path
+                  type: string
+                  required: true
+                  description: Lowercase data type name
+                - name: uid
+                  in: path
+                  type: string
+                  required: true
+                  description: Unique record id
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: modify-thing
+              method: PATCH
+              description: Patch a record
+              inputParameters:
+                - name: typename
+                  in: path
+                  type: string
+                  required: true
+                  description: Lowercase data type name
+                - name: uid
+                  in: path
+                  type: string
+                  required: true
+                  description: Unique record id
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: delete-thing
+              method: DELETE
+              description: Delete a record
+              inputParameters:
+                - name: typename
+                  in: path
+                  type: string
+                  required: true
+                  description: Lowercase data type name
+                - name: uid
+                  in: path
+                  type: string
+                  required: true
+                  description: Unique record id
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+    - type: http
+      namespace: bubble-workflow
+      baseUri: https://{{BUBBLE_APP_NAME}}.bubbleapps.io/api/1.1
+      description: Bubble Workflow API for backend business logic
+      authentication:
+        type: bearer
+        token: '{{BUBBLE_API_TOKEN}}'
+      resources:
+        - name: workflow
+          path: /wf/{workflow_name}
+          description: Trigger a workflow by name
+          operations:
+            - name: trigger-workflow
+              method: POST
+              description: Invoke a backend workflow with JSON parameters
+              inputParameters:
+                - name: workflow_name
+                  in: path
+                  type: string
+                  required: true
+                  description: Workflow slug
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: bubble-headless-api
+      description: Unified REST API for the Bubble headless backend
+      resources:
+        - path: /records/{typename}
+          name: records
+          description: Records of a data type
+          operations:
+            - method: GET
+              name: list-records
+              description: List records of a type
+              call: bubble-data.search-things
+              with:
+                typename: rest.typename
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: create-record
+              description: Create a new record
+              call: bubble-data.create-thing
+              with:
+                typename: rest.typename
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /records/{typename}/{uid}
+          name: record
+          description: Individual record
+          operations:
+            - method: GET
+              name: get-record
+              description: Get a record by id
+              call: bubble-data.get-thing
+              with:
+                typename: rest.typename
+                uid: rest.uid
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: modify-record
+              description: Patch a record
+              call: bubble-data.modify-thing
+              with:
+                typename: rest.typename
+                uid: rest.uid
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: DELETE
+              name: delete-record
+              description: Delete a record
+              call: bubble-data.delete-thing
+              with:
+                typename: rest.typename
+                uid: rest.uid
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /workflows/{workflow_name}
+          name: workflows
+          description: Trigger workflows
+          operations:
+            - method: POST
+              name: trigger-workflow
+              description: Trigger a backend workflow
+              call: bubble-workflow.trigger-workflow
+              with:
+                workflow_name: rest.workflow_name
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      port: 9080
+      namespace: bubble-headless-mcp
+      transport: http
+      description: MCP server enabling AI agents to operate a Bubble app as a headless backend.
+      tools:
+        - name: search-records
+          description: Search records of a Bubble data type with constraints
+          hints:
+            readOnly: true
+            openWorld: false
+          call: bubble-data.search-things
+          with:
+            typename: tools.typename
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: get-record
+          description: Get a Bubble record by id
+          hints:
+            readOnly: true
+          call: bubble-data.get-thing
+          with:
+            typename: tools.typename
+            uid: tools.uid
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: create-record
+          description: Create a new Bubble record
+          hints:
+            readOnly: false
+            destructive: false
+          call: bubble-data.create-thing
+          with:
+            typename: tools.typename
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: modify-record
+          description: Patch an existing Bubble record
+          hints:
+            readOnly: false
+            destructive: false
+          call: bubble-data.modify-thing
+          with:
+            typename: tools.typename
+            uid: tools.uid
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: delete-record
+          description: Delete a Bubble record
+          hints:
+            readOnly: false
+            destructive: true
+          call: bubble-data.delete-thing
+          with:
+            typename: tools.typename
+            uid: tools.uid
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: trigger-workflow
+          description: Trigger a Bubble backend workflow by name
+          hints:
+            readOnly: false
+            destructive: false
+          call: bubble-workflow.trigger-workflow
+          with:
+            workflow_name: tools.workflow_name
+          outputParameters:
+            - type: object
+              mapping: $.

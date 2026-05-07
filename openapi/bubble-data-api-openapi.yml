@@ -1,0 +1,372 @@
+openapi: 3.0.3
+info:
+  title: Bubble Data API
+  description: |
+    The Bubble Data API exposes the database of a Bubble app as a REST interface.
+    External systems can read, search, create, modify, replace, and delete records
+    of any data type defined in a Bubble app, with optional pagination, sorting,
+    and search constraints. Authentication uses bearer tokens (admin API tokens
+    bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+    development (`version-test`) environments.
+  version: '1.1'
+  contact:
+    name: Bubble Support
+    url: https://bubble.io/contact
+  license:
+    name: Bubble Terms of Service
+    url: https://bubble.io/legal/terms-of-service
+servers:
+  - url: https://{appname}.bubbleapps.io/api/1.1
+    description: Live App on Bubble subdomain
+    variables:
+      appname:
+        default: myapp
+        description: Bubble app name
+  - url: https://{appname}.bubbleapps.io/version-test/api/1.1
+    description: Development (version-test) on Bubble subdomain
+    variables:
+      appname:
+        default: myapp
+        description: Bubble app name
+  - url: https://{customDomain}/api/1.1
+    description: Live App on a custom domain
+    variables:
+      customDomain:
+        default: example.com
+        description: Custom domain pointing to the Bubble app
+security:
+  - BearerAuth: []
+tags:
+  - name: Data
+    description: Read, search, create, modify, replace, and delete data things.
+paths:
+  /obj/{typename}:
+    parameters:
+      - $ref: '#/components/parameters/Typename'
+    get:
+      tags:
+        - Data
+      summary: Search Things
+      description: |
+        Returns a list of records of the given data type. Supports search constraints,
+        cursor-based pagination, sorting, and field projection.
+      operationId: searchThings
+      parameters:
+        - name: constraints
+          in: query
+          description: |
+            JSON-encoded array of search constraints. Each constraint is an object
+            with `key`, `constraint_type`, and `value`. Supported constraint types:
+            equals, not equal, is_empty, is_not_empty, text contains,
+            not text contains, greater than, less than, in, not in, contains,
+            not contains, geographic_search.
+          schema:
+            type: string
+          example: '[{"key":"unitname","constraint_type":"equals","value":"Studio 5"}]'
+        - name: cursor
+          in: query
+          description: Zero-based start position for the page.
+          schema:
+            type: integer
+            minimum: 0
+        - name: limit
+          in: query
+          description: Maximum results per request (default and max 100 per page).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: sort_field
+          in: query
+          description: Field name to sort the results by.
+          schema:
+            type: string
+        - name: descending
+          in: query
+          description: Sort direction. `true` for descending, `false` for ascending.
+          schema:
+            type: boolean
+        - name: additional_sort_fields
+          in: query
+          description: JSON-encoded array of additional sort fields and directions.
+          schema:
+            type: string
+        - name: exclude_remaining
+          in: query
+          description: Skip total-record counting for performance.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Search response with paginated results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      tags:
+        - Data
+      summary: Create Thing
+      description: Create a single new record of the given data type.
+      operationId: createThing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thing'
+      responses:
+        '201':
+          description: Created. Returns the unique id assigned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /obj/{typename}/bulk:
+    parameters:
+      - $ref: '#/components/parameters/Typename'
+    post:
+      tags:
+        - Data
+      summary: Bulk Create Things
+      description: |
+        Create up to 1,000 new records in a single request. The request body
+        is one JSON object per line (newline-delimited JSON).
+      operationId: bulkCreateThings
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: Newline-delimited JSON, one object per line, max 1,000 lines.
+      responses:
+        '200':
+          description: Newline-delimited JSON results, one per submitted object.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /obj/{typename}/{uid}:
+    parameters:
+      - $ref: '#/components/parameters/Typename'
+      - $ref: '#/components/parameters/Uid'
+    get:
+      tags:
+        - Data
+      summary: Get Thing
+      description: Retrieve a single record by its unique id.
+      operationId: getThing
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    patch:
+      tags:
+        - Data
+      summary: Modify Thing
+      description: Partially update a record. Only the provided fields are changed.
+      operationId: modifyThing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thing'
+      responses:
+        '204':
+          description: No Content. Modification successful.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    put:
+      tags:
+        - Data
+      summary: Replace Thing
+      description: Fully replace the record with the supplied object.
+      operationId: replaceThing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thing'
+      responses:
+        '204':
+          description: No Content. Replacement successful.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    delete:
+      tags:
+        - Data
+      summary: Delete Thing
+      description: Permanently delete a record.
+      operationId: deleteThing
+      responses:
+        '204':
+          description: No Content. Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /meta:
+    get:
+      tags:
+        - Data
+      summary: Get Data Type Metadata
+      description: |
+        Returns the data types and their fields exposed via the Data API for the
+        current environment. Useful for client code generation and discovery.
+      operationId: getMetadata
+      responses:
+        '200':
+          description: Metadata response listing exposed types and fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+      description: |
+        Send the API token in the `Authorization` header as `Bearer <token>`.
+        Admin tokens bypass privacy rules; user tokens (returned by the
+        `Log the User in` workflow action) enforce privacy rules per user.
+  parameters:
+    Typename:
+      name: typename
+      in: path
+      required: true
+      description: Data type name in lowercase with spaces removed.
+      schema:
+        type: string
+      example: shopping_cart
+    Uid:
+      name: uid
+      in: path
+      required: true
+      description: Unique id of the record.
+      schema:
+        type: string
+      example: 1503408875694x944431186090727200
+  schemas:
+    Thing:
+      type: object
+      description: A single record. Field names match the data type's fields in the Bubble app.
+      additionalProperties: true
+    ThingResponse:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/Thing'
+    SearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            cursor:
+              type: integer
+              description: Position of the first returned item.
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/Thing'
+            remaining:
+              type: integer
+              description: Records remaining beyond the returned page.
+            count:
+              type: integer
+              description: Number of records on this page.
+    CreateResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        id:
+          type: string
+          description: Unique id assigned to the new record.
+    Error:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        body:
+          type: object
+          properties:
+            status:
+              type: string
+            message:
+              type: string
+  responses:
+    BadRequest:
+      description: Invalid request payload, missing fields, or malformed constraints.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid bearer token, or token lacks required privileges.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested record does not exist or the type is not exposed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Too many requests. The plan-level requests-per-minute limit has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

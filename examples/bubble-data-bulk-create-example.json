@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://myapp.bubbleapps.io/api/1.1/obj/property/bulk",
+    "headers": {
+      "Authorization": "Bearer 1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p",
+      "Content-Type": "text/plain"
+    },
+    "body": "{\"address\":\"100 Main St\",\"city\":\"Brooklyn\",\"price\":2200}\n{\"address\":\"200 Main St\",\"city\":\"Brooklyn\",\"price\":2400}\n{\"address\":\"300 Main St\",\"city\":\"Queens\",\"price\":2100}"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"status\":\"success\",\"id\":\"1503408875694x000000000000000001\"}\n{\"status\":\"success\",\"id\":\"1503408875694x000000000000000002\"}\n{\"status\":\"success\",\"id\":\"1503408875694x000000000000000003\"}"
+  }
+}

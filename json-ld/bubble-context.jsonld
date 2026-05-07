@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "bubble": "https://bubble.io/ns/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+
+    "Application": "schema:SoftwareApplication",
+    "DataType": "bubble:DataType",
+    "Thing": "bubble:Thing",
+    "Workflow": "bubble:Workflow",
+    "Plugin": "bubble:Plugin",
+    "PluginAction": "bubble:PluginAction",
+    "PluginElement": "bubble:PluginElement",
+
+    "id": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "createdDate": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "modifiedDate": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "createdBy": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+
+    "fields": {
+      "@id": "bubble:field",
+      "@container": "@list"
+    },
+    "constraints": {
+      "@id": "bubble:constraint",
+      "@container": "@list"
+    },
+    "constraintType": "bubble:constraintType",
+    "value": "schema:value",
+    "key": "bubble:fieldKey",
+
+    "cursor": "bubble:cursor",
+    "limit": "bubble:limit",
+    "remaining": "bubble:remaining",
+    "count": "schema:numberOfItems",
+    "results": {
+      "@id": "bubble:result",
+      "@container": "@list"
+    },
+
+    "workflowName": "bubble:workflowName",
+    "parameters": "bubble:parameters",
+    "response": "bubble:response",
+
+    "workloadUnits": "bubble:workloadUnits",
+    "plan": "bubble:plan",
+    "tier": "bubble:tier",
+    "rateLimit": "bubble:rateLimit"
+  }
+}

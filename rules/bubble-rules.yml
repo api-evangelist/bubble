@@ -1,0 +1,124 @@
+extends: ['spectral:oas']
+documentationUrl: https://manual.bubble.io/core-resources/api/the-bubble-api.md
+functions: []
+rules:
+  bubble-info-title-required:
+    description: 'Bubble OpenAPI specs must declare info.title.'
+    message: '{{path}} must declare info.title.'
+    severity: error
+    given: '$.info'
+    then:
+      field: title
+      function: truthy
+
+  bubble-info-version-required:
+    description: 'Bubble OpenAPI specs must declare info.version.'
+    message: '{{path}} must declare info.version.'
+    severity: error
+    given: '$.info'
+    then:
+      field: version
+      function: truthy
+
+  bubble-info-license-required:
+    description: 'Bubble OpenAPI specs should declare a license block referencing Bubble Terms or Plugin Marketplace Terms.'
+    message: '{{path}} should declare info.license.'
+    severity: warn
+    given: '$.info'
+    then:
+      field: license
+      function: truthy
+
+  bubble-server-required:
+    description: 'Bubble OpenAPI specs must declare at least one server.'
+    message: '{{path}} must declare a servers array with at least one entry.'
+    severity: error
+    given: '$.servers'
+    then:
+      function: length
+      functionOptions:
+        min: 1
+
+  bubble-bearer-auth-required:
+    description: 'Bubble Data API and Workflow API must define bearer authentication via components.securitySchemes.'
+    message: '{{path}} must define a bearer security scheme named BearerAuth.'
+    severity: error
+    given: '$.components.securitySchemes.BearerAuth'
+    then:
+      field: scheme
+      function: pattern
+      functionOptions:
+        match: '^bearer$'
+
+  bubble-operation-summary-title-case:
+    description: 'Operation summaries should use Title Case (first letter of each major word capitalized).'
+    message: '{{path}} summary should use Title Case.'
+    severity: warn
+    given: '$.paths..[?(@.summary)]'
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][^.]*$'
+
+  bubble-operation-id-camel-case:
+    description: 'operationId should be camelCase (createThing, searchThings, triggerWorkflow).'
+    message: '{{path}}.operationId should be camelCase.'
+    severity: warn
+    given: '$.paths..[?(@.operationId)]'
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+
+  bubble-tag-required:
+    description: 'Each operation should be tagged with one of: Data, Workflow, Action, Element, Thing, Context.'
+    message: '{{path}} must declare at least one tag.'
+    severity: warn
+    given: '$.paths..[?(@.operationId)]'
+    then:
+      field: tags
+      function: length
+      functionOptions:
+        min: 1
+
+  bubble-rate-limited-response:
+    description: 'Operations on the Data API and Workflow API should declare a 429 response (rate limited).'
+    message: '{{path}} should declare a 429 (rate limited) response.'
+    severity: warn
+    given: "$.paths[?(@property.match(/^\\/obj/) || @property.match(/^\\/wf/))]..responses"
+    then:
+      field: '429'
+      function: truthy
+
+  bubble-unauthorized-response:
+    description: 'Authenticated operations should declare a 401 response.'
+    message: '{{path}} should declare a 401 response.'
+    severity: warn
+    given: "$.paths[?(@property.match(/^\\/obj/))]..responses"
+    then:
+      field: '401'
+      function: truthy
+
+  bubble-typename-lowercase:
+    description: 'The {typename} path parameter must be documented as lowercase with no spaces.'
+    message: 'typename description must note lowercase / no-spaces convention.'
+    severity: info
+    given: "$..parameters[?(@.name=='typename')]"
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        match: 'lowercase|no spaces|removed'
+
+  bubble-bulk-payload-cap:
+    description: 'The /bulk endpoint description should mention the 1,000-record cap per request.'
+    message: '{{path}} should call out the 1,000-record bulk cap.'
+    severity: info
+    given: "$.paths['/obj/{typename}/bulk'].post"
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        match: '1,000|1000'

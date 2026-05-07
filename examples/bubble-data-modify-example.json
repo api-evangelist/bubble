@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "PATCH",
+    "url": "https://myapp.bubbleapps.io/api/1.1/obj/property/1503408875694x944431186090727500",
+    "headers": {
+      "Authorization": "Bearer 1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "price": 6100
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

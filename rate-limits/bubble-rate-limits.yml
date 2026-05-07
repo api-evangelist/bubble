@@ -1,0 +1,121 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bubble
+providerId: bubble
+created: '2026-05-06'
+modified: '2026-05-06'
+reconciled: true
+tags:
+  - Rate Limiting
+  - No-Code
+  - Application Platform
+  - Workload Units
+description: |
+  Bubble enforces rate limits on the Data API and Workflow API at the
+  per-app level, with the request-per-minute ceiling determined by the
+  app's subscription plan. In addition to request rate, Bubble meters
+  server-side activity in Workload Units (WU): every API call, database
+  query, scheduled workflow, and plugin invocation consumes a number of WU
+  drawn from the monthly plan allotment. Hard limits also apply to request
+  size, response size, response list length, and workflow timeout.
+  Rate-limited requests return HTTP 429; legacy plans return 429 (and
+  occasionally 503 on capacity-locked legacy infrastructure).
+sources:
+  - https://manual.bubble.io/help-guides/maintaining-an-application/performance-and-scaling/hard-limits.md
+  - https://manual.bubble.io/help-guides/security/api-security.md
+  - https://manual.bubble.io/help-guides/workload/understanding-workload.md
+  - https://manual.bubble.io/help-guides/workload/understanding-workload/activity-types.md
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  throttledLegacy: 503
+limits:
+  - name: Data + Workflow API requests (Starter plan)
+    scope: account
+    metric: requests_per_minute
+    limit: 15000
+    timeFrame: minute
+    notes: Combined ceiling across the Data API and Workflow API per app.
+  - name: Data + Workflow API requests (Growth plan)
+    scope: account
+    metric: requests_per_minute
+    limit: 25000
+    timeFrame: minute
+    notes: Combined ceiling across the Data API and Workflow API per app.
+  - name: Data + Workflow API requests (Team plan)
+    scope: account
+    metric: requests_per_minute
+    limit: 35000
+    timeFrame: minute
+    notes: Combined ceiling across the Data API and Workflow API per app.
+  - name: Data + Workflow API requests (Legacy plans)
+    scope: account
+    metric: requests_per_minute
+    limit: 1000
+    timeFrame: minute
+    notes: Apps on retired legacy plans are throttled at 1,000 req/min and return HTTP 429.
+  - name: API response payload size
+    scope: account
+    metric: bytes
+    limit: 52428800
+    notes: Maximum 50 MB per API response body.
+  - name: API request header size
+    scope: account
+    metric: bytes
+    limit: 8000
+    notes: Maximum 8,000 characters across all request headers.
+  - name: API key size
+    scope: account
+    metric: bytes
+    limit: 20000
+    notes: Maximum 20,000 characters per API token / key.
+  - name: Search response list length
+    scope: account
+    metric: items
+    limit: 50
+    notes: Workflow API returns up to 50 list items per response. Data API search returns paginated; sorted searches max 50,000 items per request (10,000,000 on Enterprise).
+  - name: Workflow execution timeout
+    scope: account
+    metric: seconds
+    limit: 300
+    timeFrame: second
+    notes: Server-side workflows must complete within 5 minutes.
+  - name: Bulk create payload
+    scope: account
+    metric: items
+    limit: 1000
+    notes: Up to 1,000 records per Data API /bulk POST request.
+  - name: API Connector recursion depth
+    scope: account
+    metric: levels
+    limit: 3
+    notes: Direct recursion limited to 3 levels; indirect recursion limited to 10 levels.
+  - name: Workload Units (Per plan)
+    scope: account
+    metric: wu_per_month
+    limit: 'see plan allocation; varies by tier; per-activity costs apply'
+    notes: |
+      Workload meter; not a per-second rate. Each API call, database query,
+      scheduled workflow, and plugin invocation deducts WU from the plan's
+      monthly allotment. Sample per-activity costs: inbound API call 0.01 WU,
+      outbound API call 0.1 WU, server-side workflow action 0.6 WU, database
+      search 0.3 WU + 0.015 WU/thing, thing creation/modification 0.5 WU,
+      thing deletion 0.1 WU, plugin server action 0.2 WU + 0.0005 WU/ms.
+policies:
+  - name: Per-app scoping
+    description: Rate limits and WU allotments are bound to the Bubble app, not the API token. Multiple tokens on the same app share the same ceiling.
+  - name: Live vs version-test
+    description: The development environment (`/version-test`) draws from the same WU pool as live; do not load-test in version-test on a paid plan.
+  - name: HTTP 429 backoff
+    description: When throttled, Bubble returns HTTP 429. Clients should back off exponentially. Retry-After header may indicate wait time.
+  - name: Plan upgrade for higher limits
+    description: Higher request-per-minute and WU ceilings require plan upgrade or Enterprise contract. Per-tier limits are published on the Pricing page; Enterprise limits are negotiated.
+  - name: Workload optimization
+    description: Reduce WU consumption via indexed searches, smaller field projections, fewer scheduled workflow chains, and client-side rendering where possible. Bubble publishes an `Optimizing workload` guide.
+  - name: Hard system caps
+    description: Some limits cannot be raised by plan upgrade — workflow timeout (300s), request header size (8 KB), API key size (20 KB), API Connector recursion depth, and per-thing list length (10,000).
+  - name: Privacy rule enforcement
+    description: User tokens enforce privacy rules; admin tokens bypass them. Throttling applies regardless of token type.

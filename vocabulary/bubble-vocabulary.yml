@@ -1,0 +1,111 @@
+name: Bubble Vocabulary
+description: |
+  Unified taxonomy for Bubble's no-code application platform. Maps
+  operational concepts (Data API, Workflow API, Plugin API) to capability
+  workflows, personas, and infrastructure dimensions used in finops and
+  rate-limit reasoning.
+provider: Bubble
+providerId: bubble
+created: '2026-05-06'
+modified: '2026-05-06'
+
+operational:
+  resources:
+    - name: Thing
+      description: A single record of a user-defined data type, the atomic unit of the Bubble database.
+    - name: DataType
+      description: A user-defined schema in the Bubble app database (e.g. User, Product, Order).
+    - name: Workflow
+      description: A backend (server-side) automation defined in the Bubble editor and exposed via the Workflow API.
+    - name: ScheduledWorkflow
+      description: A workflow scheduled to run at a future time or on a recurring basis.
+    - name: Plugin
+      description: A reusable extension package that exposes actions and elements to Bubble apps.
+    - name: PluginAction
+      description: A server-side or client-side function exposed by a plugin and invoked from a workflow.
+    - name: PluginElement
+      description: A visual UI element (e.g. button, chart) exposed by a plugin.
+    - name: APIToken
+      description: A bearer credential used by external systems to call the Data API or Workflow API.
+    - name: PrivacyRule
+      description: A data-access rule defined per data type that gates field visibility and CRUD.
+    - name: WorkloadUnit
+      description: The metering unit used by Bubble to bill server-side activity.
+    - name: AppEnvironment
+      description: A deployment target — `live` or `version-test` (development).
+    - name: AppEditor
+      description: A user with edit access to the Bubble app's editor UI.
+  actions:
+    - name: SearchThings
+      description: Query a data type with constraints, sorting, and pagination via the Data API.
+    - name: GetThing
+      description: Retrieve a single record by id.
+    - name: CreateThing
+      description: Insert a single new record.
+    - name: BulkCreateThings
+      description: Insert up to 1,000 records in one Data API call.
+    - name: ModifyThing
+      description: Partially update a record (PATCH).
+    - name: ReplaceThing
+      description: Fully replace a record (PUT).
+    - name: DeleteThing
+      description: Remove a record permanently.
+    - name: TriggerWorkflow
+      description: Invoke a backend workflow from an external system.
+    - name: InitializeWorkflow
+      description: Auto-detect the parameter contract of a workflow during build.
+    - name: AuthenticateUser
+      description: Log a user in via the `Log the User in` workflow action and receive a user token.
+    - name: RegisterPlugin
+      description: Publish a plugin to the Bubble marketplace.
+
+capability:
+  workflows:
+    - name: ExternalDataIntegration
+      description: Pull or push records between a Bubble app and an external system using the Data API.
+    - name: WebhookIngestion
+      description: Receive third-party webhooks at a Workflow API endpoint and persist results to the database.
+    - name: HeadlessBackend
+      description: Use Bubble as a headless backend for a separately built mobile or web client via Data + Workflow APIs.
+    - name: ScheduledAutomation
+      description: Trigger recurring backend workflows (e.g. daily digest, weekly billing) without external orchestration.
+    - name: PluginExtension
+      description: Extend a Bubble app with a custom plugin action or element to reach an external service.
+    - name: BulkDataMigration
+      description: Migrate large datasets into a Bubble app using the /bulk Data API endpoint.
+    - name: WorkloadOptimization
+      description: Reduce monthly Workload Unit consumption via indexing, batching, and client-side rendering.
+  personas:
+    - name: NoCodeBuilder
+      description: Citizen developer building a Bubble app via the visual editor.
+    - name: BubbleAgency
+      description: Agency or freelancer building Bubble apps for clients.
+    - name: PluginAuthor
+      description: Developer authoring plugins distributed via the Bubble marketplace.
+    - name: BackendIntegrator
+      description: Developer integrating an external system with the Data or Workflow API.
+    - name: AppOwner
+      description: Person or team accountable for a Bubble app's WU consumption and uptime.
+    - name: SecurityReviewer
+      description: Person responsible for privacy rules, API tokens, and data access posture.
+
+infrastructure:
+  environments:
+    - name: live
+      description: Production environment served at the app domain root.
+    - name: version-test
+      description: Development environment served under `/version-test`. Shares the WU pool with live on paid plans.
+  regions:
+    - name: us-east
+      description: Default Bubble cluster (AWS US East).
+    - name: dedicated
+      description: Enterprise-only dedicated infrastructure with custom region selection.
+  meters:
+    - name: workload_units
+      description: Per-activity WU consumption deducted from the plan's monthly allotment.
+    - name: api_requests_per_minute
+      description: Plan-determined ceiling for Data + Workflow API requests per minute (15K Starter, 25K Growth, 35K Team).
+    - name: bandwidth_gb_per_month
+      description: Bandwidth ceiling per plan (100 GB Starter, 500 GB Growth, 1 TB Team).
+    - name: file_storage_gb
+      description: File storage volume; addon at $3 per 100 GB per month.
