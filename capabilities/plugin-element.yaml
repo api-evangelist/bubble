@@ -1,0 +1,131 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Plugin API — Element
+  description: 'Bubble Plugin API — Element. 2 operations. Lead operation: Initialize Element. Self-contained Naftiko capability
+    covering one Bubble business surface.'
+  tags:
+  - Bubble
+  - Element
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUBBLE_API_KEY: BUBBLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: plugin-element
+    baseUri: ''
+    description: Bubble Plugin API — Element business capability. Self-contained, no shared references.
+    resources:
+    - name: elements-elementName-initialize
+      path: /elements/{elementName}/initialize
+      operations:
+      - name: initializeelement
+        method: POST
+        description: Initialize Element
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: elementName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: elements-elementName-update
+      path: /elements/{elementName}/update
+      operations:
+      - name: updateelement
+        method: POST
+        description: Update Element
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: elementName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: plugin-element-rest
+    port: 8080
+    description: REST adapter for Bubble Plugin API — Element. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/elements/{elementname}/initialize
+      name: elements-elementname-initialize
+      description: REST surface for elements-elementName-initialize.
+      operations:
+      - method: POST
+        name: initializeelement
+        description: Initialize Element
+        call: plugin-element.initializeelement
+        with:
+          elementName: rest.elementName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/elements/{elementname}/update
+      name: elements-elementname-update
+      description: REST surface for elements-elementName-update.
+      operations:
+      - method: POST
+        name: updateelement
+        description: Update Element
+        call: plugin-element.updateelement
+        with:
+          elementName: rest.elementName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: plugin-element-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bubble Plugin API — Element. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: initialize-element
+      description: Initialize Element
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-element.initializeelement
+      with:
+        elementName: tools.elementName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-element
+      description: Update Element
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-element.updateelement
+      with:
+        elementName: tools.elementName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

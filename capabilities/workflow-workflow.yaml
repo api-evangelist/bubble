@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Workflow API — Workflow
+  description: 'Bubble Workflow API — Workflow. 3 operations. Lead operation: Trigger Workflow. Self-contained Naftiko capability
+    covering one Bubble business surface.'
+  tags:
+  - Bubble
+  - Workflow
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUBBLE_API_KEY: BUBBLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: workflow-workflow
+    baseUri: https://{appname}.bubbleapps.io/api/1.1
+    description: Bubble Workflow API — Workflow business capability. Self-contained, no shared references.
+    resources:
+    - name: wf-workflow_name
+      path: /wf/{workflow_name}
+      operations:
+      - name: triggerworkflow
+        method: POST
+        description: Trigger Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: triggerworkflowget
+        method: GET
+        description: Trigger Workflow Via GET
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: wf-workflow_name-initialize
+      path: /wf/{workflow_name}/initialize
+      operations:
+      - name: initializeworkflow
+        method: POST
+        description: Initialize Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BUBBLE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: workflow-workflow-rest
+    port: 8080
+    description: REST adapter for Bubble Workflow API — Workflow. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/wf/{workflow-name}
+      name: wf-workflow-name
+      description: REST surface for wf-workflow_name.
+      operations:
+      - method: POST
+        name: triggerworkflow
+        description: Trigger Workflow
+        call: workflow-workflow.triggerworkflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: triggerworkflowget
+        description: Trigger Workflow Via GET
+        call: workflow-workflow.triggerworkflowget
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/wf/{workflow-name}/initialize
+      name: wf-workflow-name-initialize
+      description: REST surface for wf-workflow_name-initialize.
+      operations:
+      - method: POST
+        name: initializeworkflow
+        description: Initialize Workflow
+        call: workflow-workflow.initializeworkflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: workflow-workflow-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bubble Workflow API — Workflow. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: trigger-workflow
+      description: Trigger Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: workflow-workflow.triggerworkflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: trigger-workflow-get
+      description: Trigger Workflow Via GET
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workflow-workflow.triggerworkflowget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initialize-workflow
+      description: Initialize Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: workflow-workflow.initializeworkflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

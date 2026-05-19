@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Plugin API — Action
+  description: 'Bubble Plugin API — Action. 2 operations. Lead operation: Invoke Client-Side Action. Self-contained Naftiko
+    capability covering one Bubble business surface.'
+  tags:
+  - Bubble
+  - Action
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUBBLE_API_KEY: BUBBLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: plugin-action
+    baseUri: ''
+    description: Bubble Plugin API — Action business capability. Self-contained, no shared references.
+    resources:
+    - name: actions-clientSide-actionName
+      path: /actions/clientSide/{actionName}
+      operations:
+      - name: invokeclientaction
+        method: POST
+        description: Invoke Client-Side Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: actionName
+          in: path
+          type: string
+          description: Name of the action as defined in the plugin editor.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: actions-serverSide-actionName
+      path: /actions/serverSide/{actionName}
+      operations:
+      - name: invokeserveraction
+        method: POST
+        description: Invoke Server-Side Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: actionName
+          in: path
+          type: string
+          description: Name of the action as defined in the plugin editor.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: plugin-action-rest
+    port: 8080
+    description: REST adapter for Bubble Plugin API — Action. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/actions/clientside/{actionname}
+      name: actions-clientside-actionname
+      description: REST surface for actions-clientSide-actionName.
+      operations:
+      - method: POST
+        name: invokeclientaction
+        description: Invoke Client-Side Action
+        call: plugin-action.invokeclientaction
+        with:
+          actionName: rest.actionName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/actions/serverside/{actionname}
+      name: actions-serverside-actionname
+      description: REST surface for actions-serverSide-actionName.
+      operations:
+      - method: POST
+        name: invokeserveraction
+        description: Invoke Server-Side Action
+        call: plugin-action.invokeserveraction
+        with:
+          actionName: rest.actionName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: plugin-action-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bubble Plugin API — Action. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: invoke-client-side-action
+      description: Invoke Client-Side Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-action.invokeclientaction
+      with:
+        actionName: tools.actionName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoke-server-side-action
+      description: Invoke Server-Side Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-action.invokeserveraction
+      with:
+        actionName: tools.actionName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

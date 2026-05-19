@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bubble Plugin API — Context
+  description: 'Bubble Plugin API — Context. 2 operations. Lead operation: Run Async Block. Self-contained Naftiko capability
+    covering one Bubble business surface.'
+  tags:
+  - Bubble
+  - Context
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BUBBLE_API_KEY: BUBBLE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: plugin-context
+    baseUri: ''
+    description: Bubble Plugin API — Context business capability. Self-contained, no shared references.
+    resources:
+    - name: context-async
+      path: /context/async
+      operations:
+      - name: contextasync
+        method: POST
+        description: Run Async Block
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: context-request
+      path: /context/request
+      operations:
+      - name: contextrequest
+        method: POST
+        description: Make HTTP Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: plugin-context-rest
+    port: 8080
+    description: REST adapter for Bubble Plugin API — Context. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/context/async
+      name: context-async
+      description: REST surface for context-async.
+      operations:
+      - method: POST
+        name: contextasync
+        description: Run Async Block
+        call: plugin-context.contextasync
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/context/request
+      name: context-request
+      description: REST surface for context-request.
+      operations:
+      - method: POST
+        name: contextrequest
+        description: Make HTTP Request
+        call: plugin-context.contextrequest
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: plugin-context-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bubble Plugin API — Context. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: run-async-block
+      description: Run Async Block
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-context.contextasync
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: make-http-request
+      description: Make HTTP Request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: plugin-context.contextrequest
+      outputParameters:
+      - type: object
+        mapping: $.
