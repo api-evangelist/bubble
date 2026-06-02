@@ -2,12 +2,20 @@
   "repo": "bubble",
   "feeds": [
     {
-      "source": "https://bubble.io/blog",
+      "source": "https://bubble.io/blog/feed/",
       "feed_url": "https://bubble.io/blog/feed/",
-      "title": "Bubble Blog | What you need to know about building with no-code",
-      "saved": 1
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://bubble.io/showcase",
+      "feed_url": "https://bubble.io/showcase",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:20:35Z",
-  "post_count": 16
+  "fetched": "2026-06-01T23:35:02Z",
+  "post_count": 31
 }
