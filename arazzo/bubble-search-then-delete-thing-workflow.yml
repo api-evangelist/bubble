@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Search Then Delete a Thing
+  summary: Search a data type for a record matching a constraint and delete the first match.
+  description: >-
+    A find-then-act cleanup pattern for the Bubble Data API. The workflow
+    searches a data type using a single equality constraint, branches on whether
+    a match was found, and when one exists it permanently deletes that first
+    matched record by id. When no record matches, the flow ends without deleting
+    anything. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-then-delete-thing
+  summary: Find a record by a field value and delete the first match.
+  description: >-
+    Runs an equality search on a data type, and when at least one record matches
+    it deletes the first result by id; otherwise it ends.
+  inputs:
+    type: object
+    required:
+    - typename
+    - key
+    - value
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed.
+      key:
+        type: string
+        description: The field name to match on.
+      value:
+        type: string
+        description: The value the field must equal.
+  steps:
+  - stepId: searchThings
+    description: >-
+      Search the data type for records where the supplied key equals the
+      supplied value, returning at most one match.
+    operationId: searchThings
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: constraints
+      in: query
+      value: '[{"key":"$inputs.key","constraint_type":"equals","value":"$inputs.value"}]'
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedId: $response.body#/response/results/0/_id
+    onSuccess:
+    - name: matchFound
+      type: goto
+      stepId: deleteThing
+      criteria:
+      - context: $response.body
+        condition: $.response.results.length > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.response.results.length == 0
+        type: jsonpath
+  - stepId: deleteThing
+    description: >-
+      Permanently delete the first matched record by its unique id.
+    operationId: deleteThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: uid
+      in: path
+      value: $steps.searchThings.outputs.matchedId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deletedId: $steps.searchThings.outputs.matchedId
+  outputs:
+    matchedId: $steps.searchThings.outputs.matchedId
+    deletedId: $steps.deleteThing.outputs.deletedId

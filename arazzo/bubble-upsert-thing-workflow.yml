@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Upsert a Thing
+  summary: Find a record by a key field and update it if it exists, otherwise create it.
+  description: >-
+    One of the most common Bubble Data API integration patterns. The workflow
+    searches a data type for an existing record using a single equality
+    constraint on a key field, and then branches: when a match is found it
+    modifies the existing record, and when no match is found it creates a new
+    record. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-thing
+  summary: Upsert a single record into a Bubble data type by a unique key field.
+  description: >-
+    Looks for an existing record whose key field matches the supplied value, and
+    either modifies the matched record or creates a new one.
+  inputs:
+    type: object
+    required:
+    - typename
+    - keyField
+    - keyValue
+    - fields
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed.
+      keyField:
+        type: string
+        description: The field name used to detect an existing record (e.g. email).
+      keyValue:
+        type: string
+        description: The value of the key field to match on.
+      fields:
+        type: object
+        description: Map of field name/value pairs to write to the record.
+  steps:
+  - stepId: findThing
+    description: >-
+      Search the data type for an existing record where the key field equals the
+      supplied key value, returning at most one match.
+    operationId: searchThings
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: constraints
+      in: query
+      value: '[{"key":"$inputs.keyField","constraint_type":"equals","value":"$inputs.keyValue"}]'
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedId: $response.body#/response/results/0/_id
+    onSuccess:
+    - name: thingExists
+      type: goto
+      stepId: updateExisting
+      criteria:
+      - context: $response.body
+        condition: $.response.results.length > 0
+        type: jsonpath
+    - name: thingMissing
+      type: goto
+      stepId: createNew
+      criteria:
+      - context: $response.body
+        condition: $.response.results.length == 0
+        type: jsonpath
+  - stepId: updateExisting
+    description: >-
+      Partially update the matched record with the supplied fields. Only the
+      fields provided are changed; all other fields on the record are left
+      intact.
+    operationId: modifyThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: uid
+      in: path
+      value: $steps.findThing.outputs.matchedId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      thingId: $steps.findThing.outputs.matchedId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createNew
+    description: >-
+      Create a new record in the data type using the supplied fields when no
+      existing record matched the key value.
+    operationId: createThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    requestBody:
+      contentType: application/json
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      thingId: $response.body#/id
+  outputs:
+    updatedId: $steps.updateExisting.outputs.thingId
+    createdId: $steps.createNew.outputs.thingId

@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Get Then Replace a Thing
+  summary: Read a record by id to confirm it exists, then fully replace it with a new object.
+  description: >-
+    A safe full-replacement pattern for the Bubble Data API. The workflow first
+    fetches a record by its unique id to confirm it exists and to capture its
+    current state, then issues a PUT to fully replace that record with the
+    supplied object. Unlike a partial modify, a replace overwrites every field,
+    so reading first lets a caller capture the prior values before overwriting.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: get-then-replace-thing
+  summary: Confirm a record exists by id, then fully replace it.
+  description: >-
+    Reads a record by id, captures its prior state, and then replaces the entire
+    record with the supplied object.
+  inputs:
+    type: object
+    required:
+    - typename
+    - uid
+    - object
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed.
+      uid:
+        type: string
+        description: Unique id of the record to read and replace.
+      object:
+        type: object
+        description: The complete object to replace the record with.
+  steps:
+  - stepId: getThing
+    description: >-
+      Retrieve the record by its unique id to confirm it exists and to capture
+      its current state before overwriting.
+    operationId: getThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: uid
+      in: path
+      value: $inputs.uid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      priorState: $response.body#/response
+  - stepId: replaceThing
+    description: >-
+      Fully replace the record with the supplied object. Every field is
+      overwritten by the request body.
+    operationId: replaceThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: uid
+      in: path
+      value: $inputs.uid
+    requestBody:
+      contentType: application/json
+      payload: $inputs.object
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      replacedId: $inputs.uid
+  outputs:
+    priorState: $steps.getThing.outputs.priorState
+    replacedId: $steps.replaceThing.outputs.replacedId

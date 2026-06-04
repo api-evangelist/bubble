@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Trigger a Workflow Then Log a Thing
+  summary: Trigger a backend workflow and record its result by creating a record via the Data API.
+  description: >-
+    Bridges the Bubble Workflow API and the Bubble Data API in the
+    workflow-then-write direction. The flow triggers a named backend workflow,
+    captures its returned status and response payload, and then writes an audit
+    record of that run into a data type using the Data API. This is useful for
+    keeping a durable log of external workflow invocations. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleWorkflowApi
+  url: ../openapi/bubble-workflow-api-openapi.yml
+  type: openapi
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-workflow-then-log-thing
+  summary: Trigger a backend workflow, then log its result as a new record.
+  description: >-
+    Invokes a named backend workflow and writes an audit record capturing the
+    workflow name and returned status into a chosen data type.
+  inputs:
+    type: object
+    required:
+    - workflowName
+    - logTypename
+    properties:
+      workflowName:
+        type: string
+        description: Name of the backend API workflow to trigger (case-sensitive).
+      parameters:
+        type: object
+        description: Parameter map passed to the workflow invocation.
+      logTypename:
+        type: string
+        description: Data type name (lowercase, no spaces) to store the audit record in.
+  steps:
+  - stepId: triggerWorkflow
+    description: >-
+      Invoke the named backend workflow and capture its returned status and
+      response payload.
+    operationId: triggerWorkflow
+    parameters:
+    - name: workflow_name
+      in: path
+      value: $inputs.workflowName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      response: $response.body#/response
+  - stepId: logRun
+    description: >-
+      Create an audit record in the chosen data type capturing the workflow name
+      and the status it returned.
+    operationId: createThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.logTypename
+    requestBody:
+      contentType: application/json
+      payload:
+        workflow_name: $inputs.workflowName
+        run_status: $steps.triggerWorkflow.outputs.status
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      logId: $response.body#/id
+  outputs:
+    runStatus: $steps.triggerWorkflow.outputs.status
+    runResponse: $steps.triggerWorkflow.outputs.response
+    logId: $steps.logRun.outputs.logId

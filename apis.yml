@@ -144,6 +144,39 @@ apis:
   - type: NaftikoCapability
     url: capabilities/plugin-thing.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/bubble-bulk-create-then-search-workflow.yml
+    name: Bubble Bulk Create Then Search
+    summary: Bulk create many records of a data type, then search the type to verify they landed.
+  - url: arazzo/bubble-create-and-get-thing-workflow.yml
+    name: Bubble Create and Verify a Thing
+    summary: Create a single record of a data type and read it back to confirm it persisted.
+  - url: arazzo/bubble-create-thing-then-trigger-workflow-workflow.yml
+    name: Bubble Create a Thing Then Trigger a Backend Workflow
+    summary: Create a record via the Data API, then trigger a backend workflow that processes it.
+  - url: arazzo/bubble-discover-types-then-search-workflow.yml
+    name: Bubble Discover Data Types Then Search
+    summary: Read the Data API metadata to discover exposed types, then search one of them.
+  - url: arazzo/bubble-get-then-replace-thing-workflow.yml
+    name: Bubble Get Then Replace a Thing
+    summary: Read a record by id to confirm it exists, then fully replace it with a new object.
+  - url: arazzo/bubble-initialize-then-trigger-workflow-workflow.yml
+    name: Bubble Initialize Then Trigger a Backend Workflow
+    summary: Run the one-time detection call for a backend workflow, then trigger it with the same parameters.
+  - url: arazzo/bubble-search-then-delete-thing-workflow.yml
+    name: Bubble Search Then Delete a Thing
+    summary: Search a data type for a record matching a constraint and delete the first match.
+  - url: arazzo/bubble-search-then-update-thing-workflow.yml
+    name: Bubble Search Then Update a Thing
+    summary: Search a data type for a record matching a constraint and modify the first match.
+  - url: arazzo/bubble-trigger-workflow-then-log-thing-workflow.yml
+    name: Bubble Trigger a Workflow Then Log a Thing
+    summary: Trigger a backend workflow and record its result by creating a record via the Data API.
+  - url: arazzo/bubble-upsert-thing-workflow.yml
+    name: Bubble Upsert a Thing
+    summary: Find a record by a key field and update it if it exists, otherwise create it.
 - type: Documentation
   url: https://manual.bubble.io/
 - type: GettingStarted

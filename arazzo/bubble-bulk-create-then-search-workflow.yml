@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Bulk Create Then Search
+  summary: Bulk create many records of a data type, then search the type to verify they landed.
+  description: >-
+    A high-volume seeding pattern for the Bubble Data API. The workflow submits
+    newline-delimited JSON to create up to 1,000 records of a data type in a
+    single request, then runs a search against the same type to confirm the
+    records are present and to return a representative page. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: bulk-create-then-search
+  summary: Bulk create records from newline-delimited JSON, then search to verify.
+  description: >-
+    Posts newline-delimited JSON to the bulk endpoint to create many records at
+    once, then searches the data type to confirm the records exist.
+  inputs:
+    type: object
+    required:
+    - typename
+    - records
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed.
+      records:
+        type: string
+        description: >-
+          Newline-delimited JSON, one record object per line, max 1,000 lines.
+      verifyKey:
+        type: string
+        description: Field name used in the verification search.
+      verifyValue:
+        type: string
+        description: Value the verification field must equal.
+  steps:
+  - stepId: bulkCreateThings
+    description: >-
+      Create up to 1,000 records of the data type in a single request using
+      newline-delimited JSON, one object per line.
+    operationId: bulkCreateThings
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    requestBody:
+      contentType: text/plain
+      payload: $inputs.records
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body
+  - stepId: searchThings
+    description: >-
+      Search the data type for records matching the verification constraint to
+      confirm the bulk-created records are present, returning the first page.
+    operationId: searchThings
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: constraints
+      in: query
+      value: '[{"key":"$inputs.verifyKey","constraint_type":"equals","value":"$inputs.verifyValue"}]'
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/response/results
+      count: $response.body#/response/count
+      remaining: $response.body#/response/remaining
+  outputs:
+    bulkResults: $steps.bulkCreateThings.outputs.results
+    verifiedCount: $steps.searchThings.outputs.count
+    verifiedResults: $steps.searchThings.outputs.results

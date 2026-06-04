@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Initialize Then Trigger a Backend Workflow
+  summary: Run the one-time detection call for a backend workflow, then trigger it with the same parameters.
+  description: >-
+    The build-and-run pattern for the Bubble Workflow API. While building a
+    backend workflow, Bubble uses a one-time initialize call to inspect the
+    request body and detect the parameter contract. This workflow performs that
+    detection call and then triggers the workflow with the same parameter map,
+    demonstrating the full setup-to-invocation sequence. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleWorkflowApi
+  url: ../openapi/bubble-workflow-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: initialize-then-trigger-workflow
+  summary: Detect a workflow's parameter contract, then trigger it.
+  description: >-
+    Posts the parameter map to the initialize endpoint to define the contract,
+    then triggers the workflow with the same parameters.
+  inputs:
+    type: object
+    required:
+    - workflowName
+    - parameters
+    properties:
+      workflowName:
+        type: string
+        description: Name of the backend API workflow (case-sensitive).
+      parameters:
+        type: object
+        description: Parameter map sent for both detection and invocation.
+  steps:
+  - stepId: initializeWorkflow
+    description: >-
+      One-time detection call. Bubble inspects the request body to define the
+      workflow's parameter contract for subsequent calls.
+    operationId: initializeWorkflow
+    parameters:
+    - name: workflow_name
+      in: path
+      value: $inputs.workflowName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      initStatus: $response.body#/status
+  - stepId: triggerWorkflow
+    description: >-
+      Invoke the workflow with the same parameter map now that its contract is
+      defined.
+    operationId: triggerWorkflow
+    parameters:
+    - name: workflow_name
+      in: path
+      value: $inputs.workflowName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      response: $response.body#/response
+  outputs:
+    initStatus: $steps.initializeWorkflow.outputs.initStatus
+    runStatus: $steps.triggerWorkflow.outputs.status
+    runResponse: $steps.triggerWorkflow.outputs.response

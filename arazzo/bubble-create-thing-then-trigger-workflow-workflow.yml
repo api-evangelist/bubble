@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Create a Thing Then Trigger a Backend Workflow
+  summary: Create a record via the Data API, then trigger a backend workflow that processes it.
+  description: >-
+    Bridges the Bubble Data API and the Bubble Workflow API. The workflow first
+    creates a new record of a data type, captures the unique id Bubble assigns,
+    and then triggers a backend (server-side) API workflow, passing that id as a
+    parameter so the workflow can pick up and process the freshly created
+    record. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+- name: bubbleWorkflowApi
+  url: ../openapi/bubble-workflow-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-thing-then-trigger-workflow
+  summary: Create a record, then trigger a backend workflow to process it by id.
+  description: >-
+    Posts a new record to a data type, captures the generated unique id, and
+    triggers a named backend workflow with that id in the parameter map.
+  inputs:
+    type: object
+    required:
+    - typename
+    - fields
+    - workflowName
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed.
+      fields:
+        type: object
+        description: Map of field name/value pairs to write to the new record.
+      workflowName:
+        type: string
+        description: Name of the backend API workflow to trigger (case-sensitive).
+  steps:
+  - stepId: createThing
+    description: >-
+      Create a single new record of the given data type and capture the unique
+      id Bubble assigns.
+    operationId: createThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    requestBody:
+      contentType: application/json
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      newId: $response.body#/id
+  - stepId: triggerWorkflow
+    description: >-
+      Invoke the named backend workflow, passing the newly created record's id
+      so the workflow can load and process it.
+    operationId: triggerWorkflow
+    parameters:
+    - name: workflow_name
+      in: path
+      value: $inputs.workflowName
+    requestBody:
+      contentType: application/json
+      payload:
+        id: $steps.createThing.outputs.newId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      response: $response.body#/response
+  outputs:
+    newId: $steps.createThing.outputs.newId
+    workflowStatus: $steps.triggerWorkflow.outputs.status
+    workflowResponse: $steps.triggerWorkflow.outputs.response

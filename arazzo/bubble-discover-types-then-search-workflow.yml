@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Discover Data Types Then Search
+  summary: Read the Data API metadata to discover exposed types, then search one of them.
+  description: >-
+    A discovery-then-query pattern for the Bubble Data API. The workflow first
+    reads the metadata endpoint to list the data types and fields exposed for the
+    current environment, then runs a constrained search against a chosen type to
+    return its first page of records. This is useful for client generation and
+    for confirming a type is exposed before querying it. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: discover-types-then-search
+  summary: List exposed data types via metadata, then search a chosen type.
+  description: >-
+    Fetches the Data API metadata, then searches the requested data type with an
+    optional sort to return its first page of records.
+  inputs:
+    type: object
+    required:
+    - typename
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed to search after discovery.
+      sortField:
+        type: string
+        description: Field name to sort the search results by.
+      descending:
+        type: boolean
+        description: Sort direction; true for descending, false for ascending.
+  steps:
+  - stepId: getMetadata
+    description: >-
+      Read the metadata endpoint to list the data types and fields exposed via
+      the Data API for the current environment.
+    operationId: getMetadata
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metadata: $response.body
+  - stepId: searchThings
+    description: >-
+      Search the chosen data type, optionally sorted, returning the first page
+      of records.
+    operationId: searchThings
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: sort_field
+      in: query
+      value: $inputs.sortField
+    - name: descending
+      in: query
+      value: $inputs.descending
+    - name: limit
+      in: query
+      value: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/response/results
+      count: $response.body#/response/count
+      remaining: $response.body#/response/remaining
+  outputs:
+    metadata: $steps.getMetadata.outputs.metadata
+    results: $steps.searchThings.outputs.results
+    count: $steps.searchThings.outputs.count

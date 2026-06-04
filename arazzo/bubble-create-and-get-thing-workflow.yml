@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Bubble Create and Verify a Thing
+  summary: Create a single record of a data type and read it back to confirm it persisted.
+  description: >-
+    The foundational write-then-read pattern for the Bubble Data API. The
+    workflow creates a new record of the supplied data type, captures the unique
+    id Bubble assigns, and then retrieves that record by id to confirm the write
+    succeeded and to return the fully materialized object. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: bubbleDataApi
+  url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-get-thing
+  summary: Create a record of a data type and read it back by its assigned id.
+  description: >-
+    Posts a new record to the data type collection, captures the generated
+    unique id, and fetches that record to verify it was stored.
+  inputs:
+    type: object
+    required:
+    - typename
+    - fields
+    properties:
+      typename:
+        type: string
+        description: Data type name in lowercase with spaces removed (e.g. shopping_cart).
+      fields:
+        type: object
+        description: Map of field name/value pairs to write to the new record.
+  steps:
+  - stepId: createThing
+    description: >-
+      Create a single new record of the given data type using the supplied
+      fields. Bubble returns the unique id assigned to the record.
+    operationId: createThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    requestBody:
+      contentType: application/json
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      newId: $response.body#/id
+      createStatus: $response.body#/status
+  - stepId: getThing
+    description: >-
+      Retrieve the newly created record by its unique id to confirm it
+      persisted and to return the materialized object.
+    operationId: getThing
+    parameters:
+    - name: typename
+      in: path
+      value: $inputs.typename
+    - name: uid
+      in: path
+      value: $steps.createThing.outputs.newId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      record: $response.body#/response
+  outputs:
+    newId: $steps.createThing.outputs.newId
+    record: $steps.getThing.outputs.record
