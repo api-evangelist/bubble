@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Data API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Things",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              },
+              {
+                "name": "constraints",
+                "value": "[{\"key\":\"unitname\",\"constraint_type\":\"equals\",\"value\":\"Studio 5\"}]",
+                "type": "query",
+                "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based start position for the page."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results per request (default and max 100 per page)."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Field name to sort the results by."
+              },
+              {
+                "name": "descending",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction. `true` for descending, `false` for ascending."
+              },
+              {
+                "name": "additional_sort_fields",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded array of additional sort fields and directions."
+              },
+              {
+                "name": "exclude_remaining",
+                "value": "",
+                "type": "query",
+                "description": "Skip total-record counting for performance."
+              }
+            ]
+          },
+          "docs": "Returns a list of records of the given data type. Supports search constraints,\ncursor-based pagination, sorting, and field projection.\n"
+        },
+        {
+          "info": {
+            "name": "Create Thing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a single new record of the given data type."
+        },
+        {
+          "info": {
+            "name": "Bulk Create Things",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename/bulk",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              }
+            ]
+          },
+          "docs": "Create up to 1,000 new records in a single request. The request body\nis one JSON object per line (newline-delimited JSON).\n"
+        },
+        {
+          "info": {
+            "name": "Get Thing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename/:uid",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              },
+              {
+                "name": "uid",
+                "value": "1503408875694x944431186090727200",
+                "type": "path",
+                "description": "Unique id of the record."
+              }
+            ]
+          },
+          "docs": "Retrieve a single record by its unique id."
+        },
+        {
+          "info": {
+            "name": "Replace Thing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename/:uid",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              },
+              {
+                "name": "uid",
+                "value": "1503408875694x944431186090727200",
+                "type": "path",
+                "description": "Unique id of the record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fully replace the record with the supplied object."
+        },
+        {
+          "info": {
+            "name": "Modify Thing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename/:uid",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              },
+              {
+                "name": "uid",
+                "value": "1503408875694x944431186090727200",
+                "type": "path",
+                "description": "Unique id of the record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a record. Only the provided fields are changed."
+        },
+        {
+          "info": {
+            "name": "Delete Thing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/obj/:typename/:uid",
+            "params": [
+              {
+                "name": "typename",
+                "value": "shopping_cart",
+                "type": "path",
+                "description": "Data type name in lowercase with spaces removed."
+              },
+              {
+                "name": "uid",
+                "value": "1503408875694x944431186090727200",
+                "type": "path",
+                "description": "Unique id of the record."
+              }
+            ]
+          },
+          "docs": "Permanently delete a record."
+        },
+        {
+          "info": {
+            "name": "Get Data Type Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/meta"
+          },
+          "docs": "Returns the data types and their fields exposed via the Data API for the\ncurrent environment. Useful for client code generation and discovery.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

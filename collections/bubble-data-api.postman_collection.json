@@ -1,0 +1,2781 @@
+{
+  "item": [
+    {
+      "id": "3a3369de-071a-4252-94f1-d0a1645611bb",
+      "name": "Data",
+      "description": {
+        "content": "Read, search, create, modify, replace, and delete data things.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "405f9668-7a43-4ed4-88f3-6d88ba9e73e4",
+          "name": "Search Things",
+          "request": {
+            "name": "Search Things",
+            "description": {
+              "content": "Returns a list of records of the given data type. Supports search constraints,\ncursor-based pagination, sorting, and field projection.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "constraints",
+                  "value": "<string>",
+                  "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<integer>",
+                  "description": "Zero-based start position for the page."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum results per request (default and max 100 per page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field name to sort the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "descending",
+                  "value": "<boolean>",
+                  "description": "Sort direction. `true` for descending, `false` for ascending."
+                },
+                {
+                  "disabled": false,
+                  "key": "additional_sort_fields",
+                  "value": "<string>",
+                  "description": "JSON-encoded array of additional sort fields and directions."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_remaining",
+                  "value": "<boolean>",
+                  "description": "Skip total-record counting for performance."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9024f07-c530-4853-942f-518a5bf45b61",
+              "name": "Search response with paginated results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "constraints",
+                      "value": "[{\"key\":\"unitname\",\"constraint_type\":\"equals\",\"value\":\"Studio 5\"}]"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "additional_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_remaining",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"cursor\": 3096,\n    \"results\": [\n      {\n        \"key_0\": 4097.7974417525,\n        \"key_1\": 4259,\n        \"key_2\": 9564.787534813377\n      },\n      {\n        \"key_0\": 5397\n      }\n    ],\n    \"remaining\": 8715,\n    \"count\": 4382\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91ba5caa-9587-4aaa-9e08-093999054430",
+              "name": "Invalid request payload, missing fields, or malformed constraints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "constraints",
+                      "value": "[{\"key\":\"unitname\",\"constraint_type\":\"equals\",\"value\":\"Studio 5\"}]"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "additional_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_remaining",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f589b500-b69e-460a-b39a-63b56b978298",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "constraints",
+                      "value": "[{\"key\":\"unitname\",\"constraint_type\":\"equals\",\"value\":\"Studio 5\"}]"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "additional_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_remaining",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbb9fbde-2a95-4f22-9184-20236c27e435",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "constraints",
+                      "value": "[{\"key\":\"unitname\",\"constraint_type\":\"equals\",\"value\":\"Studio 5\"}]"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "additional_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_remaining",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2502d7e8-a63f-406d-a174-f5daca7d97a8",
+          "name": "Create Thing",
+          "request": {
+            "name": "Create Thing",
+            "description": {
+              "content": "Create a single new record of the given data type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false,\n  \"key_1\": 9600.566804074684,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d2dfbef-4766-49d7-ab93-05047ac7bce1",
+              "name": "Created. Returns the unique id assigned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99a4c899-33bb-41c6-963d-9655faf033fa",
+              "name": "Invalid request payload, missing fields, or malformed constraints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b754adc5-5f9b-4ab8-ae92-e6464fcc54c7",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be8837fb-5409-4111-aa4a-0896a7ee12b5",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c6539d6-4222-45d4-94b2-4f33fde6377f",
+          "name": "Bulk Create Things",
+          "request": {
+            "name": "Bulk Create Things",
+            "description": {
+              "content": "Create up to 1,000 new records in a single request. The request body\nis one JSON object per line (newline-delimited JSON).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "5b4f201d-0594-4791-bd0f-8d09f5bcf2ca",
+              "name": "Newline-delimited JSON results, one per submitted object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02667178-1ce4-454f-aa0b-b9d150ce074f",
+              "name": "Invalid request payload, missing fields, or malformed constraints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d55e1752-a658-418e-930c-0a1c29c41bb1",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00f80673-aaf5-4baf-8d32-741074c825fd",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cd5b8d2-424b-4979-9916-1a64fca77c2b",
+          "name": "Get Thing",
+          "request": {
+            "name": "Get Thing",
+            "description": {
+              "content": "Retrieve a single record by its unique id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uid",
+                  "description": "(Required) Unique id of the record."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25e67c05-d4c3-4b1c-b666-300a3497bda1",
+              "name": "The requested record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"key_0\": true,\n    \"key_1\": 509\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d29f40ee-c57f-4b1c-b5ed-7419247b98b5",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bcfb7b1-7bee-4156-91de-46861ca48ec5",
+              "name": "The requested record does not exist or the type is not exposed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39013567-7d6f-4ded-a2da-f06857cee90f",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0cc4c03-0675-48c9-addb-4bc51a62138a",
+          "name": "Modify Thing",
+          "request": {
+            "name": "Modify Thing",
+            "description": {
+              "content": "Partially update a record. Only the provided fields are changed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uid",
+                  "description": "(Required) Unique id of the record."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false,\n  \"key_1\": 9600.566804074684,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4774e3b8-afd2-4ea5-93da-9c3e33fb669d",
+              "name": "No Content. Modification successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7861134b-15d5-4587-9841-a871fc4bc0c2",
+              "name": "Invalid request payload, missing fields, or malformed constraints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8096af47-df7c-403d-8958-f6dadc0eddf4",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9daf7736-fe33-4384-8029-54f1523b4bc9",
+              "name": "The requested record does not exist or the type is not exposed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8921729f-63e7-4590-bf59-852781fb0892",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fa52949-c40f-443a-bc9f-22d0271b7f34",
+          "name": "Replace Thing",
+          "request": {
+            "name": "Replace Thing",
+            "description": {
+              "content": "Fully replace the record with the supplied object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uid",
+                  "description": "(Required) Unique id of the record."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false,\n  \"key_1\": 9600.566804074684,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e57ed546-e4d6-42ac-abe7-1693f1a3e254",
+              "name": "No Content. Replacement successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe987be1-8388-47f2-a5f3-4b90afb9d39a",
+              "name": "Invalid request payload, missing fields, or malformed constraints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47a2b4c1-8b8a-43e1-b5a5-19725a0fd7f0",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8871bc10-109d-4bd0-8292-3b4410c1f3ea",
+              "name": "The requested record does not exist or the type is not exposed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28fbeef3-4ad1-4890-a9d3-a55ceb31bd93",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4208.639775265349\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "208bb0bb-ac49-48a0-b0fc-d6c88987a986",
+          "name": "Delete Thing",
+          "request": {
+            "name": "Delete Thing",
+            "description": {
+              "content": "Permanently delete a record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "obj",
+                ":typename",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "typename",
+                  "description": "(Required) Data type name in lowercase with spaces removed."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uid",
+                  "description": "(Required) Unique id of the record."
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35896f9a-3cd4-49bf-b08e-7996444a11c3",
+              "name": "No Content. Deletion successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97ca8205-e363-484a-82fa-239f067f3c0f",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5b2cab7-da6c-445c-8625-87320e26ec43",
+              "name": "The requested record does not exist or the type is not exposed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a9e48d7-96fe-418c-8fcf-b74f50f6fca3",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "obj",
+                    ":typename",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "typename",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uid",
+                      "description": "(Required) Unique id of the record."
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d27c039-9cac-4bef-be42-e3377ab702b5",
+          "name": "Get Data Type Metadata",
+          "request": {
+            "name": "Get Data Type Metadata",
+            "description": {
+              "content": "Returns the data types and their fields exposed via the Data API for the\ncurrent environment. Useful for client code generation and discovery.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00f35811-cb92-4dc6-993a-d2307deaa226",
+              "name": "Metadata response listing exposed types and fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5270\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86b50d9b-8294-41af-84af-22489bd49112",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2341,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bubble app name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myapp",
+      "key": "appname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cacdb2a8-0a36-4b6c-8e01-bc699c04d931",
+    "name": "Bubble Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bubble Data API exposes the database of a Bubble app as a REST interface.\nExternal systems can read, search, create, modify, replace, and delete records\nof any data type defined in a Bubble app, with optional pagination, sorting,\nand search constraints. Authentication uses bearer tokens (admin API tokens\nbypass privacy rules; user tokens enforce them). Endpoints exist for live and\ndevelopment (`version-test`) environments.\n\n\nContact Support:\n Name: Bubble Support",
+      "type": "text/plain"
+    }
+  }
+}

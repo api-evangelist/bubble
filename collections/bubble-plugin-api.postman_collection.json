@@ -1,0 +1,789 @@
+{
+  "item": [
+    {
+      "id": "3bc8a631-d0b0-4f4b-99f7-c9930b899730",
+      "name": "Action",
+      "description": {
+        "content": "Server-side and client-side action functions invoked by Bubble workflows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a49a9b6d-b924-4207-846a-b204403cbcf4",
+          "name": "Invoke Server-Side Action",
+          "request": {
+            "name": "Invoke Server-Side Action",
+            "description": {
+              "content": "Server-side actions are written as `function(properties, context)`.\nThey run in a Node.js sandbox, may `require` configured npm\ndependencies, and may return data consumed by subsequent workflow\nsteps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "actions",
+                "serverSide",
+                ":actionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) Name of the action as defined in the plugin editor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"context\": {\n    \"currentUser\": {\n      \"id\": \"<string>\",\n      \"listProperties\": \"<string>\",\n      \"get\": \"<string>\",\n      \"getAll\": \"<string>\"\n    },\n    \"userTimezone\": \"<string>\",\n    \"keys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"isBubbleThing\": \"<string>\",\n    \"isBubbleList\": \"<string>\",\n    \"getThingById\": \"<string>\",\n    \"getThingsById\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04525755-c84c-423d-af2d-fbf731eb1349",
+              "name": "Action returned successfully. Return shape is defined by the plugin's `Returned values` configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions",
+                    "serverSide",
+                    ":actionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) Name of the action as defined in the plugin editor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"key_0\": false,\n    \"key_1\": true\n  },\n  \"context\": {\n    \"currentUser\": {\n      \"id\": \"<string>\",\n      \"listProperties\": \"<string>\",\n      \"get\": \"<string>\",\n      \"getAll\": \"<string>\"\n    },\n    \"userTimezone\": \"<string>\",\n    \"keys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"isBubbleThing\": \"<string>\",\n    \"isBubbleList\": \"<string>\",\n    \"getThingById\": \"<string>\",\n    \"getThingsById\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5979ca91-dea3-411f-81ce-da7529ca95e8",
+          "name": "Invoke Client-Side Action",
+          "request": {
+            "name": "Invoke Client-Side Action",
+            "description": {
+              "content": "Client-side actions are written as `function(properties, context)` and\nrun in the browser. Useful for DOM manipulation, calling browser\nAPIs, or working with already-loaded data. No workload is incurred\nbecause no server roundtrip occurs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "actions",
+                "clientSide",
+                ":actionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) Name of the action as defined in the plugin editor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"key_0\": 368.7805780628395,\n    \"key_1\": \"string\"\n  },\n  \"context\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d83e0ca-b9f7-42fc-8f65-80130fa9748e",
+              "name": "Action returned successfully (or void).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions",
+                    "clientSide",
+                    ":actionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) Name of the action as defined in the plugin editor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"key_0\": 5137.359695611345,\n    \"key_1\": 3965.2802658220576\n  },\n  \"context\": {\n    \"key_0\": 203,\n    \"key_1\": 3580,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c3f820a5-e170-464a-8f4e-f75dc4d5f127",
+      "name": "Element",
+      "description": {
+        "content": "Visual element lifecycle hooks invoked by the Bubble page renderer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8d5c72a-08eb-498a-96aa-1b26303e5e23",
+          "name": "Initialize Element",
+          "request": {
+            "name": "Initialize Element",
+            "description": {
+              "content": "Element initialize hook. Receives `(instance, context)`. Use to set up\nDOM state, allocate resources, and register state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elements",
+                ":elementName",
+                "initialize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instance\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5381,\n    \"key_2\": 4452\n  },\n  \"context\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07345aab-6eb8-406a-b59f-688f672ba12f",
+              "name": "Initialization complete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":elementName",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7162,\n    \"key_2\": false,\n    \"key_3\": 8307.524470535393\n  },\n  \"context\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ba36d16-9bf4-47ea-b6bb-749d298883ec",
+          "name": "Update Element",
+          "request": {
+            "name": "Update Element",
+            "description": {
+              "content": "Element update hook. Receives `(instance, properties, context)`.\nTriggered when any of the element's bound properties change.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elements",
+                ":elementName",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instance\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"properties\": {\n    \"key_0\": 4393.3726353758775,\n    \"key_1\": false\n  },\n  \"context\": {\n    \"key_0\": 6266.755309103864\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dded7f37-b5f2-4c9b-89f4-317a0fe34ef3",
+              "name": "Update applied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":elementName",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance\": {\n    \"key_0\": false,\n    \"key_1\": 8229\n  },\n  \"properties\": {\n    \"key_0\": 3339.2810311019184,\n    \"key_1\": 3470\n  },\n  \"context\": {\n    \"key_0\": 407.56572054887806,\n    \"key_1\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dc84bc64-6ef8-435c-a60e-87b7fead1cb2",
+      "name": "Thing",
+      "description": {
+        "content": "Database object accessors exposed to plugin code.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "883b2ef1-bc98-4abc-bdec-083e4715d826",
+          "name": "Get Thing By Id",
+          "request": {
+            "name": "Get Thing By Id",
+            "description": {
+              "content": "Look up a single database object by id. Maps to\n`context.getThingById(id)` on the server context. Returns a\n`BubbleThing` whose `get(field)` returns a Promise.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "thing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d586babd-5bb3-4e92-bc3d-bc070d17ea15",
+              "name": "A BubbleThing wrapper.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"listProperties\": \"string\",\n  \"get\": \"string\",\n  \"getAll\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62cd8ea0-1a1a-4e2c-8cff-41ead48ec068",
+          "name": "Get Things By Id",
+          "request": {
+            "name": "Get Things By Id",
+            "description": {
+              "content": "Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a\n`BubbleList`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "things"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86020e8a-709d-4301-8236-1dd1f6557055",
+              "name": "A BubbleList wrapper.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "things"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"length\": \"string\",\n  \"get\": \"string\",\n  \"[Symbol.asyncIterator]\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "73bf88b3-f148-4e81-a154-58b8b57897ef",
+      "name": "Context",
+      "description": {
+        "content": "Helpers exposed on the runtime context object.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d71f5691-8134-4cf0-ba23-ae5fc3165b3f",
+          "name": "Run Async Block",
+          "request": {
+            "name": "Run Async Block",
+            "description": {
+              "content": "Wrap an asynchronous operation. In v4 this is `context.v3.async()`\nand is deprecated in favor of native `async/await`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "context",
+                "async"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1826785b-05eb-4a40-ba92-0194097b878c",
+              "name": "Async block completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "context",
+                    "async"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cab66b3-71d4-4747-a4c1-881f23fbed5b",
+          "name": "Make HTTP Request",
+          "request": {
+            "name": "Make HTTP Request",
+            "description": {
+              "content": "Issue an outbound HTTP request from a server-side action. In v4\nthis is `context.v3.request()` and is deprecated in favor of any\nnpm-installed HTTP client.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "context",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4b8c81e-a373-4919-9f0c-4d01e9bbfafd",
+              "name": "HTTP response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "context",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "virtual://plugin-runtime",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6cd8820a-d6b8-4d57-885a-35aee593f3bf",
+    "name": "Bubble Plugin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin\nauthors use to extend Bubble apps. It exposes server-side actions, client-side\nactions, and visual elements that read configured properties and interact with\nthe runtime via a `context` object. Plugin API v4 replaces Fibers with\nPromises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),\nby-id lookups (`getThingById`, `getThingsById`), and async iteration on\n`BubbleList`.\n\nThis OpenAPI document describes the SDK surface as a virtual REST API for\ncatalog and discovery purposes. Each \"endpoint\" represents a callable\nJavaScript function in the plugin runtime; `paths` carry the function name\nand `requestBody`/`responses` describe its parameters and return value.\n\n\nContact Support:\n Name: Bubble Support",
+      "type": "text/plain"
+    }
+  }
+}

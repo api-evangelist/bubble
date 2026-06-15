@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Workflow API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/wf/:workflow_name/initialize",
+            "params": [
+              {
+                "name": "workflow_name",
+                "value": "register_user",
+                "type": "path",
+                "description": "Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "One-time call used while building a workflow. Bubble inspects the\nrequest body and headers and uses them to detect the parameter\ncontract for subsequent calls. Disable detection before going live.\n"
+        },
+        {
+          "info": {
+            "name": "Trigger Workflow Via GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/wf/:workflow_name",
+            "params": [
+              {
+                "name": "workflow_name",
+                "value": "register_user",
+                "type": "path",
+                "description": "Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+              }
+            ]
+          },
+          "docs": "Invoke the workflow with parameters supplied via the query string.\nGET-mode workflows must be explicitly enabled in the Bubble editor.\n"
+        },
+        {
+          "info": {
+            "name": "Trigger Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/wf/:workflow_name",
+            "params": [
+              {
+                "name": "workflow_name",
+                "value": "register_user",
+                "type": "path",
+                "description": "Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invoke the workflow with the parameters defined in the editor. Body\nparameters are sent as JSON unless the workflow is configured to\naccept query-string parameters.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

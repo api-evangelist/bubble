@@ -1,0 +1,861 @@
+{
+  "info": {
+    "_postman_id": "bc3a6cbf-bdb3-4c8c-a516-18263199c840",
+    "name": "Bubble Plugin API",
+    "description": "The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin\nauthors use to extend Bubble apps. It exposes server-side actions, client-side\nactions, and visual elements that read configured properties and interact with\nthe runtime via a `context` object. Plugin API v4 replaces Fibers with\nPromises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),\nby-id lookups (`getThingById`, `getThingsById`), and async iteration on\n`BubbleList`.\n\nThis OpenAPI document describes the SDK surface as a virtual REST API for\ncatalog and discovery purposes. Each \"endpoint\" represents a callable\nJavaScript function in the plugin runtime; `paths` carry the function name\nand `requestBody`/`responses` describe its parameters and return value.\n\n\nContact Support:\n Name: Bubble Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:40.000Z",
+    "updatedAt": "2026-06-05T15:00:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc3a6cbf-bdb3-4c8c-a516-18263199c840"
+  },
+  "item": [
+    {
+      "name": "actions",
+      "item": [
+        {
+          "name": "serverSide",
+          "item": [
+            {
+              "name": "{actionName}",
+              "item": [
+                {
+                  "name": "Invoke Server-Side Action",
+                  "id": "4c1ca4c4-32e9-4795-930b-fa4b9f6aa434",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"properties\": {\n    \"ullamco_c\": 14554674\n  },\n  \"context\": {\n    \"currentUser\": {\n      \"id\": \"<string>\",\n      \"listProperties\": \"<string>\",\n      \"get\": \"<string>\",\n      \"getAll\": \"<string>\"\n    },\n    \"userTimezone\": \"<string>\",\n    \"keys\": {\n      \"commodo_\": \"<string>\"\n    },\n    \"isBubbleThing\": \"<string>\",\n    \"isBubbleList\": \"<string>\",\n    \"getThingById\": \"<string>\",\n    \"getThingsById\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/actions/serverSide/:actionName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "actions",
+                        "serverSide",
+                        ":actionName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "965da6c0-7296-459a-b070-8f080baf7528",
+                          "key": "actionName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the action as defined in the plugin editor."
+                        }
+                      ]
+                    },
+                    "description": "Server-side actions are written as `function(properties, context)`.\nThey run in a Node.js sandbox, may `require` configured npm\ndependencies, and may return data consumed by subsequent workflow\nsteps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).\n"
+                  },
+                  "response": [
+                    {
+                      "id": "2392c631-8067-4180-8943-8d789773542b",
+                      "name": "Action returned successfully. Return shape is defined by the plugin's `Returned values` configuration.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"properties\": {\n    \"ullamco_c\": 14554674\n  },\n  \"context\": {\n    \"currentUser\": {\n      \"id\": \"<string>\",\n      \"listProperties\": \"<string>\",\n      \"get\": \"<string>\",\n      \"getAll\": \"<string>\"\n    },\n    \"userTimezone\": \"<string>\",\n    \"keys\": {\n      \"commodo_\": \"<string>\"\n    },\n    \"isBubbleThing\": \"<string>\",\n    \"isBubbleList\": \"<string>\",\n    \"getThingById\": \"<string>\",\n    \"getThingsById\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/actions/serverSide/:actionName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "actions",
+                            "serverSide",
+                            ":actionName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "actionName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"voluptate35\": false,\n  \"incididunt_e\": true\n}",
+                      "createdAt": "2026-06-05T15:00:40.000Z",
+                      "updatedAt": "2026-06-05T15:00:40.000Z",
+                      "uid": "35240-2392c631-8067-4180-8943-8d789773542b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-4c1ca4c4-32e9-4795-930b-fa4b9f6aa434"
+                }
+              ],
+              "id": "60049bb2-bf4d-4c95-a0f4-a4aec8fb3a0f",
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-60049bb2-bf4d-4c95-a0f4-a4aec8fb3a0f"
+            }
+          ],
+          "id": "df9d4d03-4c53-4290-92f6-fe06d39359b6",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-df9d4d03-4c53-4290-92f6-fe06d39359b6"
+        },
+        {
+          "name": "clientSide",
+          "item": [
+            {
+              "name": "{actionName}",
+              "item": [
+                {
+                  "name": "Invoke Client-Side Action",
+                  "id": "1c26a527-708a-49fb-8a88-ba57019263fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"properties\": {\n    \"Duis457\": -2258956.88540639\n  },\n  \"context\": {\n    \"do_a5_\": \"amet oc\",\n    \"minim1_\": -4392827,\n    \"occaecat_812\": 68749462\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/actions/clientSide/:actionName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "actions",
+                        "clientSide",
+                        ":actionName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d4cf4f9-445f-4923-ad37-79ebd379cefc",
+                          "key": "actionName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the action as defined in the plugin editor."
+                        }
+                      ]
+                    },
+                    "description": "Client-side actions are written as `function(properties, context)` and\nrun in the browser. Useful for DOM manipulation, calling browser\nAPIs, or working with already-loaded data. No workload is incurred\nbecause no server roundtrip occurs.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "5b676353-c181-4184-96b9-cf8958fd0bd1",
+                      "name": "Action returned successfully (or void).",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"properties\": {\n    \"Duis457\": -2258956.88540639\n  },\n  \"context\": {\n    \"do_a5_\": \"amet oc\",\n    \"minim1_\": -4392827,\n    \"occaecat_812\": 68749462\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/actions/clientSide/:actionName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "actions",
+                            "clientSide",
+                            ":actionName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "actionName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"voluptate35\": false,\n  \"incididunt_e\": true\n}",
+                      "createdAt": "2026-06-05T15:00:40.000Z",
+                      "updatedAt": "2026-06-05T15:00:40.000Z",
+                      "uid": "35240-5b676353-c181-4184-96b9-cf8958fd0bd1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-1c26a527-708a-49fb-8a88-ba57019263fd"
+                }
+              ],
+              "id": "7c22c2da-c62e-4c88-b66b-d443b7ef7e92",
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-7c22c2da-c62e-4c88-b66b-d443b7ef7e92"
+            }
+          ],
+          "id": "f50fea5f-2aea-43c9-b10b-1b9f08dc111a",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-f50fea5f-2aea-43c9-b10b-1b9f08dc111a"
+        }
+      ],
+      "id": "11af940b-66c7-4962-8784-d268c9548c45",
+      "createdAt": "2026-06-05T15:00:40.000Z",
+      "updatedAt": "2026-06-05T15:00:40.000Z",
+      "uid": "35240-11af940b-66c7-4962-8784-d268c9548c45"
+    },
+    {
+      "name": "elements",
+      "item": [
+        {
+          "name": "{elementName}",
+          "item": [
+            {
+              "name": "initialize",
+              "item": [
+                {
+                  "name": "Initialize Element",
+                  "id": "b1f425b5-dc5f-48db-886e-3eb9dc8e2967",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance\": {\n    \"ex9_1\": 61363170,\n    \"irure_df\": 79720091.48062277,\n    \"laborum_164\": 93039335,\n    \"Lorem_c\": false,\n    \"elit_1d\": -11347183.763263717\n  },\n  \"context\": {\n    \"magna39\": \"sed do\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/elements/:elementName/initialize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "elements",
+                        ":elementName",
+                        "initialize"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9c649fee-0527-4e38-a230-56414ee452c5",
+                          "key": "elementName",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Element initialize hook. Receives `(instance, context)`. Use to set up\nDOM state, allocate resources, and register state.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "bd5deb2b-2559-400f-b480-22769d9c7c85",
+                      "name": "Initialization complete.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"instance\": {\n    \"ex9_1\": 61363170,\n    \"irure_df\": 79720091.48062277,\n    \"laborum_164\": 93039335,\n    \"Lorem_c\": false,\n    \"elit_1d\": -11347183.763263717\n  },\n  \"context\": {\n    \"magna39\": \"sed do\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/elements/:elementName/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "elements",
+                            ":elementName",
+                            "initialize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "elementName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:40.000Z",
+                      "updatedAt": "2026-06-05T15:00:40.000Z",
+                      "uid": "35240-bd5deb2b-2559-400f-b480-22769d9c7c85"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-b1f425b5-dc5f-48db-886e-3eb9dc8e2967"
+                }
+              ],
+              "id": "4bf18e5f-2759-4263-aa00-cd3e15a025e0",
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-4bf18e5f-2759-4263-aa00-cd3e15a025e0"
+            },
+            {
+              "name": "update",
+              "item": [
+                {
+                  "name": "Update Element",
+                  "id": "bf7b4778-5e41-4e77-9a9f-93b36ec38f52",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"instance\": {\n    \"mollit_5\": 76104562\n  },\n  \"properties\": {\n    \"minim17\": 62406602.521196455,\n    \"Duisbeb\": \"cupidatat eu Ut velit\",\n    \"cupidatatb4a\": -75641677.8806257\n  },\n  \"context\": {\n    \"aliqua3e4\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/elements/:elementName/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "elements",
+                        ":elementName",
+                        "update"
+                      ],
+                      "variable": [
+                        {
+                          "id": "54a61fba-2ec8-424c-a365-4f6bfbdc23fc",
+                          "key": "elementName",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Element update hook. Receives `(instance, properties, context)`.\nTriggered when any of the element's bound properties change.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "ef394d45-c3e2-497d-acb4-12cb903ed48e",
+                      "name": "Update applied.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"instance\": {\n    \"mollit_5\": 76104562\n  },\n  \"properties\": {\n    \"minim17\": 62406602.521196455,\n    \"Duisbeb\": \"cupidatat eu Ut velit\",\n    \"cupidatatb4a\": -75641677.8806257\n  },\n  \"context\": {\n    \"aliqua3e4\": true\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/elements/:elementName/update",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "elements",
+                            ":elementName",
+                            "update"
+                          ],
+                          "variable": [
+                            {
+                              "key": "elementName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:40.000Z",
+                      "updatedAt": "2026-06-05T15:00:40.000Z",
+                      "uid": "35240-ef394d45-c3e2-497d-acb4-12cb903ed48e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-bf7b4778-5e41-4e77-9a9f-93b36ec38f52"
+                }
+              ],
+              "id": "5bd43fbb-5cc4-47b6-b72e-1d1ed2877e6a",
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-5bd43fbb-5cc4-47b6-b72e-1d1ed2877e6a"
+            }
+          ],
+          "id": "6c19b252-7276-47b9-bbac-3989a1880f5d",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-6c19b252-7276-47b9-bbac-3989a1880f5d"
+        }
+      ],
+      "id": "5bcd1761-5d10-4a3d-8d09-bcb6558a2c5b",
+      "createdAt": "2026-06-05T15:00:40.000Z",
+      "updatedAt": "2026-06-05T15:00:40.000Z",
+      "uid": "35240-5bcd1761-5d10-4a3d-8d09-bcb6558a2c5b"
+    },
+    {
+      "name": "thing",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Thing By Id",
+              "id": "13c6a23d-7c1d-40eb-b359-7528ffcbaec8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/thing/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "thing",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cfba6612-ab92-454a-abc8-4b65c2cbe97d",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Look up a single database object by id. Maps to\n`context.getThingById(id)` on the server context. Returns a\n`BubbleThing` whose `get(field)` returns a Promise.\n"
+              },
+              "response": [
+                {
+                  "id": "d2117d59-fdae-4736-bdce-dc8d95cd87f8",
+                  "name": "A BubbleThing wrapper.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/thing/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "thing",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"listProperties\": \"<string>\",\n  \"get\": \"<string>\",\n  \"getAll\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-d2117d59-fdae-4736-bdce-dc8d95cd87f8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-13c6a23d-7c1d-40eb-b359-7528ffcbaec8"
+            }
+          ],
+          "id": "f26fc36c-7d65-4757-a935-856338331ce9",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-f26fc36c-7d65-4757-a935-856338331ce9"
+        }
+      ],
+      "id": "f8bcf7ff-d583-4c53-b917-5aae4ad87450",
+      "createdAt": "2026-06-05T15:00:40.000Z",
+      "updatedAt": "2026-06-05T15:00:40.000Z",
+      "uid": "35240-f8bcf7ff-d583-4c53-b917-5aae4ad87450"
+    },
+    {
+      "name": "things",
+      "item": [
+        {
+          "name": "Get Things By Id",
+          "id": "d49bc3d2-5529-4f9f-b6d7-dbf38c751261",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/things?ids=<string>&ids=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "things"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "ids",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a\n`BubbleList`.\n"
+          },
+          "response": [
+            {
+              "id": "97870bbe-7248-486b-b62c-49bf3ab568dc",
+              "name": "A BubbleList wrapper.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/things?ids=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "things"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"length\": \"<string>\",\n  \"get\": \"<string>\",\n  \"[Symbol.asyncIterator]\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-97870bbe-7248-486b-b62c-49bf3ab568dc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-d49bc3d2-5529-4f9f-b6d7-dbf38c751261"
+        }
+      ],
+      "id": "b08e2f17-6077-4f8e-8536-ae7cf2ec6727",
+      "createdAt": "2026-06-05T15:00:40.000Z",
+      "updatedAt": "2026-06-05T15:00:40.000Z",
+      "uid": "35240-b08e2f17-6077-4f8e-8536-ae7cf2ec6727"
+    },
+    {
+      "name": "context",
+      "item": [
+        {
+          "name": "async",
+          "item": [
+            {
+              "name": "Run Async Block",
+              "id": "98ba920e-5bb5-4d33-8c70-033ea4b00504",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/context/async",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "context",
+                    "async"
+                  ]
+                },
+                "description": "Wrap an asynchronous operation. In v4 this is `context.v3.async()`\nand is deprecated in favor of native `async/await`.\n"
+              },
+              "response": [
+                {
+                  "id": "2c7d475c-1d10-4c77-bec9-8f7efe6df499",
+                  "name": "Async block completed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/context/async",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "context",
+                        "async"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-2c7d475c-1d10-4c77-bec9-8f7efe6df499"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-98ba920e-5bb5-4d33-8c70-033ea4b00504"
+            }
+          ],
+          "id": "b87f1cb4-e1bd-4e55-a50c-3bf8599b8ccb",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-b87f1cb4-e1bd-4e55-a50c-3bf8599b8ccb"
+        },
+        {
+          "name": "request",
+          "item": [
+            {
+              "name": "Make HTTP Request",
+              "id": "e20ecaf8-b69d-4853-9f3a-b14667eedfd7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/context/request",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "context",
+                    "request"
+                  ]
+                },
+                "description": "Issue an outbound HTTP request from a server-side action. In v4\nthis is `context.v3.request()` and is deprecated in favor of any\nnpm-installed HTTP client.\n"
+              },
+              "response": [
+                {
+                  "id": "fc888b8c-c150-4738-a133-a51b6c7dbc2a",
+                  "name": "HTTP response.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/context/request",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "context",
+                        "request"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:40.000Z",
+                  "updatedAt": "2026-06-05T15:00:40.000Z",
+                  "uid": "35240-fc888b8c-c150-4738-a133-a51b6c7dbc2a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:40.000Z",
+              "updatedAt": "2026-06-05T15:00:40.000Z",
+              "uid": "35240-e20ecaf8-b69d-4853-9f3a-b14667eedfd7"
+            }
+          ],
+          "id": "646b6c61-c087-4d0b-96e4-0637bae6de6e",
+          "createdAt": "2026-06-05T15:00:40.000Z",
+          "updatedAt": "2026-06-05T15:00:40.000Z",
+          "uid": "35240-646b6c61-c087-4d0b-96e4-0637bae6de6e"
+        }
+      ],
+      "id": "474a3219-041c-4a12-b9f7-aaeba78bf6c1",
+      "createdAt": "2026-06-05T15:00:40.000Z",
+      "updatedAt": "2026-06-05T15:00:40.000Z",
+      "uid": "35240-474a3219-041c-4a12-b9f7-aaeba78bf6c1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "virtual://plugin-runtime"
+    }
+  ]
+}

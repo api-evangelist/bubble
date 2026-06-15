@@ -1,0 +1,2455 @@
+{
+  "info": {
+    "_postman_id": "92a60943-ad6f-419e-82e0-d4db93d4ad92",
+    "name": "Bubble Data API",
+    "description": "The Bubble Data API exposes the database of a Bubble app as a REST interface.\nExternal systems can read, search, create, modify, replace, and delete records\nof any data type defined in a Bubble app, with optional pagination, sorting,\nand search constraints. Authentication uses bearer tokens (admin API tokens\nbypass privacy rules; user tokens enforce them). Endpoints exist for live and\ndevelopment (`version-test`) environments.\n\n\nContact Support:\n Name: Bubble Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:33.000Z",
+    "updatedAt": "2026-06-05T15:00:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-92a60943-ad6f-419e-82e0-d4db93d4ad92"
+  },
+  "item": [
+    {
+      "name": "obj",
+      "item": [
+        {
+          "name": "{typename}",
+          "item": [
+            {
+              "name": "bulk",
+              "item": [
+                {
+                  "name": "Bulk Create Things",
+                  "id": "c433e31f-e2cd-412b-9434-358ceacb88ed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/plain"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename",
+                        "bulk"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7125356c-77c7-4e16-915a-3ce538eed817",
+                          "key": "typename",
+                          "value": "<string>",
+                          "description": "(Required) Data type name in lowercase with spaces removed."
+                        }
+                      ]
+                    },
+                    "description": "Create up to 1,000 new records in a single request. The request body\nis one JSON object per line (newline-delimited JSON).\n"
+                  },
+                  "response": [
+                    {
+                      "id": "6eb1542c-ada6-4536-bb2f-4d58ce90259c",
+                      "name": "Newline-delimited JSON results, one per submitted object.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<string>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            "bulk"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-6eb1542c-ada6-4536-bb2f-4d58ce90259c"
+                    },
+                    {
+                      "id": "ef84dda0-af95-4b1c-b90c-336283eab110",
+                      "name": "Invalid request payload, missing fields, or malformed constraints.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<string>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            "bulk"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-ef84dda0-af95-4b1c-b90c-336283eab110"
+                    },
+                    {
+                      "id": "6e33f990-0791-4652-af8e-88ed299d44b8",
+                      "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<string>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            "bulk"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-6e33f990-0791-4652-af8e-88ed299d44b8"
+                    },
+                    {
+                      "id": "a6a4543d-c738-4a92-a645-8473b8e8888e",
+                      "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<string>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            "bulk"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-a6a4543d-c738-4a92-a645-8473b8e8888e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-c433e31f-e2cd-412b-9434-358ceacb88ed"
+                }
+              ],
+              "id": "877d84c8-1a1e-47c0-8568-5b19e867c86c",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-877d84c8-1a1e-47c0-8568-5b19e867c86c"
+            },
+            {
+              "name": "{uid}",
+              "item": [
+                {
+                  "name": "Get Thing",
+                  "id": "d2a1a72d-070b-47cc-bc07-bdc08f58fb57",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0dd85a8b-4703-456d-991f-8fe45ce9efff",
+                          "key": "typename",
+                          "value": "<string>",
+                          "description": "(Required) Data type name in lowercase with spaces removed."
+                        },
+                        {
+                          "id": "e01fb54a-86ef-4a46-8a21-64b66c1f1959",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) Unique id of the record."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single record by its unique id."
+                  },
+                  "response": [
+                    {
+                      "id": "34241017-11fa-43a1-abbc-31bba6b15ad4",
+                      "name": "The requested record.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"response\": {\n    \"sit__4\": 80201708.66300967\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-34241017-11fa-43a1-abbc-31bba6b15ad4"
+                    },
+                    {
+                      "id": "323d42bb-7656-490a-8210-ca872157aaf2",
+                      "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-323d42bb-7656-490a-8210-ca872157aaf2"
+                    },
+                    {
+                      "id": "b3d2a680-4a5a-4df4-b963-b1944590818b",
+                      "name": "The requested record does not exist or the type is not exposed.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-b3d2a680-4a5a-4df4-b963-b1944590818b"
+                    },
+                    {
+                      "id": "16686aec-263b-427e-b344-2b322e2e5aa2",
+                      "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-16686aec-263b-427e-b344-2b322e2e5aa2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-d2a1a72d-070b-47cc-bc07-bdc08f58fb57"
+                },
+                {
+                  "name": "Modify Thing",
+                  "id": "241d0507-1d32-431a-a867-54ab044a5580",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1f60bd07-cb9b-49ed-9c24-24d57bbe23c7",
+                          "key": "typename",
+                          "value": "<string>",
+                          "description": "(Required) Data type name in lowercase with spaces removed."
+                        },
+                        {
+                          "id": "92744772-c8cd-41a2-a048-d5e150ee8c0e",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) Unique id of the record."
+                        }
+                      ]
+                    },
+                    "description": "Partially update a record. Only the provided fields are changed."
+                  },
+                  "response": [
+                    {
+                      "id": "22ca9e27-b56c-460b-a752-60fc51cd770f",
+                      "name": "No Content. Modification successful.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-22ca9e27-b56c-460b-a752-60fc51cd770f"
+                    },
+                    {
+                      "id": "82637c6f-97f6-489d-b737-18ac8b9c4b30",
+                      "name": "Invalid request payload, missing fields, or malformed constraints.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-82637c6f-97f6-489d-b737-18ac8b9c4b30"
+                    },
+                    {
+                      "id": "436fbbaa-114f-4f8f-9ff3-314e685ac128",
+                      "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-436fbbaa-114f-4f8f-9ff3-314e685ac128"
+                    },
+                    {
+                      "id": "a6bb0ed6-1cf9-4de9-a5b3-1ce3afa16bde",
+                      "name": "The requested record does not exist or the type is not exposed.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-a6bb0ed6-1cf9-4de9-a5b3-1ce3afa16bde"
+                    },
+                    {
+                      "id": "b3077732-fb47-4b7c-8d77-8d7c374567f2",
+                      "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-b3077732-fb47-4b7c-8d77-8d7c374567f2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-241d0507-1d32-431a-a867-54ab044a5580"
+                },
+                {
+                  "name": "Replace Thing",
+                  "id": "652cc64c-04bf-4388-8885-3522e7fd2e4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "470387fe-3992-441c-a60c-ea8b7ccd5ff1",
+                          "key": "typename",
+                          "value": "<string>",
+                          "description": "(Required) Data type name in lowercase with spaces removed."
+                        },
+                        {
+                          "id": "2e338bed-d99a-426c-9b38-1f4f7bfe60e4",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) Unique id of the record."
+                        }
+                      ]
+                    },
+                    "description": "Fully replace the record with the supplied object."
+                  },
+                  "response": [
+                    {
+                      "id": "b6815b8b-44da-4f5e-9595-e9aa2b5be51d",
+                      "name": "No Content. Replacement successful.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-b6815b8b-44da-4f5e-9595-e9aa2b5be51d"
+                    },
+                    {
+                      "id": "1014496a-722f-4c10-9ee5-0f6ba935ad56",
+                      "name": "Invalid request payload, missing fields, or malformed constraints.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-1014496a-722f-4c10-9ee5-0f6ba935ad56"
+                    },
+                    {
+                      "id": "f6eddd58-dc64-4de3-90db-319c8a91247e",
+                      "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-f6eddd58-dc64-4de3-90db-319c8a91247e"
+                    },
+                    {
+                      "id": "8777b718-0559-4764-81e3-aa13128c6c30",
+                      "name": "The requested record does not exist or the type is not exposed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-8777b718-0559-4764-81e3-aa13128c6c30"
+                    },
+                    {
+                      "id": "a44c2c1c-89ed-42d5-894d-9746ef89c616",
+                      "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-a44c2c1c-89ed-42d5-894d-9746ef89c616"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-652cc64c-04bf-4388-8885-3522e7fd2e4e"
+                },
+                {
+                  "name": "Delete Thing",
+                  "id": "2d3f2379-f090-4a16-8e7f-ba60d6db91c2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename/:uid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename",
+                        ":uid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "71ba65b7-5d08-4a40-879d-58372dcdad06",
+                          "key": "typename",
+                          "value": "<string>",
+                          "description": "(Required) Data type name in lowercase with spaces removed."
+                        },
+                        {
+                          "id": "467abb06-9b97-4701-8d91-ad6da21d2222",
+                          "key": "uid",
+                          "value": "<string>",
+                          "description": "(Required) Unique id of the record."
+                        }
+                      ]
+                    },
+                    "description": "Permanently delete a record."
+                  },
+                  "response": [
+                    {
+                      "id": "9fb58d79-e325-446d-8d3f-db5370ae26c0",
+                      "name": "No Content. Deletion successful.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-9fb58d79-e325-446d-8d3f-db5370ae26c0"
+                    },
+                    {
+                      "id": "c6c85487-2007-4954-8ede-b64c23e92251",
+                      "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-c6c85487-2007-4954-8ede-b64c23e92251"
+                    },
+                    {
+                      "id": "77cb9d48-c00b-453c-a83f-2d5f5822a5a8",
+                      "name": "The requested record does not exist or the type is not exposed.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-77cb9d48-c00b-453c-a83f-2d5f5822a5a8"
+                    },
+                    {
+                      "id": "a740c928-a66a-46e1-8615-f78acceaa42c",
+                      "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/obj/:typename/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "obj",
+                            ":typename",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typename"
+                            },
+                            {
+                              "key": "uid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-a740c928-a66a-46e1-8615-f78acceaa42c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-2d3f2379-f090-4a16-8e7f-ba60d6db91c2"
+                }
+              ],
+              "id": "bda58afc-5b72-4eb6-8af6-4223ee28307c",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-bda58afc-5b72-4eb6-8af6-4223ee28307c"
+            },
+            {
+              "name": "Search Things",
+              "id": "15cb5820-fdf0-4f23-ba5f-16c29adc2c36",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/obj/:typename?constraints=<string>&cursor=<integer>&limit=<integer>&sort_field=<string>&descending=<boolean>&additional_sort_fields=<string>&exclude_remaining=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "query": [
+                    {
+                      "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n",
+                      "key": "constraints",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Zero-based start position for the page.",
+                      "key": "cursor",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum results per request (default and max 100 per page).",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field name to sort the results by.",
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction. `true` for descending, `false` for ascending.",
+                      "key": "descending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "JSON-encoded array of additional sort fields and directions.",
+                      "key": "additional_sort_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Skip total-record counting for performance.",
+                      "key": "exclude_remaining",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "1869e771-e77a-4fa0-ba83-94176cf2189b",
+                      "key": "typename",
+                      "value": "<string>",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    }
+                  ]
+                },
+                "description": "Returns a list of records of the given data type. Supports search constraints,\ncursor-based pagination, sorting, and field projection.\n"
+              },
+              "response": [
+                {
+                  "id": "8a6393f0-d2a9-4915-9ff8-166c4feaf944",
+                  "name": "Search response with paginated results.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename?constraints=<string>&cursor=<integer>&limit=<integer>&sort_field=<string>&descending=<boolean>&additional_sort_fields=<string>&exclude_remaining=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "query": [
+                        {
+                          "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n",
+                          "key": "constraints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Zero-based start position for the page.",
+                          "key": "cursor",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum results per request (default and max 100 per page).",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field name to sort the results by.",
+                          "key": "sort_field",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction. `true` for descending, `false` for ascending.",
+                          "key": "descending",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "JSON-encoded array of additional sort fields and directions.",
+                          "key": "additional_sort_fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Skip total-record counting for performance.",
+                          "key": "exclude_remaining",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"cursor\": \"<integer>\",\n    \"results\": [\n      {\n        \"dolord55\": 544649.7507067621,\n        \"eua6\": false,\n        \"adipisicing_44\": true\n      },\n      {\n        \"ut_f\": \"l\",\n        \"ullamco__\": \"fugiat quis ad non\"\n      }\n    ],\n    \"remaining\": \"<integer>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-8a6393f0-d2a9-4915-9ff8-166c4feaf944"
+                },
+                {
+                  "id": "79b956f1-9c0c-4f5d-b171-1af91efe9af0",
+                  "name": "Invalid request payload, missing fields, or malformed constraints.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename?constraints=<string>&cursor=<integer>&limit=<integer>&sort_field=<string>&descending=<boolean>&additional_sort_fields=<string>&exclude_remaining=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "query": [
+                        {
+                          "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n",
+                          "key": "constraints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Zero-based start position for the page.",
+                          "key": "cursor",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum results per request (default and max 100 per page).",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field name to sort the results by.",
+                          "key": "sort_field",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction. `true` for descending, `false` for ascending.",
+                          "key": "descending",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "JSON-encoded array of additional sort fields and directions.",
+                          "key": "additional_sort_fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Skip total-record counting for performance.",
+                          "key": "exclude_remaining",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-79b956f1-9c0c-4f5d-b171-1af91efe9af0"
+                },
+                {
+                  "id": "f1addc15-242e-4701-9cf0-7438704eba39",
+                  "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename?constraints=<string>&cursor=<integer>&limit=<integer>&sort_field=<string>&descending=<boolean>&additional_sort_fields=<string>&exclude_remaining=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "query": [
+                        {
+                          "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n",
+                          "key": "constraints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Zero-based start position for the page.",
+                          "key": "cursor",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum results per request (default and max 100 per page).",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field name to sort the results by.",
+                          "key": "sort_field",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction. `true` for descending, `false` for ascending.",
+                          "key": "descending",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "JSON-encoded array of additional sort fields and directions.",
+                          "key": "additional_sort_fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Skip total-record counting for performance.",
+                          "key": "exclude_remaining",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-f1addc15-242e-4701-9cf0-7438704eba39"
+                },
+                {
+                  "id": "705434aa-fe95-4ca3-b947-686b6a2ab853",
+                  "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename?constraints=<string>&cursor=<integer>&limit=<integer>&sort_field=<string>&descending=<boolean>&additional_sort_fields=<string>&exclude_remaining=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "query": [
+                        {
+                          "description": "JSON-encoded array of search constraints. Each constraint is an object\nwith `key`, `constraint_type`, and `value`. Supported constraint types:\nequals, not equal, is_empty, is_not_empty, text contains,\nnot text contains, greater than, less than, in, not in, contains,\nnot contains, geographic_search.\n",
+                          "key": "constraints",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Zero-based start position for the page.",
+                          "key": "cursor",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum results per request (default and max 100 per page).",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field name to sort the results by.",
+                          "key": "sort_field",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction. `true` for descending, `false` for ascending.",
+                          "key": "descending",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "JSON-encoded array of additional sort fields and directions.",
+                          "key": "additional_sort_fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Skip total-record counting for performance.",
+                          "key": "exclude_remaining",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-705434aa-fe95-4ca3-b947-686b6a2ab853"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-15cb5820-fdf0-4f23-ba5f-16c29adc2c36"
+            },
+            {
+              "name": "Create Thing",
+              "id": "80158f60-4106-4ee0-8a2b-2b1c10e050fc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/obj/:typename",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "obj",
+                    ":typename"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3e5cb051-89d4-479a-8647-f0bf1aa076f3",
+                      "key": "typename",
+                      "value": "<string>",
+                      "description": "(Required) Data type name in lowercase with spaces removed."
+                    }
+                  ]
+                },
+                "description": "Create a single new record of the given data type."
+              },
+              "response": [
+                {
+                  "id": "4eebb10a-7e92-44e4-b3c9-6dffbdc3bd5b",
+                  "name": "Created. Returns the unique id assigned.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-4eebb10a-7e92-44e4-b3c9-6dffbdc3bd5b"
+                },
+                {
+                  "id": "4565f4b6-6f55-42da-aba2-c907a6b766d5",
+                  "name": "Invalid request payload, missing fields, or malformed constraints.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-4565f4b6-6f55-42da-aba2-c907a6b766d5"
+                },
+                {
+                  "id": "bb5c77f6-c21d-4c41-bfb9-35134f0b6c12",
+                  "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-bb5c77f6-c21d-4c41-bfb9-35134f0b6c12"
+                },
+                {
+                  "id": "652bd553-8a57-491d-8a48-ec34dd21d8dc",
+                  "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"officiac8d\": 21170972.550304994\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/obj/:typename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "obj",
+                        ":typename"
+                      ],
+                      "variable": [
+                        {
+                          "key": "typename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-652bd553-8a57-491d-8a48-ec34dd21d8dc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-80158f60-4106-4ee0-8a2b-2b1c10e050fc"
+            }
+          ],
+          "id": "57af4263-51da-4b18-acbc-724964eaf205",
+          "createdAt": "2026-06-05T15:00:34.000Z",
+          "updatedAt": "2026-06-05T15:00:34.000Z",
+          "uid": "35240-57af4263-51da-4b18-acbc-724964eaf205"
+        }
+      ],
+      "id": "f6e7230c-bdfa-4893-92f3-ebd399d73169",
+      "createdAt": "2026-06-05T15:00:34.000Z",
+      "updatedAt": "2026-06-05T15:00:34.000Z",
+      "uid": "35240-f6e7230c-bdfa-4893-92f3-ebd399d73169"
+    },
+    {
+      "name": "meta",
+      "item": [
+        {
+          "name": "Get Data Type Metadata",
+          "id": "1f01ca15-c7a3-4ca9-a03b-02b1f543233a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/meta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "meta"
+              ]
+            },
+            "description": "Returns the data types and their fields exposed via the Data API for the\ncurrent environment. Useful for client code generation and discovery.\n"
+          },
+          "response": [
+            {
+              "id": "23587226-7281-4d81-82f5-60ed1f37c298",
+              "name": "Metadata response listing exposed types and fields.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/meta",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "meta"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"aliqua_c4c\": \"occaecat officia deserunt laborum Duis\",\n  \"sed_a19\": true,\n  \"nulla_c\": 22761522,\n  \"ullamcoaf5\": -41178398\n}",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-23587226-7281-4d81-82f5-60ed1f37c298"
+            },
+            {
+              "id": "ce39b9bf-550c-4710-bddf-cd07361e674a",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/meta",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "meta"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-ce39b9bf-550c-4710-bddf-cd07361e674a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:34.000Z",
+          "updatedAt": "2026-06-05T15:00:34.000Z",
+          "uid": "35240-1f01ca15-c7a3-4ca9-a03b-02b1f543233a"
+        }
+      ],
+      "id": "2c64f5c1-412a-49a8-84dc-25178640cf44",
+      "createdAt": "2026-06-05T15:00:34.000Z",
+      "updatedAt": "2026-06-05T15:00:34.000Z",
+      "uid": "35240-2c64f5c1-412a-49a8-84dc-25178640cf44"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "appname",
+      "value": "myapp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1"
+    }
+  ]
+}

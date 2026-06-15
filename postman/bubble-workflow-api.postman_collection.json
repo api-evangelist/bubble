@@ -1,0 +1,868 @@
+{
+  "info": {
+    "_postman_id": "3f0855d5-de39-476a-94a6-56a8687270b4",
+    "name": "Bubble Workflow API",
+    "description": "The Bubble Workflow API lets external systems trigger backend workflows\ndefined in a Bubble app. Each workflow is exposed at a path of the form\n`/api/1.1/wf/{workflow_name}` and may be invoked via POST or GET. Authentication\nrequirements are configurable per workflow (none, user/admin, or admin only).\nWorkflows can return structured JSON, plain text, custom content, or HTTP\nredirects on success/error.\n\n\nContact Support:\n Name: Bubble Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:38.000Z",
+    "updatedAt": "2026-06-05T15:00:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3f0855d5-de39-476a-94a6-56a8687270b4"
+  },
+  "item": [
+    {
+      "name": "wf",
+      "item": [
+        {
+          "name": "{workflow_name}",
+          "item": [
+            {
+              "name": "initialize",
+              "item": [
+                {
+                  "name": "Initialize Workflow",
+                  "id": "6acd4d53-084a-423e-9be1-6c555ff21c39",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name/initialize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name",
+                        "initialize"
+                      ],
+                      "variable": [
+                        {
+                          "id": "85ff8127-b86a-471c-a309-48f1534152fe",
+                          "key": "workflow_name",
+                          "value": "<string>",
+                          "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                        }
+                      ]
+                    },
+                    "description": "One-time call used while building a workflow. Bubble inspects the\nrequest body and headers and uses them to detect the parameter\ncontract for subsequent calls. Disable detection before going live.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "36f3db5d-ae7b-47b5-8d5e-0ce54e2aabc2",
+                      "name": "Detection succeeded; the workflow's parameter contract is now defined.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/wf/:workflow_name/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "wf",
+                            ":workflow_name",
+                            "initialize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workflow_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-36f3db5d-ae7b-47b5-8d5e-0ce54e2aabc2"
+                    },
+                    {
+                      "id": "c31445b4-8279-43ce-b642-5919dc808997",
+                      "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/wf/:workflow_name/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "wf",
+                            ":workflow_name",
+                            "initialize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workflow_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-c31445b4-8279-43ce-b642-5919dc808997"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-6acd4d53-084a-423e-9be1-6c555ff21c39"
+                }
+              ],
+              "id": "c04cf6a5-b039-446f-b5d5-7fda8952aeb2",
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-c04cf6a5-b039-446f-b5d5-7fda8952aeb2"
+            },
+            {
+              "name": "Trigger Workflow",
+              "id": "08946a03-a08b-4e6e-821e-12794e7d63f4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wf/:workflow_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "301187ee-c5a1-4a31-98e7-1bc0473c841d",
+                      "key": "workflow_name",
+                      "value": "<string>",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    }
+                  ]
+                },
+                "description": "Invoke the workflow with the parameters defined in the editor. Body\nparameters are sent as JSON unless the workflow is configured to\naccept query-string parameters.\n"
+              },
+              "response": [
+                {
+                  "id": "23c83ece-7a85-4f46-b31d-c75d16665015",
+                  "name": "Workflow executed successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"response\": {\n    \"estd7\": 72893809.92452502,\n    \"consequat9b\": 71872888\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-23c83ece-7a85-4f46-b31d-c75d16665015"
+                },
+                {
+                  "id": "7128e645-d449-4095-a85c-6b39fe0729a3",
+                  "name": "Redirect to a configured success or error URL. The query string\nincludes the response payload or `statusCode`/`message` on error.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Moved Permanently",
+                  "code": 301,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-7128e645-d449-4095-a85c-6b39fe0729a3"
+                },
+                {
+                  "id": "5f18853d-82b5-4003-a470-c9ed24e72f48",
+                  "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-5f18853d-82b5-4003-a470-c9ed24e72f48"
+                },
+                {
+                  "id": "690f5b93-ccd5-4918-bd6f-647a5be41883",
+                  "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-690f5b93-ccd5-4918-bd6f-647a5be41883"
+                },
+                {
+                  "id": "c5d9026c-e843-4144-91bf-403f5e007e57",
+                  "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis7f\": false,\n  \"irurec9\": false,\n  \"dolor_9\": -96362125\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-c5d9026c-e843-4144-91bf-403f5e007e57"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-08946a03-a08b-4e6e-821e-12794e7d63f4"
+            },
+            {
+              "name": "Trigger Workflow Via GET",
+              "id": "c29f521b-274d-431c-abdf-ec992a3885c8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/wf/:workflow_name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e2747a5e-d741-466b-bcbb-ac7894886ea2",
+                      "key": "workflow_name",
+                      "value": "<string>",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    }
+                  ]
+                },
+                "description": "Invoke the workflow with parameters supplied via the query string.\nGET-mode workflows must be explicitly enabled in the Bubble editor.\n"
+              },
+              "response": [
+                {
+                  "id": "f4f259b9-f240-4247-af45-67023de3c859",
+                  "name": "Workflow executed successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"response\": {\n    \"estd7\": 72893809.92452502,\n    \"consequat9b\": 71872888\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-f4f259b9-f240-4247-af45-67023de3c859"
+                },
+                {
+                  "id": "d330a2ea-0eda-4f45-a86c-41a7b9a71bfb",
+                  "name": "Redirect to configured success/error URL.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Moved Permanently",
+                  "code": 301,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-d330a2ea-0eda-4f45-a86c-41a7b9a71bfb"
+                },
+                {
+                  "id": "1bc597fa-ebf5-4409-ad98-fbe5ba5c3ca3",
+                  "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-1bc597fa-ebf5-4409-ad98-fbe5ba5c3ca3"
+                },
+                {
+                  "id": "461bb2d6-0aa6-4281-8815-81f12f96a6bf",
+                  "name": "Missing or invalid bearer token, or token lacks required privileges.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-461bb2d6-0aa6-4281-8815-81f12f96a6bf"
+                },
+                {
+                  "id": "395a8a2b-b3c2-4c6f-b306-0188e2da63d4",
+                  "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/wf/:workflow_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "wf",
+                        ":workflow_name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workflow_name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"body\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-395a8a2b-b3c2-4c6f-b306-0188e2da63d4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-c29f521b-274d-431c-abdf-ec992a3885c8"
+            }
+          ],
+          "id": "75ad9e06-ff3e-403e-85ff-552dc9d2376b",
+          "createdAt": "2026-06-05T15:00:38.000Z",
+          "updatedAt": "2026-06-05T15:00:38.000Z",
+          "uid": "35240-75ad9e06-ff3e-403e-85ff-552dc9d2376b"
+        }
+      ],
+      "id": "ab88f133-fb5a-43ce-95b9-9d0e5d60ba06",
+      "createdAt": "2026-06-05T15:00:38.000Z",
+      "updatedAt": "2026-06-05T15:00:38.000Z",
+      "uid": "35240-ab88f133-fb5a-43ce-95b9-9d0e5d60ba06"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "appname",
+      "value": "myapp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1"
+    }
+  ]
+}

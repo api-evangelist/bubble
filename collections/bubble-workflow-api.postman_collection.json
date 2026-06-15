@@ -1,0 +1,973 @@
+{
+  "item": [
+    {
+      "id": "7e87f91c-81d4-4475-9d3c-acb55a0d6501",
+      "name": "Workflow",
+      "description": {
+        "content": "Trigger backend (server-side) workflows defined in the Bubble app.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8aa7ef62-6720-4f55-a137-3e5f874fb725",
+          "name": "Initialize Workflow",
+          "request": {
+            "name": "Initialize Workflow",
+            "description": {
+              "content": "One-time call used while building a workflow. Bubble inspects the\nrequest body and headers and uses them to detect the parameter\ncontract for subsequent calls. Disable detection before going live.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wf",
+                ":workflow_name",
+                "initialize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_name",
+                  "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 3434,\n  \"key_1\": 2473,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5c1f79f-0a86-4e9c-9831-625d11925784",
+              "name": "Detection succeeded; the workflow's parameter contract is now defined.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7aecb73-76e0-4df4-9c9b-b3cb7287c9aa",
+              "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f607865c-a8ae-4c6d-b4f1-88da9848fd92",
+          "name": "Trigger Workflow",
+          "request": {
+            "name": "Trigger Workflow",
+            "description": {
+              "content": "Invoke the workflow with the parameters defined in the editor. Body\nparameters are sent as JSON unless the workflow is configured to\naccept query-string parameters.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wf",
+                ":workflow_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_name",
+                  "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 3434,\n  \"key_1\": 2473,\n  \"key_2\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f151300b-c817-47fb-9b05-3f60bfd2ad33",
+              "name": "Workflow executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"response\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94459507-008e-46b2-bd83-eb68485ad022",
+              "name": "Redirect to a configured success or error URL. The query string\nincludes the response payload or `statusCode`/`message` on error.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dadc5955-0cfc-4c6e-9519-bde6962e3f6d",
+              "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "656f56fa-1db9-4166-afea-b3bbcbe50ff4",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aad0f30-8a32-4f26-bb8d-a8fce46aeb1c",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7198db63-6fc0-4e99-b6d8-6bf5a42dc070",
+          "name": "Trigger Workflow Via GET",
+          "request": {
+            "name": "Trigger Workflow Via GET",
+            "description": {
+              "content": "Invoke the workflow with parameters supplied via the query string.\nGET-mode workflows must be explicitly enabled in the Bubble editor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wf",
+                ":workflow_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_name",
+                  "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5382832-dfda-477a-9d04-8387622f5892",
+              "name": "Workflow executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"response\": {\n    \"key_0\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad0d0177-6ce3-4592-8d90-36e2d13eecce",
+              "name": "Redirect to configured success/error URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7685d8a-c8b9-4c46-b9be-ce6689c25138",
+              "name": "Invalid parameters, validation failure, or unmet conditions. Workflows\nconfigured for webhook compatibility may return 200 instead of 400.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27fca870-ded4-4e90-abf7-8cd4440ef23c",
+              "name": "Missing or invalid bearer token, or token lacks required privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e360fe31-44aa-495a-a10b-afcfd9d24a97",
+              "name": "Too many requests. The plan-level requests-per-minute limit has been exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wf",
+                    ":workflow_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_name",
+                      "description": "(Required) Name of the API workflow as defined in the Bubble editor. Slugs are\ncase-sensitive and must match the workflow exactly.\n"
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6408,\n  \"body\": {\n    \"status\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bubble app name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myapp",
+      "key": "appname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5881e9c-6888-4a99-8f3a-f518ea21e10b",
+    "name": "Bubble Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bubble Workflow API lets external systems trigger backend workflows\ndefined in a Bubble app. Each workflow is exposed at a path of the form\n`/api/1.1/wf/{workflow_name}` and may be invoked via POST or GET. Authentication\nrequirements are configurable per workflow (none, user/admin, or admin only).\nWorkflows can return structured JSON, plain text, custom content, or HTTP\nredirects on success/error.\n\n\nContact Support:\n Name: Bubble Support",
+      "type": "text/plain"
+    }
+  }
+}

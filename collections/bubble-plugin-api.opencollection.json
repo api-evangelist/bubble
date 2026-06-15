@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Plugin API",
+    "version": "4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Action",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke Server-Side Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/actions/serverSide/:actionName",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the action as defined in the plugin editor."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Server-side actions are written as `function(properties, context)`.\nThey run in a Node.js sandbox, may `require` configured npm\ndependencies, and may return data consumed by subsequent workflow\nsteps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).\n"
+        },
+        {
+          "info": {
+            "name": "Invoke Client-Side Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/actions/clientSide/:actionName",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the action as defined in the plugin editor."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Client-side actions are written as `function(properties, context)` and\nrun in the browser. Useful for DOM manipulation, calling browser\nAPIs, or working with already-loaded data. No workload is incurred\nbecause no server roundtrip occurs.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Element",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/elements/:elementName/initialize",
+            "params": [
+              {
+                "name": "elementName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Element initialize hook. Receives `(instance, context)`. Use to set up\nDOM state, allocate resources, and register state.\n"
+        },
+        {
+          "info": {
+            "name": "Update Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/elements/:elementName/update",
+            "params": [
+              {
+                "name": "elementName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Element update hook. Receives `(instance, properties, context)`.\nTriggered when any of the element's bound properties change.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Thing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Thing By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "virtual://plugin-runtime/thing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Look up a single database object by id. Maps to\n`context.getThingById(id)` on the server context. Returns a\n`BubbleThing` whose `get(field)` returns a Promise.\n"
+        },
+        {
+          "info": {
+            "name": "Get Things By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "virtual://plugin-runtime/things",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a\n`BubbleList`.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Context",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run Async Block",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/context/async"
+          },
+          "docs": "Wrap an asynchronous operation. In v4 this is `context.v3.async()`\nand is deprecated in favor of native `async/await`.\n"
+        },
+        {
+          "info": {
+            "name": "Make HTTP Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "virtual://plugin-runtime/context/request"
+          },
+          "docs": "Issue an outbound HTTP request from a server-side action. In v4\nthis is `context.v3.request()` and is deprecated in favor of any\nnpm-installed HTTP client.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
