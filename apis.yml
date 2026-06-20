@@ -2,7 +2,7 @@ aid: bubble
 url: https://raw.githubusercontent.com/api-evangelist/bubble/refs/heads/main/apis.yml
 name: Bubble
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 description: |
   Bubble is a no-code application development platform that lets builders ship
   full-stack web and mobile apps without writing code. Bubble exposes three
