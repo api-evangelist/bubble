@@ -5,7 +5,7 @@
       "source": "https://bubble.io/blog/feed/",
       "feed_url": "https://bubble.io/blog/feed/",
       "title": "",
-      "saved": 9,
+      "saved": 10,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 43
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 53
 }
