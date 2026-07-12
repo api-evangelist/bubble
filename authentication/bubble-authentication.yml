@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bubble-data-api-openapi.yml, openapi/bubble-workflow-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Token
+  description: |-
+    Send the API token in the `Authorization` header as `Bearer <token>`.
+    Admin tokens bypass privacy rules; user tokens (returned by the
+    `Log the User in` workflow action) enforce privacy rules per user.
+  sources:
+  - openapi/bubble-data-api-openapi.yml
+  - openapi/bubble-workflow-api-openapi.yml
