@@ -106,6 +106,8 @@ apis:
       - type: OpenAPI
         url: openapi/bubble-plugin-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/bubble-agentic-access.yml
   - type: TrustCenter
     url: security/bubble-trust-center.yml
   - type: DomainSecurity
