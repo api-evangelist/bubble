@@ -1,13 +1,19 @@
 openapi: 3.0.3
 info:
-  title: Bubble Data API
-  description: |
-    The Bubble Data API exposes the database of a Bubble app as a REST interface.
+  title: Bubble Action Data API
+  description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
+
     External systems can read, search, create, modify, replace, and delete records
+
     of any data type defined in a Bubble app, with optional pagination, sorting,
+
     and search constraints. Authentication uses bearer tokens (admin API tokens
+
     bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+
     development (`version-test`) environments.
+
+    '
   version: '1.1'
   contact:
     name: Bubble Support
@@ -16,86 +22,93 @@ info:
     name: Bubble Terms of Service
     url: https://bubble.io/legal/terms-of-service
 servers:
-  - url: https://{appname}.bubbleapps.io/api/1.1
-    description: Live App on Bubble subdomain
-    variables:
-      appname:
-        default: myapp
-        description: Bubble app name
-  - url: https://{appname}.bubbleapps.io/version-test/api/1.1
-    description: Development (version-test) on Bubble subdomain
-    variables:
-      appname:
-        default: myapp
-        description: Bubble app name
-  - url: https://{customDomain}/api/1.1
-    description: Live App on a custom domain
-    variables:
-      customDomain:
-        default: example.com
-        description: Custom domain pointing to the Bubble app
+- url: https://{appname}.bubbleapps.io/api/1.1
+  description: Live App on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{appname}.bubbleapps.io/version-test/api/1.1
+  description: Development (version-test) on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{customDomain}/api/1.1
+  description: Live App on a custom domain
+  variables:
+    customDomain:
+      default: example.com
+      description: Custom domain pointing to the Bubble app
 security:
-  - BearerAuth: []
+- BearerAuth: []
 tags:
-  - name: Data
-    description: Read, search, create, modify, replace, and delete data things.
+- name: Data
+  description: Read, search, create, modify, replace, and delete data things.
 paths:
   /obj/{typename}:
     parameters:
-      - $ref: '#/components/parameters/Typename'
+    - $ref: '#/components/parameters/Typename'
     get:
       tags:
-        - Data
+      - Data
       summary: Search Things
-      description: |
-        Returns a list of records of the given data type. Supports search constraints,
+      description: 'Returns a list of records of the given data type. Supports search constraints,
+
         cursor-based pagination, sorting, and field projection.
+
+        '
       operationId: searchThings
       parameters:
-        - name: constraints
-          in: query
-          description: |
-            JSON-encoded array of search constraints. Each constraint is an object
-            with `key`, `constraint_type`, and `value`. Supported constraint types:
-            equals, not equal, is_empty, is_not_empty, text contains,
-            not text contains, greater than, less than, in, not in, contains,
-            not contains, geographic_search.
-          schema:
-            type: string
-          example: '[{"key":"unitname","constraint_type":"equals","value":"Studio 5"}]'
-        - name: cursor
-          in: query
-          description: Zero-based start position for the page.
-          schema:
-            type: integer
-            minimum: 0
-        - name: limit
-          in: query
-          description: Maximum results per request (default and max 100 per page).
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-        - name: sort_field
-          in: query
-          description: Field name to sort the results by.
-          schema:
-            type: string
-        - name: descending
-          in: query
-          description: Sort direction. `true` for descending, `false` for ascending.
-          schema:
-            type: boolean
-        - name: additional_sort_fields
-          in: query
-          description: JSON-encoded array of additional sort fields and directions.
-          schema:
-            type: string
-        - name: exclude_remaining
-          in: query
-          description: Skip total-record counting for performance.
-          schema:
-            type: boolean
+      - name: constraints
+        in: query
+        description: 'JSON-encoded array of search constraints. Each constraint is an object
+
+          with `key`, `constraint_type`, and `value`. Supported constraint types:
+
+          equals, not equal, is_empty, is_not_empty, text contains,
+
+          not text contains, greater than, less than, in, not in, contains,
+
+          not contains, geographic_search.
+
+          '
+        schema:
+          type: string
+        example: '[{"key":"unitname","constraint_type":"equals","value":"Studio 5"}]'
+      - name: cursor
+        in: query
+        description: Zero-based start position for the page.
+        schema:
+          type: integer
+          minimum: 0
+      - name: limit
+        in: query
+        description: Maximum results per request (default and max 100 per page).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: sort_field
+        in: query
+        description: Field name to sort the results by.
+        schema:
+          type: string
+      - name: descending
+        in: query
+        description: Sort direction. `true` for descending, `false` for ascending.
+        schema:
+          type: boolean
+      - name: additional_sort_fields
+        in: query
+        description: JSON-encoded array of additional sort fields and directions.
+        schema:
+          type: string
+      - name: exclude_remaining
+        in: query
+        description: Skip total-record counting for performance.
+        schema:
+          type: boolean
       responses:
         '200':
           description: Search response with paginated results.
@@ -111,7 +124,7 @@ paths:
           $ref: '#/components/responses/RateLimited'
     post:
       tags:
-        - Data
+      - Data
       summary: Create Thing
       description: Create a single new record of the given data type.
       operationId: createThing
@@ -136,14 +149,16 @@ paths:
           $ref: '#/components/responses/RateLimited'
   /obj/{typename}/bulk:
     parameters:
-      - $ref: '#/components/parameters/Typename'
+    - $ref: '#/components/parameters/Typename'
     post:
       tags:
-        - Data
+      - Data
       summary: Bulk Create Things
-      description: |
-        Create up to 1,000 new records in a single request. The request body
+      description: 'Create up to 1,000 new records in a single request. The request body
+
         is one JSON object per line (newline-delimited JSON).
+
+        '
       operationId: bulkCreateThings
       requestBody:
         required: true
@@ -167,11 +182,11 @@ paths:
           $ref: '#/components/responses/RateLimited'
   /obj/{typename}/{uid}:
     parameters:
-      - $ref: '#/components/parameters/Typename'
-      - $ref: '#/components/parameters/Uid'
+    - $ref: '#/components/parameters/Typename'
+    - $ref: '#/components/parameters/Uid'
     get:
       tags:
-        - Data
+      - Data
       summary: Get Thing
       description: Retrieve a single record by its unique id.
       operationId: getThing
@@ -190,7 +205,7 @@ paths:
           $ref: '#/components/responses/RateLimited'
     patch:
       tags:
-        - Data
+      - Data
       summary: Modify Thing
       description: Partially update a record. Only the provided fields are changed.
       operationId: modifyThing
@@ -213,7 +228,7 @@ paths:
           $ref: '#/components/responses/RateLimited'
     put:
       tags:
-        - Data
+      - Data
       summary: Replace Thing
       description: Fully replace the record with the supplied object.
       operationId: replaceThing
@@ -236,7 +251,7 @@ paths:
           $ref: '#/components/responses/RateLimited'
     delete:
       tags:
-        - Data
+      - Data
       summary: Delete Thing
       description: Permanently delete a record.
       operationId: deleteThing
@@ -252,11 +267,13 @@ paths:
   /meta:
     get:
       tags:
-        - Data
+      - Data
       summary: Get Data Type Metadata
-      description: |
-        Returns the data types and their fields exposed via the Data API for the
+      description: 'Returns the data types and their fields exposed via the Data API for the
+
         current environment. Useful for client code generation and discovery.
+
+        '
       operationId: getMetadata
       responses:
         '200':
@@ -269,15 +286,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: API Token
-      description: |
-        Send the API token in the `Authorization` header as `Bearer <token>`.
-        Admin tokens bypass privacy rules; user tokens (returned by the
-        `Log the User in` workflow action) enforce privacy rules per user.
   parameters:
     Typename:
       name: typename
@@ -295,16 +303,32 @@ components:
       schema:
         type: string
       example: 1503408875694x944431186090727200
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token, or token lacks required privileges.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested record does not exist or the type is not exposed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request payload, missing fields, or malformed constraints.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Too many requests. The plan-level requests-per-minute limit has been exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Thing:
-      type: object
-      description: A single record. Field names match the data type's fields in the Bubble app.
-      additionalProperties: true
-    ThingResponse:
-      type: object
-      properties:
-        response:
-          $ref: '#/components/schemas/Thing'
     SearchResponse:
       type: object
       properties:
@@ -324,15 +348,6 @@ components:
             count:
               type: integer
               description: Number of records on this page.
-    CreateResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: success
-        id:
-          type: string
-          description: Unique id assigned to the new record.
     Error:
       type: object
       properties:
@@ -345,28 +360,33 @@ components:
               type: string
             message:
               type: string
-  responses:
-    BadRequest:
-      description: Invalid request payload, missing fields, or malformed constraints.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid bearer token, or token lacks required privileges.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested record does not exist or the type is not exposed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Too many requests. The plan-level requests-per-minute limit has been exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Thing:
+      type: object
+      description: A single record. Field names match the data type's fields in the Bubble app.
+      additionalProperties: true
+    ThingResponse:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/Thing'
+    CreateResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        id:
+          type: string
+          description: Unique id assigned to the new record.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+      description: 'Send the API token in the `Authorization` header as `Bearer <token>`.
+
+        Admin tokens bypass privacy rules; user tokens (returned by the
+
+        `Log the User in` workflow action) enforce privacy rules per user.
+
+        '

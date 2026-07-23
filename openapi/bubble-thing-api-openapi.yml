@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Bubble Data Action Thing API
+  description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
+
+    External systems can read, search, create, modify, replace, and delete records
+
+    of any data type defined in a Bubble app, with optional pagination, sorting,
+
+    and search constraints. Authentication uses bearer tokens (admin API tokens
+
+    bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+
+    development (`version-test`) environments.
+
+    '
+  version: '1.1'
+  contact:
+    name: Bubble Support
+    url: https://bubble.io/contact
+  license:
+    name: Bubble Terms of Service
+    url: https://bubble.io/legal/terms-of-service
+servers:
+- url: https://{appname}.bubbleapps.io/api/1.1
+  description: Live App on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{appname}.bubbleapps.io/version-test/api/1.1
+  description: Development (version-test) on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{customDomain}/api/1.1
+  description: Live App on a custom domain
+  variables:
+    customDomain:
+      default: example.com
+      description: Custom domain pointing to the Bubble app
+security:
+- BearerAuth: []
+tags:
+- name: Thing
+  description: Database object accessors exposed to plugin code.
+paths:
+  /thing/{id}:
+    get:
+      tags:
+      - Thing
+      summary: Get Thing By Id
+      description: 'Look up a single database object by id. Maps to
+
+        `context.getThingById(id)` on the server context. Returns a
+
+        `BubbleThing` whose `get(field)` returns a Promise.
+
+        '
+      operationId: getThingById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A BubbleThing wrapper.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleThing'
+  /things:
+    get:
+      tags:
+      - Thing
+      summary: Get Things By Id
+      description: 'Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a
+
+        `BubbleList`.
+
+        '
+      operationId: getThingsById
+      parameters:
+      - name: ids
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: A BubbleList wrapper.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleList'
+components:
+  schemas:
+    BubbleThing:
+      type: object
+      description: Wrapper around a single database record.
+      properties:
+        id:
+          type: string
+          description: Read-only unique id (added in v4).
+        listProperties:
+          type: string
+          description: Returns an array of field names defined on the record.
+        get:
+          type: string
+          description: '`(propertyName) => Promise<any>` — returns a Promise resolving to the field value.'
+        getAll:
+          type: string
+          description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+    BubbleList:
+      type: object
+      description: Wrapper around a database query result.
+      properties:
+        length:
+          type: string
+          description: '`() => Promise<number>` — number of items in the list.'
+        get:
+          type: string
+          description: '`(start, length) => Promise<Array>` — fetch a slice of the list.'
+        '[Symbol.asyncIterator]':
+          type: string
+          description: Async iteration support (added in v4) for `for await...of`.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+      description: 'Send the API token in the `Authorization` header as `Bearer <token>`.
+
+        Admin tokens bypass privacy rules; user tokens (returned by the
+
+        `Log the User in` workflow action) enforce privacy rules per user.
+
+        '

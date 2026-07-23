@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Bubble Data Action Context API
+  description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
+
+    External systems can read, search, create, modify, replace, and delete records
+
+    of any data type defined in a Bubble app, with optional pagination, sorting,
+
+    and search constraints. Authentication uses bearer tokens (admin API tokens
+
+    bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+
+    development (`version-test`) environments.
+
+    '
+  version: '1.1'
+  contact:
+    name: Bubble Support
+    url: https://bubble.io/contact
+  license:
+    name: Bubble Terms of Service
+    url: https://bubble.io/legal/terms-of-service
+servers:
+- url: https://{appname}.bubbleapps.io/api/1.1
+  description: Live App on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{appname}.bubbleapps.io/version-test/api/1.1
+  description: Development (version-test) on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{customDomain}/api/1.1
+  description: Live App on a custom domain
+  variables:
+    customDomain:
+      default: example.com
+      description: Custom domain pointing to the Bubble app
+security:
+- BearerAuth: []
+tags:
+- name: Context
+  description: Helpers exposed on the runtime context object.
+paths:
+  /context/async:
+    post:
+      tags:
+      - Context
+      summary: Run Async Block
+      description: 'Wrap an asynchronous operation. In v4 this is `context.v3.async()`
+
+        and is deprecated in favor of native `async/await`.
+
+        '
+      operationId: contextAsync
+      responses:
+        '200':
+          description: Async block completed.
+  /context/request:
+    post:
+      tags:
+      - Context
+      summary: Make HTTP Request
+      description: 'Issue an outbound HTTP request from a server-side action. In v4
+
+        this is `context.v3.request()` and is deprecated in favor of any
+
+        npm-installed HTTP client.
+
+        '
+      operationId: contextRequest
+      responses:
+        '200':
+          description: HTTP response.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+      description: 'Send the API token in the `Authorization` header as `Bearer <token>`.
+
+        Admin tokens bypass privacy rules; user tokens (returned by the
+
+        `Log the User in` workflow action) enforce privacy rules per user.
+
+        '

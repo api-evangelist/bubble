@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Bubble Data Action Element API
+  description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
+
+    External systems can read, search, create, modify, replace, and delete records
+
+    of any data type defined in a Bubble app, with optional pagination, sorting,
+
+    and search constraints. Authentication uses bearer tokens (admin API tokens
+
+    bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+
+    development (`version-test`) environments.
+
+    '
+  version: '1.1'
+  contact:
+    name: Bubble Support
+    url: https://bubble.io/contact
+  license:
+    name: Bubble Terms of Service
+    url: https://bubble.io/legal/terms-of-service
+servers:
+- url: https://{appname}.bubbleapps.io/api/1.1
+  description: Live App on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{appname}.bubbleapps.io/version-test/api/1.1
+  description: Development (version-test) on Bubble subdomain
+  variables:
+    appname:
+      default: myapp
+      description: Bubble app name
+- url: https://{customDomain}/api/1.1
+  description: Live App on a custom domain
+  variables:
+    customDomain:
+      default: example.com
+      description: Custom domain pointing to the Bubble app
+security:
+- BearerAuth: []
+tags:
+- name: Element
+  description: Visual element lifecycle hooks invoked by the Bubble page renderer.
+paths:
+  /elements/{elementName}/initialize:
+    post:
+      tags:
+      - Element
+      summary: Initialize Element
+      description: 'Element initialize hook. Receives `(instance, context)`. Use to set up
+
+        DOM state, allocate resources, and register state.
+
+        '
+      operationId: initializeElement
+      parameters:
+      - name: elementName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instance:
+                  $ref: '#/components/schemas/ElementInstance'
+                context:
+                  $ref: '#/components/schemas/ClientContext'
+      responses:
+        '200':
+          description: Initialization complete.
+  /elements/{elementName}/update:
+    post:
+      tags:
+      - Element
+      summary: Update Element
+      description: 'Element update hook. Receives `(instance, properties, context)`.
+
+        Triggered when any of the element''s bound properties change.
+
+        '
+      operationId: updateElement
+      parameters:
+      - name: elementName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instance:
+                  $ref: '#/components/schemas/ElementInstance'
+                properties:
+                  $ref: '#/components/schemas/ActionProperties'
+                context:
+                  $ref: '#/components/schemas/ClientContext'
+      responses:
+        '200':
+          description: Update applied.
+components:
+  schemas:
+    ActionProperties:
+      type: object
+      description: Map of property names to values, defined by the plugin author in the editor.
+      additionalProperties: true
+    ElementInstance:
+      type: object
+      description: Element instance handle for setting state, publishing values, and triggering events.
+      additionalProperties: true
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
+      additionalProperties: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token
+      description: 'Send the API token in the `Authorization` header as `Bearer <token>`.
+
+        Admin tokens bypass privacy rules; user tokens (returned by the
+
+        `Log the User in` workflow action) enforce privacy rules per user.
+
+        '
