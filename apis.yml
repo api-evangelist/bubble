@@ -2,7 +2,20 @@ aid: bubble
 url: https://raw.githubusercontent.com/api-evangelist/bubble/refs/heads/main/apis.yml
 name: Bubble
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bubble.png
 description: |
   Bubble is a no-code application development platform that lets builders ship
   full-stack web and mobile apps without writing code. Bubble exposes three
@@ -23,88 +36,149 @@ tags:
   - Plugins
 url-source: https://bubble.io/
 apis:
-  - name: Bubble Data API
-    description: |
-      REST API exposing the Bubble app database. Supports search with
-      constraints, cursor-based pagination, single-record CRUD, bulk create
-      (up to 1,000 records), and metadata discovery. Authentication uses
-      bearer tokens (admin tokens bypass privacy rules; user tokens enforce
-      them). Endpoints are available on both live and `version-test`
-      (development) environments.
-    humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
-    baseURL: https://{appname}.bubbleapps.io/api/1.1
-    tags:
-      - Data API
-      - REST
-      - CRUD
-      - Database
-    properties:
-      - type: Documentation
-        url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
-      - type: APIReference
-        url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/data-api-endpoints.md
-      - type: Authentication
-        url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/authentication.md
-      - type: GettingStarted
-        url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/data-api-requests.md
-      - type: OpenAPI
-        url: openapi/bubble-data-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/bubble-data-thing-schema.json
-      - type: JSONSchema
-        url: json-schema/bubble-data-search-response-schema.json
-      - type: JSONSchema
-        url: json-schema/bubble-error-schema.json
-  - name: Bubble Workflow API
-    description: |
-      REST API for triggering backend workflows defined in the Bubble editor.
-      Each workflow is exposed at `/api/1.1/wf/{workflow_name}` and can be
-      configured for POST or GET, with authentication settings ranging from
-      public to user/admin to admin-only. Workflows can return JSON, plain
-      text, or a configurable redirect on success/error.
-    humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-workflow-api.md
-    baseURL: https://{appname}.bubbleapps.io/api/1.1
-    tags:
-      - Workflow API
-      - REST
-      - Automation
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-workflow-api.md
-      - type: Security
-        url: https://manual.bubble.io/help-guides/security/api-security/workflow-api-security.md
-      - type: OpenAPI
-        url: openapi/bubble-workflow-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/bubble-workflow-response-schema.json
-  - name: Bubble Plugin API
-    description: |
-      JavaScript SDK surface for building Bubble plugins. Plugin authors write
-      server-side actions, client-side actions, and visual elements that
-      receive `(properties, context)` and read/write data through `BubbleThing`
-      and `BubbleList` wrappers. Plugin API v4 replaces Fibers with native
-      Promises and adds first-class type checks (`isBubbleThing`,
-      `isBubbleList`), id-based lookups (`getThingById`, `getThingsById`), and
-      async iteration on `BubbleList`.
-    humanURL: https://manual.bubble.io/account-and-marketplace/building-plugins.md
-    baseURL: virtual://plugin-runtime
-    tags:
-      - Plugin API
-      - JavaScript SDK
-      - Extension
-      - Marketplace
-    properties:
-      - type: Documentation
-        url: https://manual.bubble.io/account-and-marketplace/building-plugins.md
-      - type: APIReference
-        url: https://manual.bubble.io/account-and-marketplace/building-plugins/updating-to-plugin-api-v4.md
-      - type: Tutorials
-        url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-actions.md
-      - type: Tutorials
-        url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
-      - type: OpenAPI
-        url: openapi/bubble-plugin-api-openapi.yml
+- name: Bubble Data API
+  description: >
+    REST API exposing the Bubble app database. Supports search with
+
+    constraints, cursor-based pagination, single-record CRUD, bulk create
+
+    (up to 1,000 records), and metadata discovery. Authentication uses
+
+    bearer tokens (admin tokens bypass privacy rules; user tokens enforce
+
+    them). Endpoints are available on both live and `version-test`
+
+    (development) environments.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Data API
+  - REST
+  - CRUD
+  - Database
+  properties:
+  - type: Documentation
+    url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  - type: APIReference
+    url: >-
+      https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/data-api-endpoints.md
+  - type: Authentication
+    url: >-
+      https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/authentication.md
+  - type: GettingStarted
+    url: >-
+      https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api/data-api-requests.md
+  - type: OpenAPI
+    url: openapi/bubble-data-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bubble-data-thing-schema.json
+  - type: JSONSchema
+    url: json-schema/bubble-data-search-response-schema.json
+  - type: JSONSchema
+    url: json-schema/bubble-error-schema.json
+- name: Bubble Workflow API
+  description: >
+    REST API for triggering backend workflows defined in the Bubble editor.
+
+    Each workflow is exposed at `/api/1.1/wf/{workflow_name}` and can be
+
+    configured for POST or GET, with authentication settings ranging from
+
+    public to user/admin to admin-only. Workflows can return JSON, plain
+
+    text, or a configurable redirect on success/error.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-workflow-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Workflow API
+  - REST
+  - Automation
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://manual.bubble.io/core-resources/api/the-bubble-api/the-workflow-api.md
+  - type: Security
+    url: https://manual.bubble.io/help-guides/security/api-security/workflow-api-security.md
+  - type: OpenAPI
+    url: openapi/bubble-workflow-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bubble-workflow-response-schema.json
+- aid: bubble:bubble-action-api
+  name: Bubble Action API
+  description: Server-side and client-side action functions invoked by Bubble workflows.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Action
+  properties:
+  - type: OpenAPI
+    url: openapi/bubble-action-api-openapi.yml
+  - type: Documentation
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins.md
+  - type: APIReference
+    url: >-
+      https://manual.bubble.io/account-and-marketplace/building-plugins/updating-to-plugin-api-v4.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-actions.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
+- aid: bubble:bubble-context-api
+  name: Bubble Context API
+  description: Helpers exposed on the runtime context object.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Context
+  properties:
+  - type: OpenAPI
+    url: openapi/bubble-context-api-openapi.yml
+  - type: Documentation
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins.md
+  - type: APIReference
+    url: >-
+      https://manual.bubble.io/account-and-marketplace/building-plugins/updating-to-plugin-api-v4.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-actions.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
+- aid: bubble:bubble-element-api
+  name: Bubble Element API
+  description: Visual element lifecycle hooks invoked by the Bubble page renderer.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Element
+  properties:
+  - type: OpenAPI
+    url: openapi/bubble-element-api-openapi.yml
+  - type: Documentation
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins.md
+  - type: APIReference
+    url: >-
+      https://manual.bubble.io/account-and-marketplace/building-plugins/updating-to-plugin-api-v4.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-actions.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
+- aid: bubble:bubble-thing-api
+  name: Bubble Thing API
+  description: Database object accessors exposed to plugin code.
+  humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-data-api.md
+  baseURL: https://{appname}.bubbleapps.io/api/1.1
+  tags:
+  - Thing
+  properties:
+  - type: OpenAPI
+    url: openapi/bubble-thing-api-openapi.yml
+  - type: Documentation
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins.md
+  - type: APIReference
+    url: >-
+      https://manual.bubble.io/account-and-marketplace/building-plugins/updating-to-plugin-api-v4.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-actions.md
+  - type: Tutorials
+    url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
 common:
   - type: AgenticAccess
     url: agentic-access/bubble-agentic-access.yml
