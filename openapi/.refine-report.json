@@ -1,0 +1,24 @@
+{
+  "provider": "bubble",
+  "sources": [
+    "bubble-action-api-openapi.yml",
+    "bubble-context-api-openapi.yml",
+    "bubble-data-api-openapi.yml",
+    "bubble-element-api-openapi.yml",
+    "bubble-thing-api-openapi.yml",
+    "bubble-workflow-api-openapi.yml"
+  ],
+  "outputs": [
+    "bubble-action-api-openapi.yml",
+    "bubble-context-api-openapi.yml",
+    "bubble-data-api-openapi.yml",
+    "bubble-element-api-openapi.yml",
+    "bubble-thing-api-openapi.yml",
+    "bubble-workflow-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

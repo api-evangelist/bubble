@@ -1,0 +1,312 @@
+openapi: 3.0.3
+info:
+  title: Bubble Plugin API
+  description: |
+    The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin
+    authors use to extend Bubble apps. It exposes server-side actions, client-side
+    actions, and visual elements that read configured properties and interact with
+    the runtime via a `context` object. Plugin API v4 replaces Fibers with
+    Promises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),
+    by-id lookups (`getThingById`, `getThingsById`), and async iteration on
+    `BubbleList`.
+
+    This OpenAPI document describes the SDK surface as a virtual REST API for
+    catalog and discovery purposes. Each "endpoint" represents a callable
+    JavaScript function in the plugin runtime; `paths` carry the function name
+    and `requestBody`/`responses` describe its parameters and return value.
+  version: '4.0'
+  contact:
+    name: Bubble Support
+    url: https://bubble.io/contact
+  license:
+    name: Bubble Plugin Marketplace Terms
+    url: https://bubble.io/legal/plugins
+servers:
+  - url: virtual://plugin-runtime
+    description: |
+      Virtual server. Plugin actions and elements execute inside the Bubble
+      runtime; there is no public HTTP endpoint.
+tags:
+  - name: Action
+    description: Server-side and client-side action functions invoked by Bubble workflows.
+  - name: Element
+    description: Visual element lifecycle hooks invoked by the Bubble page renderer.
+  - name: Thing
+    description: Database object accessors exposed to plugin code.
+  - name: Context
+    description: Helpers exposed on the runtime context object.
+paths:
+  /actions/serverSide/{actionName}:
+    post:
+      tags:
+        - Action
+      summary: Invoke Server-Side Action
+      description: |
+        Server-side actions are written as `function(properties, context)`.
+        They run in a Node.js sandbox, may `require` configured npm
+        dependencies, and may return data consumed by subsequent workflow
+        steps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).
+      operationId: invokeServerAction
+      parameters:
+        - name: actionName
+          in: path
+          required: true
+          description: Name of the action as defined in the plugin editor.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                properties:
+                  $ref: '#/components/schemas/ActionProperties'
+                context:
+                  $ref: '#/components/schemas/ServerContext'
+      responses:
+        '200':
+          description: Action returned successfully. Return shape is defined by the plugin's `Returned values` configuration.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /actions/clientSide/{actionName}:
+    post:
+      tags:
+        - Action
+      summary: Invoke Client-Side Action
+      description: |
+        Client-side actions are written as `function(properties, context)` and
+        run in the browser. Useful for DOM manipulation, calling browser
+        APIs, or working with already-loaded data. No workload is incurred
+        because no server roundtrip occurs.
+      operationId: invokeClientAction
+      parameters:
+        - name: actionName
+          in: path
+          required: true
+          description: Name of the action as defined in the plugin editor.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                properties:
+                  $ref: '#/components/schemas/ActionProperties'
+                context:
+                  $ref: '#/components/schemas/ClientContext'
+      responses:
+        '200':
+          description: Action returned successfully (or void).
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /elements/{elementName}/initialize:
+    post:
+      tags:
+        - Element
+      summary: Initialize Element
+      description: |
+        Element initialize hook. Receives `(instance, context)`. Use to set up
+        DOM state, allocate resources, and register state.
+      operationId: initializeElement
+      parameters:
+        - name: elementName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instance:
+                  $ref: '#/components/schemas/ElementInstance'
+                context:
+                  $ref: '#/components/schemas/ClientContext'
+      responses:
+        '200':
+          description: Initialization complete.
+  /elements/{elementName}/update:
+    post:
+      tags:
+        - Element
+      summary: Update Element
+      description: |
+        Element update hook. Receives `(instance, properties, context)`.
+        Triggered when any of the element's bound properties change.
+      operationId: updateElement
+      parameters:
+        - name: elementName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instance:
+                  $ref: '#/components/schemas/ElementInstance'
+                properties:
+                  $ref: '#/components/schemas/ActionProperties'
+                context:
+                  $ref: '#/components/schemas/ClientContext'
+      responses:
+        '200':
+          description: Update applied.
+  /thing/{id}:
+    get:
+      tags:
+        - Thing
+      summary: Get Thing By Id
+      description: |
+        Look up a single database object by id. Maps to
+        `context.getThingById(id)` on the server context. Returns a
+        `BubbleThing` whose `get(field)` returns a Promise.
+      operationId: getThingById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A BubbleThing wrapper.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleThing'
+  /things:
+    get:
+      tags:
+        - Thing
+      summary: Get Things By Id
+      description: |
+        Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a
+        `BubbleList`.
+      operationId: getThingsById
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: A BubbleList wrapper.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BubbleList'
+  /context/async:
+    post:
+      tags:
+        - Context
+      summary: Run Async Block
+      description: |
+        Wrap an asynchronous operation. In v4 this is `context.v3.async()`
+        and is deprecated in favor of native `async/await`.
+      operationId: contextAsync
+      responses:
+        '200':
+          description: Async block completed.
+  /context/request:
+    post:
+      tags:
+        - Context
+      summary: Make HTTP Request
+      description: |
+        Issue an outbound HTTP request from a server-side action. In v4
+        this is `context.v3.request()` and is deprecated in favor of any
+        npm-installed HTTP client.
+      operationId: contextRequest
+      responses:
+        '200':
+          description: HTTP response.
+components:
+  schemas:
+    ActionProperties:
+      type: object
+      description: Map of property names to values, defined by the plugin author in the editor.
+      additionalProperties: true
+    ServerContext:
+      type: object
+      description: Server-side context object passed to actions.
+      properties:
+        currentUser:
+          $ref: '#/components/schemas/BubbleThing'
+        userTimezone:
+          type: string
+        keys:
+          type: object
+          additionalProperties:
+            type: string
+          description: Plugin shared headers / API keys configured in the editor.
+        isBubbleThing:
+          type: string
+          description: Type-checker function. Returns true if argument is a BubbleThing.
+        isBubbleList:
+          type: string
+          description: Type-checker function. Returns true if argument is a BubbleList.
+        getThingById:
+          type: string
+          description: '`(id) => BubbleThing` — fetch a single record by id.'
+        getThingsById:
+          type: string
+          description: '`(ids) => BubbleList` — fetch multiple records by id.'
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
+      additionalProperties: true
+    ElementInstance:
+      type: object
+      description: Element instance handle for setting state, publishing values, and triggering events.
+      additionalProperties: true
+    BubbleThing:
+      type: object
+      description: Wrapper around a single database record.
+      properties:
+        id:
+          type: string
+          description: Read-only unique id (added in v4).
+        listProperties:
+          type: string
+          description: Returns an array of field names defined on the record.
+        get:
+          type: string
+          description: '`(propertyName) => Promise<any>` — returns a Promise resolving to the field value.'
+        getAll:
+          type: string
+          description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+    BubbleList:
+      type: object
+      description: Wrapper around a database query result.
+      properties:
+        length:
+          type: string
+          description: '`() => Promise<number>` — number of items in the list.'
+        get:
+          type: string
+          description: '`(start, length) => Promise<Array>` — fetch a slice of the list.'
+        '[Symbol.asyncIterator]':
+          type: string
+          description: 'Async iteration support (added in v4) for `for await...of`.'
