@@ -1,0 +1,272 @@
+{
+  "item": [
+    {
+      "id": "4e389553-ef97-4206-9130-3637629b23ba",
+      "name": "Thing",
+      "description": {
+        "content": "Database object accessors exposed to plugin code.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82eeffc3-609e-4813-a463-54bd82bad098",
+          "name": "Get Thing By Id",
+          "request": {
+            "name": "Get Thing By Id",
+            "description": {
+              "content": "Look up a single database object by id. Maps to\n`context.getThingById(id)` on the server context. Returns a\n`BubbleThing` whose `get(field)` returns a Promise.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "thing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5144cd7b-9320-431e-8cb6-dc83bc0abf78",
+              "name": "A BubbleThing wrapper.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "thing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"listProperties\": \"string\",\n  \"get\": \"string\",\n  \"getAll\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8484f0d2-6280-49aa-9ebd-798ff5107f3e",
+          "name": "Get Things By Id",
+          "request": {
+            "name": "Get Things By Id",
+            "description": {
+              "content": "Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a\n`BubbleList`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "things"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f136b0cd-e66d-4755-88f4-4bdb17d23e64",
+              "name": "A BubbleList wrapper.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "things"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"length\": \"string\",\n  \"get\": \"string\",\n  \"[Symbol.asyncIterator]\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bubble app name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myapp",
+      "key": "appname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a2ff796-6b26-4135-bffd-3f47a936f103",
+    "name": "Bubble Data Action Thing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bubble Data API exposes the database of a Bubble app as a REST interface.\nExternal systems can read, search, create, modify, replace, and delete records\nof any data type defined in a Bubble app, with optional pagination, sorting,\nand search constraints. Authentication uses bearer tokens (admin API tokens\nbypass privacy rules; user tokens enforce them). Endpoints exist for live and\ndevelopment (`version-test`) environments.\n\n\nContact Support:\n Name: Bubble Support",
+      "type": "text/plain"
+    }
+  }
+}

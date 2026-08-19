@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Data Action Thing API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Thing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Thing By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/thing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Look up a single database object by id. Maps to\n`context.getThingById(id)` on the server context. Returns a\n`BubbleThing` whose `get(field)` returns a Promise.\n"
+        },
+        {
+          "info": {
+            "name": "Get Things By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/things",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a\n`BubbleList`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

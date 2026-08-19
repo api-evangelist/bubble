@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Data Action Element API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Element",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/elements/:elementName/initialize",
+            "params": [
+              {
+                "name": "elementName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Element initialize hook. Receives `(instance, context)`. Use to set up\nDOM state, allocate resources, and register state.\n"
+        },
+        {
+          "info": {
+            "name": "Update Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/elements/:elementName/update",
+            "params": [
+              {
+                "name": "elementName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Element update hook. Receives `(instance, properties, context)`.\nTriggered when any of the element's bound properties change.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

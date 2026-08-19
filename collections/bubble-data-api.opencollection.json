@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Bubble Data API",
+    "name": "Bubble Action Data API",
     "version": "1.1"
   },
   "request": {

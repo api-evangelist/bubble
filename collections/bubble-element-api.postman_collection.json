@@ -1,0 +1,296 @@
+{
+  "item": [
+    {
+      "id": "252df6e2-c1fa-4f5b-89a9-4d8a3047517c",
+      "name": "Element",
+      "description": {
+        "content": "Visual element lifecycle hooks invoked by the Bubble page renderer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0a67620-f465-4d3e-adfd-f61655c06819",
+          "name": "Initialize Element",
+          "request": {
+            "name": "Initialize Element",
+            "description": {
+              "content": "Element initialize hook. Receives `(instance, context)`. Use to set up\nDOM state, allocate resources, and register state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elements",
+                ":elementName",
+                "initialize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instance\": {\n    \"key_0\": true\n  },\n  \"context\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7616\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a90ed7b3-366e-4283-a203-810a8813fccb",
+              "name": "Initialization complete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":elementName",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance\": {\n    \"key_0\": false\n  },\n  \"context\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c28e588-99ff-4d53-949c-f1a033790d1d",
+          "name": "Update Element",
+          "request": {
+            "name": "Update Element",
+            "description": {
+              "content": "Element update hook. Receives `(instance, properties, context)`.\nTriggered when any of the element's bound properties change.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elements",
+                ":elementName",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Bubble app name",
+                  "type": "any",
+                  "value": "{{appname}}",
+                  "key": "appname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instance\": {\n    \"key_0\": 9374.83520637667\n  },\n  \"properties\": {\n    \"key_0\": true,\n    \"key_1\": 3733.437271003257,\n    \"key_2\": 3942,\n    \"key_3\": 3685.1560484861725\n  },\n  \"context\": {\n    \"key_0\": 330.26439335274824\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "235996b7-3120-4590-b32c-df2b5f98991e",
+              "name": "Update applied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements",
+                    ":elementName",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Bubble app name",
+                      "type": "any",
+                      "value": "{{appname}}",
+                      "key": "appname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance\": {\n    \"key_0\": 565,\n    \"key_1\": \"string\"\n  },\n  \"properties\": {\n    \"key_0\": 7552.461757488412\n  },\n  \"context\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6990.471819430063\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bubble app name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myapp",
+      "key": "appname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{appname}}.bubbleapps.io/api/1.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "689bc05c-0ab4-44a0-8fcc-c799d16e59fa",
+    "name": "Bubble Data Action Element API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bubble Data API exposes the database of a Bubble app as a REST interface.\nExternal systems can read, search, create, modify, replace, and delete records\nof any data type defined in a Bubble app, with optional pagination, sorting,\nand search constraints. Authentication uses bearer tokens (admin API tokens\nbypass privacy rules; user tokens enforce them). Endpoints exist for live and\ndevelopment (`version-test`) environments.\n\n\nContact Support:\n Name: Bubble Support",
+      "type": "text/plain"
+    }
+  }
+}

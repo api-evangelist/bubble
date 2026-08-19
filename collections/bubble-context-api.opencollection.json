@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bubble Data Action Context API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Context",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run Async Block",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/context/async"
+          },
+          "docs": "Wrap an asynchronous operation. In v4 this is `context.v3.async()`\nand is deprecated in favor of native `async/await`.\n"
+        },
+        {
+          "info": {
+            "name": "Make HTTP Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{appname}.bubbleapps.io/api/1.1/context/request"
+          },
+          "docs": "Issue an outbound HTTP request from a server-side action. In v4\nthis is `context.v3.request()` and is deprecated in favor of any\nnpm-installed HTTP client.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
