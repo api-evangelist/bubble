@@ -32,6 +32,12 @@ tags:
   - No-Code
   - Application Platform
   - Database
+  - Workflow-Automation
+  - Plugins
+tags_raw:
+  - No-Code
+  - Application Platform
+  - Database
   - Workflow Automation
   - Plugins
 url-source: https://bubble.io/
@@ -90,6 +96,11 @@ apis:
   humanURL: https://manual.bubble.io/core-resources/api/the-bubble-api/the-workflow-api.md
   baseURL: https://{appname}.bubbleapps.io/api/1.1
   tags:
+  - Workflow API
+  - REST
+  - Automation
+  - Webhook
+  tags_raw:
   - Workflow API
   - REST
   - Automation
