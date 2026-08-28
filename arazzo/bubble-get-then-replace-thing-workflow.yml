@@ -12,7 +12,7 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: bubbleDataApi
+- name: dataApi
   url: ../openapi/bubble-data-api-openapi.yml
   type: openapi
 workflows:

@@ -12,11 +12,11 @@ info:
     underlying OpenAPI descriptions.
   version: 1.0.0
 sourceDescriptions:
-- name: bubbleWorkflowApi
-  url: ../openapi/bubble-workflow-api-openapi.yml
-  type: openapi
-- name: bubbleDataApi
+- name: dataApi
   url: ../openapi/bubble-data-api-openapi.yml
+  type: openapi
+- name: workflowApi
+  url: ../openapi/bubble-workflow-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: trigger-workflow-then-log-thing
