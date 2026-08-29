@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Bubble Data Action Workflow API
   description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
@@ -175,7 +175,28 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    WorkflowName:
+      name: workflow_name
+      in: path
+      required: true
+      description: 'Name of the API workflow as defined in the Bubble editor. Slugs are
+
+        case-sensitive and must match the workflow exactly.
+
+        '
+      schema:
+        type: string
+      example: register_user
   schemas:
+    WorkflowParameters:
+      type: object
+      description: 'Parameter map. Field names and types are defined per workflow in the
+
+        Bubble editor or auto-detected via the `/initialize` call.
+
+        '
+      additionalProperties: true
     WorkflowResponse:
       type: object
       description: 'Default JSON response. Workflows can also return plain text or a
@@ -202,27 +223,6 @@ components:
               type: string
             message:
               type: string
-    WorkflowParameters:
-      type: object
-      description: 'Parameter map. Field names and types are defined per workflow in the
-
-        Bubble editor or auto-detected via the `/initialize` call.
-
-        '
-      additionalProperties: true
-  parameters:
-    WorkflowName:
-      name: workflow_name
-      in: path
-      required: true
-      description: 'Name of the API workflow as defined in the Bubble editor. Slugs are
-
-        case-sensitive and must match the workflow exactly.
-
-        '
-      schema:
-        type: string
-      example: register_user
   securitySchemes:
     BearerAuth:
       type: http

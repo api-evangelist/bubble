@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Bubble Action Data API
   description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
@@ -286,23 +286,56 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    Typename:
-      name: typename
-      in: path
-      required: true
-      description: Data type name in lowercase with spaces removed.
-      schema:
-        type: string
-      example: shopping_cart
-    Uid:
-      name: uid
-      in: path
-      required: true
-      description: Unique id of the record.
-      schema:
-        type: string
-      example: 1503408875694x944431186090727200
+  schemas:
+    Thing:
+      type: object
+      description: A single record. Field names match the data type's fields in the Bubble app.
+      additionalProperties: true
+    ThingResponse:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/Thing'
+    SearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            cursor:
+              type: integer
+              description: Position of the first returned item.
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/Thing'
+            remaining:
+              type: integer
+              description: Records remaining beyond the returned page.
+            count:
+              type: integer
+              description: Number of records on this page.
+    CreateResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        id:
+          type: string
+          description: Unique id assigned to the new record.
+    Error:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        body:
+          type: object
+          properties:
+            status:
+              type: string
+            message:
+              type: string
   responses:
     Unauthorized:
       description: Missing or invalid bearer token, or token lacks required privileges.
@@ -328,56 +361,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    SearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            cursor:
-              type: integer
-              description: Position of the first returned item.
-            results:
-              type: array
-              items:
-                $ref: '#/components/schemas/Thing'
-            remaining:
-              type: integer
-              description: Records remaining beyond the returned page.
-            count:
-              type: integer
-              description: Number of records on this page.
-    Error:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-        body:
-          type: object
-          properties:
-            status:
-              type: string
-            message:
-              type: string
-    Thing:
-      type: object
-      description: A single record. Field names match the data type's fields in the Bubble app.
-      additionalProperties: true
-    ThingResponse:
-      type: object
-      properties:
-        response:
-          $ref: '#/components/schemas/Thing'
-    CreateResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: success
-        id:
-          type: string
-          description: Unique id assigned to the new record.
+  parameters:
+    Typename:
+      name: typename
+      in: path
+      required: true
+      description: Data type name in lowercase with spaces removed.
+      schema:
+        type: string
+      example: shopping_cart
+    Uid:
+      name: uid
+      in: path
+      required: true
+      description: Unique id of the record.
+      schema:
+        type: string
+      example: 1503408875694x944431186090727200
   securitySchemes:
     BearerAuth:
       type: http

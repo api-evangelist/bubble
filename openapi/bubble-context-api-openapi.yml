@@ -1,47 +1,44 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Bubble Data Action Context API
-  description: 'The Bubble Data API exposes the database of a Bubble app as a REST interface.
+  title: Bubble Plugin Context API
+  description: 'The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin
 
-    External systems can read, search, create, modify, replace, and delete records
+    authors use to extend Bubble apps. It exposes server-side actions, client-side
 
-    of any data type defined in a Bubble app, with optional pagination, sorting,
+    actions, and visual elements that read configured properties and interact with
 
-    and search constraints. Authentication uses bearer tokens (admin API tokens
+    the runtime via a `context` object. Plugin API v4 replaces Fibers with
 
-    bypass privacy rules; user tokens enforce them). Endpoints exist for live and
+    Promises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),
 
-    development (`version-test`) environments.
+    by-id lookups (`getThingById`, `getThingsById`), and async iteration on
+
+    `BubbleList`.
+
+
+    This OpenAPI document describes the SDK surface as a virtual REST API for
+
+    catalog and discovery purposes. Each "endpoint" represents a callable
+
+    JavaScript function in the plugin runtime; `paths` carry the function name
+
+    and `requestBody`/`responses` describe its parameters and return value.
 
     '
-  version: '1.1'
+  version: '4.0'
   contact:
     name: Bubble Support
     url: https://bubble.io/contact
   license:
-    name: Bubble Terms of Service
-    url: https://bubble.io/legal/terms-of-service
+    name: Bubble Plugin Marketplace Terms
+    url: https://bubble.io/legal/plugins
 servers:
-- url: https://{appname}.bubbleapps.io/api/1.1
-  description: Live App on Bubble subdomain
-  variables:
-    appname:
-      default: myapp
-      description: Bubble app name
-- url: https://{appname}.bubbleapps.io/version-test/api/1.1
-  description: Development (version-test) on Bubble subdomain
-  variables:
-    appname:
-      default: myapp
-      description: Bubble app name
-- url: https://{customDomain}/api/1.1
-  description: Live App on a custom domain
-  variables:
-    customDomain:
-      default: example.com
-      description: Custom domain pointing to the Bubble app
-security:
-- BearerAuth: []
+- url: virtual://plugin-runtime
+  description: 'Virtual server. Plugin actions and elements execute inside the Bubble
+
+    runtime; there is no public HTTP endpoint.
+
+    '
 tags:
 - name: Context
   description: Helpers exposed on the runtime context object.
@@ -76,16 +73,3 @@ paths:
       responses:
         '200':
           description: HTTP response.
-components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: API Token
-      description: 'Send the API token in the `Authorization` header as `Bearer <token>`.
-
-        Admin tokens bypass privacy rules; user tokens (returned by the
-
-        `Log the User in` workflow action) enforce privacy rules per user.
-
-        '
