@@ -132,6 +132,10 @@ apis:
   - type: Tutorials
     url: https://manual.bubble.io/account-and-marketplace/building-plugins/building-elements.md
 common:
+  - type: Website
+    url: https://bubble.io
+  - type: Forums
+    url: https://forum.bubble.io
   - type: AgenticAccess
     url: agentic-access/bubble-agentic-access.yml
   - type: TrustCenter

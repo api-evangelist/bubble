@@ -13,7 +13,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: workflowApi
-  url: ../openapi/bubble-workflow-api-openapi.yml
+  url: ../openapi/_superseded/bubble-workflow-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: initialize-then-trigger-workflow

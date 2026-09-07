@@ -12,10 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: dataApi
-  url: ../openapi/bubble-data-api-openapi.yml
+  url: ../openapi/_superseded/bubble-data-api-openapi.yml
   type: openapi
 - name: workflowApi
-  url: ../openapi/bubble-workflow-api-openapi.yml
+  url: ../openapi/_superseded/bubble-workflow-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-thing-then-trigger-workflow
