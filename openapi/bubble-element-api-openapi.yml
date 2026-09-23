@@ -3,28 +3,7 @@ info:
   title: Bubble Plugin Element API
   description: 'The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin
 
-    authors use to extend Bubble apps. It exposes server-side actions, client-side
-
-    actions, and visual elements that read configured properties and interact with
-
-    the runtime via a `context` object. Plugin API v4 replaces Fibers with
-
-    Promises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),
-
-    by-id lookups (`getThingById`, `getThingsById`), and async iteration on
-
-    `BubbleList`.
-
-
-    This OpenAPI document describes the SDK surface as a virtual REST API for
-
-    catalog and discovery purposes. Each "endpoint" represents a callable
-
-    JavaScript function in the plugin runtime; `paths` carry the function name
-
-    and `requestBody`/`responses` describe its parameters and return value.
-
-    '
+    authors use to extend Bubble apps.'
   version: '4.0'
   contact:
     name: Bubble Support
@@ -50,9 +29,7 @@ paths:
       summary: Initialize Element
       description: 'Element initialize hook. Receives `(instance, context)`. Use to set up
 
-        DOM state, allocate resources, and register state.
-
-        '
+        DOM state, allocate resources, and register state.'
       operationId: initializeElement
       parameters:
       - name: elementName
@@ -81,9 +58,7 @@ paths:
       summary: Update Element
       description: 'Element update hook. Receives `(instance, properties, context)`.
 
-        Triggered when any of the element''s bound properties change.
-
-        '
+        Triggered when any of the element''s bound properties change.'
       operationId: updateElement
       parameters:
       - name: elementName
@@ -109,15 +84,15 @@ paths:
           description: Update applied.
 components:
   schemas:
-    ElementInstance:
+    ClientContext:
       type: object
-      description: Element instance handle for setting state, publishing values, and triggering events.
+      description: Client-side context passed to actions and element hooks.
       additionalProperties: true
     ActionProperties:
       type: object
       description: Map of property names to values, defined by the plugin author in the editor.
       additionalProperties: true
-    ClientContext:
+    ElementInstance:
       type: object
-      description: Client-side context passed to actions and element hooks.
+      description: Element instance handle for setting state, publishing values, and triggering events.
       additionalProperties: true

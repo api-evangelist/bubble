@@ -3,28 +3,7 @@ info:
   title: Bubble Plugin Action API
   description: 'The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin
 
-    authors use to extend Bubble apps. It exposes server-side actions, client-side
-
-    actions, and visual elements that read configured properties and interact with
-
-    the runtime via a `context` object. Plugin API v4 replaces Fibers with
-
-    Promises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),
-
-    by-id lookups (`getThingById`, `getThingsById`), and async iteration on
-
-    `BubbleList`.
-
-
-    This OpenAPI document describes the SDK surface as a virtual REST API for
-
-    catalog and discovery purposes. Each "endpoint" represents a callable
-
-    JavaScript function in the plugin runtime; `paths` carry the function name
-
-    and `requestBody`/`responses` describe its parameters and return value.
-
-    '
+    authors use to extend Bubble apps.'
   version: '4.0'
   contact:
     name: Bubble Support
@@ -54,9 +33,7 @@ paths:
 
         dependencies, and may return data consumed by subsequent workflow
 
-        steps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).
-
-        '
+        steps. Counts as 1 server-side plugin action call (0.2 WU base + per-ms).'
       operationId: invokeServerAction
       parameters:
       - name: actionName
@@ -95,9 +72,7 @@ paths:
 
         APIs, or working with already-loaded data. No workload is incurred
 
-        because no server roundtrip occurs.
-
-        '
+        because no server roundtrip occurs.'
       operationId: invokeClientAction
       parameters:
       - name: actionName
@@ -127,22 +102,14 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    BubbleThing:
+    ClientContext:
       type: object
-      description: Wrapper around a single database record.
-      properties:
-        id:
-          type: string
-          description: Read-only unique id (added in v4).
-        listProperties:
-          type: string
-          description: Returns an array of field names defined on the record.
-        get:
-          type: string
-          description: '`(propertyName) => Promise<any>` — returns a Promise resolving to the field value.'
-        getAll:
-          type: string
-          description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+      description: Client-side context passed to actions and element hooks.
+      additionalProperties: true
+    ActionProperties:
+      type: object
+      description: Map of property names to values, defined by the plugin author in the editor.
+      additionalProperties: true
     ServerContext:
       type: object
       description: Server-side context object passed to actions.
@@ -168,11 +135,19 @@ components:
         getThingsById:
           type: string
           description: '`(ids) => BubbleList` — fetch multiple records by id.'
-    ClientContext:
+    BubbleThing:
       type: object
-      description: Client-side context passed to actions and element hooks.
-      additionalProperties: true
-    ActionProperties:
-      type: object
-      description: Map of property names to values, defined by the plugin author in the editor.
-      additionalProperties: true
+      description: Wrapper around a single database record.
+      properties:
+        id:
+          type: string
+          description: Read-only unique id (added in v4).
+        listProperties:
+          type: string
+          description: Returns an array of field names defined on the record.
+        get:
+          type: string
+          description: '`(propertyName) => Promise<any>` — returns a Promise resolving to the field value.'
+        getAll:
+          type: string
+          description: '`() => Promise<object>` — returns all fields as an object (added in v4).'

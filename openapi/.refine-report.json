@@ -14,14 +14,13 @@
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "bubble-plugin-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "bubble-plugin-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "bubble-action-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bubble-context-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "bubble-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "bubble-element-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "bubble-thing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "bubble-workflow-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "bubble-thing-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

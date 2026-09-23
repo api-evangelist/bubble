@@ -3,28 +3,7 @@ info:
   title: Bubble Plugin Thing API
   description: 'The Bubble Plugin API is a JavaScript SDK surface (not an HTTP API) that plugin
 
-    authors use to extend Bubble apps. It exposes server-side actions, client-side
-
-    actions, and visual elements that read configured properties and interact with
-
-    the runtime via a `context` object. Plugin API v4 replaces Fibers with
-
-    Promises and adds first-class type checks (`isBubbleThing`, `isBubbleList`),
-
-    by-id lookups (`getThingById`, `getThingsById`), and async iteration on
-
-    `BubbleList`.
-
-
-    This OpenAPI document describes the SDK surface as a virtual REST API for
-
-    catalog and discovery purposes. Each "endpoint" represents a callable
-
-    JavaScript function in the plugin runtime; `paths` carry the function name
-
-    and `requestBody`/`responses` describe its parameters and return value.
-
-    '
+    authors use to extend Bubble apps.'
   version: '4.0'
   contact:
     name: Bubble Support
@@ -52,9 +31,7 @@ paths:
 
         `context.getThingById(id)` on the server context. Returns a
 
-        `BubbleThing` whose `get(field)` returns a Promise.
-
-        '
+        `BubbleThing` whose `get(field)` returns a Promise.'
       operationId: getThingById
       parameters:
       - name: id
@@ -76,9 +53,7 @@ paths:
       summary: Get Things By Id
       description: 'Bulk lookup. Maps to `context.getThingsById(ids)`. Returns a
 
-        `BubbleList`.
-
-        '
+        `BubbleList`.'
       operationId: getThingsById
       parameters:
       - name: ids
