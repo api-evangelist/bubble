@@ -84,13 +84,13 @@ paths:
           description: Update applied.
 components:
   schemas:
-    ClientContext:
-      type: object
-      description: Client-side context passed to actions and element hooks.
-      additionalProperties: true
     ActionProperties:
       type: object
       description: Map of property names to values, defined by the plugin author in the editor.
+      additionalProperties: true
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
       additionalProperties: true
     ElementInstance:
       type: object

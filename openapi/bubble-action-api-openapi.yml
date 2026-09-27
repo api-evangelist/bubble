@@ -102,14 +102,6 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    ClientContext:
-      type: object
-      description: Client-side context passed to actions and element hooks.
-      additionalProperties: true
-    ActionProperties:
-      type: object
-      description: Map of property names to values, defined by the plugin author in the editor.
-      additionalProperties: true
     ServerContext:
       type: object
       description: Server-side context object passed to actions.
@@ -151,3 +143,11 @@ components:
         getAll:
           type: string
           description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+    ActionProperties:
+      type: object
+      description: Map of property names to values, defined by the plugin author in the editor.
+      additionalProperties: true
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
+      additionalProperties: true
