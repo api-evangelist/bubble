@@ -72,19 +72,6 @@ paths:
                 $ref: '#/components/schemas/BubbleList'
 components:
   schemas:
-    BubbleList:
-      type: object
-      description: Wrapper around a database query result.
-      properties:
-        length:
-          type: string
-          description: '`() => Promise<number>` — number of items in the list.'
-        get:
-          type: string
-          description: '`(start, length) => Promise<Array>` — fetch a slice of the list.'
-        '[Symbol.asyncIterator]':
-          type: string
-          description: Async iteration support (added in v4) for `for await...of`.
     BubbleThing:
       type: object
       description: Wrapper around a single database record.
@@ -101,3 +88,16 @@ components:
         getAll:
           type: string
           description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+    BubbleList:
+      type: object
+      description: Wrapper around a database query result.
+      properties:
+        length:
+          type: string
+          description: '`() => Promise<number>` — number of items in the list.'
+        get:
+          type: string
+          description: '`(start, length) => Promise<Array>` — fetch a slice of the list.'
+        '[Symbol.asyncIterator]':
+          type: string
+          description: Async iteration support (added in v4) for `for await...of`.
