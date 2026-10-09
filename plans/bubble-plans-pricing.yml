@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-06 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-06'
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -354,3 +359,83 @@ plans:
       - name: Volume-discounted WU pricing
       - name: File storage billed per 100 GB block
       - name: No commitment required
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - data
+  - negotiated
+  - object
+  - period
+  - request
+  plans:
+  - name: Free
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    - other
+    periods:
+    - per-use
+  - name: Starter
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    - period
+    - request
+    periods:
+    - minute
+    - month
+  - name: Growth
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    - period
+    - request
+    periods:
+    - minute
+    - month
+  - name: Team
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    - period
+    - request
+    periods:
+    - minute
+    - month
+  - name: Enterprise / Custom
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - month
+  - name: Mobile Add-On / Web + Mobile Bundle
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: Add-Ons
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - data
+    - other
+    periods:
+    - month
