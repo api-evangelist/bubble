@@ -84,13 +84,13 @@ paths:
           description: Update applied.
 components:
   schemas:
-    ClientContext:
-      type: object
-      description: Client-side context passed to actions and element hooks.
-      additionalProperties: true
     ElementInstance:
       type: object
       description: Element instance handle for setting state, publishing values, and triggering events.
+      additionalProperties: true
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
       additionalProperties: true
     ActionProperties:
       type: object

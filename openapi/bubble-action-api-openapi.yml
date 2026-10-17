@@ -127,10 +127,6 @@ components:
         getThingsById:
           type: string
           description: '`(ids) => BubbleList` — fetch multiple records by id.'
-    ClientContext:
-      type: object
-      description: Client-side context passed to actions and element hooks.
-      additionalProperties: true
     BubbleThing:
       type: object
       description: Wrapper around a single database record.
@@ -147,6 +143,10 @@ components:
         getAll:
           type: string
           description: '`() => Promise<object>` — returns all fields as an object (added in v4).'
+    ClientContext:
+      type: object
+      description: Client-side context passed to actions and element hooks.
+      additionalProperties: true
     ActionProperties:
       type: object
       description: Map of property names to values, defined by the plugin author in the editor.
