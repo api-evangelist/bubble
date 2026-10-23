@@ -79,3 +79,728 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: bubble-api-video
+  label: api.video
+  partner: api-video
+  partner_name: api.video
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/apivideo-1632390165248x133502315345739780
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: api.video
+    register_id: https://bubble.io/contributor/1638290371830x128437680286368030
+    matched_domain: api.video
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.api.video/docs/bubbleio-plugin
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-apify
+  label: Apify
+  partner: apify
+  partner_name: Apify
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/apify-1749639212621x698168698147962900
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Apify
+    register_id: https://bubble.io/contributor/1748257937310x803920645681059800
+    matched_domain: apify.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.apify.com/platform/integrations/bubble
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-apitemplate-io
+  label: APITemplate.io
+  partner: apitemplate
+  partner_name: APITemplate.io
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/apitemplateio---pdf-generation-api-1662636993742x789191480716820500
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: APITemplate.io
+    register_id: https://bubble.io/contributor/1662636709154x334183648199983800
+    matched_domain: apitemplate.io
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://apitemplate.io/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-asaas
+  label: Asaas
+  partner: asaas
+  partner_name: Asaas
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/asaas-1706804350267x518485267472187400
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Asaas
+    register_id: https://bubble.io/contributor/1706799001854x301914795287872900
+    matched_domain: asaas.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.asaas.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-ayrshare
+  label: Ayrshare
+  partner: ayrshare
+  partner_name: Ayrshare
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/ayrshare-social-media-posting-api-1607956467620x490188301088063500
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Ayrshare
+    register_id: https://bubble.io/contributor/1606744127928x912859349082336000
+    matched_domain: ayrshare.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.ayrshare.com/packages/bubble.io
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-bigid
+  label: BigID
+  partner: bigid
+  partner_name: BigID
+  category: Action
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/bigid-cmp-1739367241438x147254218468622340
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: BigID
+    register_id: https://bubble.io/contributor/1739366615276x898971068380272300
+    matched_domain: bigid.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://bigid.com/cookie-consent/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-commandbar
+  label: CommandBar
+  partner: commandbar
+  partner_name: CommandBar
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/commandbar-for-bubble-1664479780348x240001275943190530
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: CommandBar
+    register_id: https://bubble.io/contributor/1664479757526x280341526471763900
+    matched_domain: commandbar.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://www.commandbar.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-convertapi
+  label: ConvertAPI
+  partner: convertapi
+  partner_name: ConvertAPI
+  category: Action
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/convertapi-1690977977458x650984287975768000
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: ConvertAPI
+    register_id: https://bubble.io/contributor/1690881600050x900704951544897300
+    matched_domain: convertapi.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://www.convertapi.com/api
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-craftmypdf
+  label: CraftMyPDF
+  partner: craftmypdf
+  partner_name: CraftMyPDF
+  category: Action
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/craftmypdf-1639309420468x292023338381869060
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: CraftMyPDF
+    register_id: https://bubble.io/contributor/1639287828419x153537322611519300
+    matched_domain: craftmypdf.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://support.craftmypdf.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-docspring
+  label: DocSpring
+  partner: docspring
+  partner_name: DocSpring
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/docspring---fill-and-generate-pdfs-1573478783306x235198545630593020
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: DocSpring
+    register_id: https://bubble.io/contributor/1570196294637x844656430459424100
+    matched_domain: docspring.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docspring.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-dyte
+  label: Dyte
+  partner: dyte
+  partner_name: Dyte
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/dyte--live-video--audio-sdk-1650945434000x413421778289295360
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Dyte
+    register_id: https://bubble.io/contributor/1650906539793x957060629497061800
+    matched_domain: dyte.io
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://dyte.io/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-eden-ai
+  label: Eden AI
+  partner: eden-ai
+  partner_name: Eden AI
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/eden-ai---ai-content-detection-1695029061756x519982118060949500
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Eden AI
+    register_id: https://bubble.io/contributor/1677489717601x788163865103628700
+    matched_domain: edenai.co
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.edenai.co/reference/text_plagia_detection_create
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-explorium
+  label: Explorium
+  partner: explorium
+  partner_name: Explorium
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/explorium-api-1746610246342x947883748803215400
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Explorium
+    register_id: https://bubble.io/contributor/1746609581093x301714509002740200
+    matched_domain: explorium.ai
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://developers.explorium.ai/reference/getting_your_api_key
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-firma-dev
+  label: Firma.dev
+  partner: firma-dev
+  partner_name: Firma.dev
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/firmadev---e-signature-1785942462782x824049133381222400
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Firma.dev
+    register_id: https://bubble.io/contributor/1785941574644x894767994972629000
+    matched_domain: firma.dev
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.firma.dev/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-gumlet
+  label: Gumlet
+  partner: gumlet
+  partner_name: Gumlet
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/gumlet-video-1754038125640x200719415416717300
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Gumlet
+    register_id: https://bubble.io/contributor/1754038022478x998590372228092000
+    matched_domain: gumlet.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.gumlet.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-kudosity
+  label: Kudosity
+  partner: kudosity
+  partner_name: Kudosity
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/kudosity-sms---multi-user-1695182802323x859119314996035600
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Kudosity
+    register_id: https://bubble.io/contributor/1600331589973x472110429923962900
+    matched_domain: kudosity.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://kudosity.com/trial
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-levity
+  label: Levity
+  partner: levity
+  partner_name: Levity
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/levity-1600206032317x388148443579678700
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Levity
+    register_id: https://bubble.io/contributor/1600197424321x223724444273018400
+    matched_domain: levity.ai
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://www.levity.ai/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-loops
+  label: Loops
+  partner: loops
+  partner_name: Loops
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/loops-1704117562175x705056703666192400
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Loops
+    register_id: https://bubble.io/contributor/1704115011178x104878484631845800
+    matched_domain: loops.so
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://app.loops.so/settings
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-microsoft
+  label: Microsoft
+  partner: microsoft-clarity
+  partner_name: Microsoft
+  category: Action
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/microsoft-clarity-1661717622628x490300288223674400
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Microsoft
+    register_id: https://bubble.io/contributor/1661717391605x793650656098562800
+    matched_domain: microsoft.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://learn.microsoft.com/en-us/clarity/bubble
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-mockoon
+  label: Mockoon
+  partner: mockoon
+  partner_name: Mockoon
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/mockoon-playground-api-1717575394337x608934808778440700
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Mockoon
+    register_id: https://bubble.io/contributor/1717574707234x872793714909740700
+    matched_domain: mockoon.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://mockoon.com/playground
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-mojoauth
+  label: MojoAuth
+  partner: mojoauth
+  partner_name: MojoAuth
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/mojoauth-passwordless-login-1617968519986x396803102171201540
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: MojoAuth
+    register_id: https://bubble.io/contributor/1617967662624x817673581320628200
+    matched_domain: mojoauth.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.mojoauth.com/lowcode-nocode-integration/bubble/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-paystack
+  label: Paystack
+  partner: paystack
+  partner_name: Paystack
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/paystack-1658230089548x320199458797125600
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Paystack
+    register_id: https://bubble.io/contributor/1663322209055x966482235746477300
+    matched_domain: paystack.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://dashboard.paystack.com/#/signup
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-pdfmonkey
+  label: PDFMonkey
+  partner: pdf-monkey
+  partner_name: PDFMonkey
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/pdfmonkey-1634904776187x632941607749681200
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: PDFMonkey
+    register_id: https://bubble.io/contributor/1634904504260x156225228533994460
+    matched_domain: pdfmonkey.io
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://docs.pdfmonkey.io/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-pdf-generator-api
+  label: PDF Generator API
+  partner: pdfgeneratorapi
+  partner_name: PDF Generator API
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/pdf-generator-api-1621422101542x543842438658129900
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: PDF Generator API
+    register_id: https://bubble.io/contributor/1617797207404x462499337092941300
+    matched_domain: pdfgeneratorapi.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://support.pdfgeneratorapi.com/en/article/how-to-integrate-with-bubble-svrs1i
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-rive
+  label: Rive
+  partner: rive
+  partner_name: Rive
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/rive-animation-1629743048500x352382500080451600
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Rive
+    register_id: https://bubble.io/contributor/1629295997827x136400998079805780
+    matched_domain: rive.app
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://rive.app/community/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-thirdweb
+  label: thirdweb
+  partner: thirdweb
+  partner_name: thirdweb
+  category: Element
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/thirdweb-checkout-1766736455080x489636567067394050
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: thirdweb
+    register_id: https://bubble.io/contributor/1766039390981x358595317355749250
+    matched_domain: thirdweb.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://thirdweb.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-vettly
+  label: Vettly
+  partner: vettly
+  partner_name: Vettly
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/vettly-moderation-1767373044738x184054625326596100
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Vettly
+    register_id: https://bubble.io/contributor/1767060538488x910867860131563600
+    matched_domain: vettly.dev
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://vettly.dev/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-weglot
+  label: Weglot
+  partner: weglot
+  partner_name: Weglot
+  category: Background Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/weglot-translate-1666284313043x618167528962654200
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: Weglot
+    register_id: https://bubble.io/contributor/1652454269936x949417721249774600
+    matched_domain: weglot.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://weglot.com/
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: bubble-workos
+  label: WorkOS
+  partner: workos
+  partner_name: WorkOS
+  category: Api
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://bubble.io/plugin/workos-api-1666727595127x530956156372516860
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Bubble plugin marketplace (bubble.io/plugins; plugin pages from bubble.io/sitemap-plugin.xml)
+    spec_file: null
+    role: official-bubble-plugin
+    registered_name: WorkOS
+    register_id: https://bubble.io/contributor/1679606007268x144450761176678980
+    matched_domain: workos.com
+    matched_by: domain
+    identity_source: creator name on the plugin page equals the provider's name, and the plugin page links https://workos.com/docs/integrations/bubble
+      (a domain the provider holds)
+    detected_by: sweep-bubble-plugin-marketplace.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
